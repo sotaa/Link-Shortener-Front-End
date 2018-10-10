@@ -23,7 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap-rtl/dist/css/bootstrap-rtl.min.css"
             ],
             "scripts": []
           },

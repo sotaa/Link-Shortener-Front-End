@@ -1,0 +1,13 @@
+<div class="form-group">
+  <input type="text" name="address" placeholder="https://example.com" [(ngModel)]="address" class="form-control"/>
+</div>
+<button (click)="generate()" class="btn btn-large bg-gradient-info btn-info" type="button">{{messages["generate-short-link"]}}</button>
+
+<div class="row" id="shorted-link" *ngIf="link" >
+  <div class="col-sm-12 card shadow">
+    <div class="row">
+        <div class="col-md-11"><a href={{linkAddress}}>{{linkAddress}}</a></div>
+        <div class="col-md-1"><button class="btn btn-outline-success pull-right" (click)="copyToClipBoard()">کپی شود</button></div>
+    </div>
+  </div>
+</div>

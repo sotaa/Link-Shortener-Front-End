@@ -1,0 +1,14 @@
+#shorted-link {
+  margin-top: 30px;
+  font-size: 25px;
+  direction: ltr;
+}
+
+#shorted-link > .card {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+input {
+  text-align: center
+}
