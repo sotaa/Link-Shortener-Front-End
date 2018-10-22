@@ -1,4 +1,8 @@
 export interface AnalyticsData {
-  date: Date;
-    // TODO: complete properties.
+  ip: string;
+  userAgent?: string;
+  location: any;
+  date: Date,
+  dateFa: any,
+  referrer?: string
 }

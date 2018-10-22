@@ -1,0 +1,63 @@
+<div class="container">
+
+  <app-loading *ngIf="!data"></app-loading>
+  <div *ngIf="notFound" class="container card card-shadow bg-gradient-danger">
+    <h2>
+      متاسفانه لینک مورد نظر پیدا نشد
+    </h2>
+  </div>
+  <section *ngIf="data">
+    <div class="row">
+      <header class="col-md-12">
+        <h3>
+          <span>نمایش اطلاعات برای </span>
+          <a [href]="shortenLink">{{shortenLink}}</a>
+        </h3>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-shadow">
+              <h5>تعداد کل کلیک ها: {{data.totalCount}}</h5>
+              <p>
+                لینک اصلی: <a [href]="data.linkInfo.address">{{data.linkInfo.address}}</a>
+                <br/>
+                تاریخ ایجاد: {{createDate}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-shadow">
+          <app-click-day-chart [data]="data.clicksByDate"></app-click-day-chart>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-shadow">
+          <app-browser-chart [data]="data.browsers"></app-browser-chart>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-shadow">
+          <app-platforms-chart [data]="data.platforms"></app-platforms-chart>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-shadow">
+          <app-referrers-chart [data]="data.referrers"></app-referrers-chart>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-shadow">
+          <app-location-chart [data]="data.locations"></app-location-chart>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

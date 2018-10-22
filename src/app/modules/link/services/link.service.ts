@@ -4,6 +4,7 @@ import { LinkUrls } from "./urls";
 import { map } from "rxjs/operators";
 import { ILink } from "../../models/link.interface";
 import { Observable } from "rxjs";
+import { LinkInfo } from '../../models/link-info.interface';
 
 @Injectable({
   providedIn: "root"
@@ -20,5 +21,10 @@ export class LinkService {
     return this.http
       .post(LinkUrls.link,data , {headers: this.headers})
       .pipe(map<Response, ILink>(res => <ILink>res.json()));
+  }
+
+  getInfo(code: string) {
+    const url = LinkUrls.info(code);
+    return this.http.get(url).pipe(map<Response, LinkInfo>(res => res.json()));
   }
 }

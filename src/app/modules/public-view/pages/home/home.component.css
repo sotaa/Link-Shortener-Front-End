@@ -1,0 +1,8 @@
+.shape {
+background: url(../../../../../assets/img/theme/bg-3.min.jpg) !important;
+background-size: cover !important;
+}
+
+.dark-bg {
+  background: rgba(0, 0, 0, 0.45)
+}

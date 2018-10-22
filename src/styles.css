@@ -11,3 +11,7 @@
   left: auto;
   right: 20px;
 }
+
+body {
+  text-align: right;
+}

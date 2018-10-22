@@ -6,6 +6,7 @@ import { HeaderModule } from './modules/header/header.module';
 import { PagesModule } from './modules/public-view/pages/pages.module';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { LinkModule } from './modules/link/link.module';
+import { AppCommonModule } from './modules/common/common.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LinkModule } from './modules/link/link.module';
     HeaderModule,
     PagesModule,
     AppRoutingModule,
-    LinkModule
+    LinkModule,
+    AppCommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

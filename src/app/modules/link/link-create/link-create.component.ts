@@ -22,7 +22,6 @@ export class LinkCreateComponent implements OnInit {
   }
 
   generate() {
-    alert(this.address)
     this.linkService.generate(this.address)
     .subscribe(link => {
       this.link = link;
@@ -41,7 +40,7 @@ export class LinkCreateComponent implements OnInit {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    alert('copied')
+    alert('کپی شد')
   }
 
 }
