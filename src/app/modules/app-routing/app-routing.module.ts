@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
-  {path: '', pathMatch: 'full' , loadChildren: '../public-view/pages/pages.module#PagesModule'}
+  {path: '', pathMatch: 'full' , loadChildren: '../public-view/pages/pages.module#PagesModule'},
+  {path: 'dashboard' , loadChildren: '../dashboard/dashboard.module#DashboardModule'}
 ];
 
 @NgModule({

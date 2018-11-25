@@ -15,3 +15,36 @@
 body {
   text-align: right;
 }
+
+
+.input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > .input-group-text, .input-group > .input-group-append:not(:last-child) > .btn, .input-group > .input-group-append:not(:last-child) > .input-group-text, .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+   border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;;
+}
+
+.input-group > .form-control:not(:first-child), .input-group > .custom-select:not(:first-child) {
+  border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+}
+
+.btn:not(:last-child) {
+  margin-right: auto;
+  margin-left: .5rem;
+}
+
+.btn-icon .btn-inner--text:not(:first-child) {
+  margin-left: auto;
+  margin-right: .75rem;
+}
+
+a {
+  cursor: pointer;
+}
+
+.menu-text {
+  margin-right: 7px;
+}

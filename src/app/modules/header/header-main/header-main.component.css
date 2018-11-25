@@ -1,0 +1,11 @@
+.container {
+  direction: ltr;
+}
+
+.container > * {
+  direction: rtl;
+}
+
+.menu-text {
+   margin-right: 7px;
+}

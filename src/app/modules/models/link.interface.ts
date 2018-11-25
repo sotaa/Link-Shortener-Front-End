@@ -1,7 +1,7 @@
 import { AnalyticsData } from './analytics-data.interface';
 export interface ILink {
     _id: string;
-    // userId?: string, this attribute will be added in next branch.
+    userId?: string, // this attribute will be added in next branch.
     // categoryId?: string, this attribute will be added in next branch.
     address: string;
     shorten: string;
