@@ -3,14 +3,18 @@ import { CommonModule } from '@angular/common';
 import { OverviewComponent } from './overview/overview.component';
 import { DashboardRoutingModule } from './dashboard-routing/dashboard-routing.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { RouterModule } from '@angular/router';
 import { DashboardStartComponent } from './dashboard-start/dashboard-start.component';
+import { PremiumCtaComponent } from './overview/premium-cta/premium-cta.component';
+import { RemainingTimeComponent } from './overview/remaining-time/remaining-time.component';
+import { ExpiredComponent } from './overview/remaining-time/expired/expired.component';
+import { LinksGridComponent } from './links-grid/links-grid.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     DashboardRoutingModule
   ],
-  declarations: [OverviewComponent, NavBarComponent, DashboardStartComponent]
+  declarations: [OverviewComponent, NavBarComponent, DashboardStartComponent, PremiumCtaComponent, RemainingTimeComponent, ExpiredComponent, LinksGridComponent]
 })
 export class DashboardModule { }

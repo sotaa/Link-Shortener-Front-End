@@ -1,0 +1,13 @@
+img {
+  width: 100px;
+  display: block;
+  margin:auto;
+}
+
+h4 {
+  margin-top: 20px;
+}
+
+.card {
+  padding: 0.625rem 1.25rem
+}

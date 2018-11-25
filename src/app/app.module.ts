@@ -8,6 +8,7 @@ import { PagesModule } from './modules/public-view/pages/pages.module';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { AppCommonModule } from './modules/common/common.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { FooterModule } from './modules/footer/footer.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AuthModule } from './modules/auth/auth.module';
   imports: [
     BrowserModule,
     HeaderModule,
+    FooterModule,
     HttpModule,
     AppRoutingModule,
     AppCommonModule,
