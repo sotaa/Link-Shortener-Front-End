@@ -12,11 +12,10 @@ export class StorageService {
   // save userInfo
   saveUserInfo(userInfo: IUser, remember: boolean) {
     const strUI = JSON.stringify(userInfo);
-    if (remember) {
       localStorage.setItem("userInfo", strUI);
-    } else {
-      sessionStorage.setItem("userInfo", strUI);
-    }
+    // if (remember) {
+    //   window.onunload(this.removeUserInfo.bind(this));
+    // }
   }
 
   // retrieve saved userInfo.

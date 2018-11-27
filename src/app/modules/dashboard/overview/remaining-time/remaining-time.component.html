@@ -1,1 +1,10 @@
-<app-expired></app-expired>
+<app-expired *ngIf="user.remainingDays == 0;else remaining" ></app-expired>
+
+<ng-template #remaining>
+<div class="card card-shadow">
+  <div class="card-content">
+    <img class="card-img" src="../../../../../assets/img/icons/common/calendar.png" alt="">
+<h4 class="text-center text-heading">{{ user.remainingDays }} روز از حساب شما باقی مانده است</h4>
+  </div>
+</div>
+</ng-template>

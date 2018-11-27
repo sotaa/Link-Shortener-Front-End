@@ -1,4 +1,7 @@
-<button class="btn btn-block bg-gradient-danger">
+<button class="btn btn-block bg-gradient-danger" (click)="goToPlans()">
   <img src="../../../../assets/img/icons/common/premium.png" alt="">
-  <h4 class="text-center text-white text-heading">همین الان به کاربر حرفه ای تبدیل شوید</h4>
+  <h4  class="text-center text-white text-heading">
+      <span *ngIf="user.remainingDays == 0"> همین الان به کاربر حرفه ای تبدیل شوید</span>
+      <span *ngIf="user.remainingDays != 0">حساب خود را تمدید کنید</span>
+  </h4>
 </button>

@@ -8,13 +8,15 @@ import { PremiumCtaComponent } from './overview/premium-cta/premium-cta.componen
 import { RemainingTimeComponent } from './overview/remaining-time/remaining-time.component';
 import { ExpiredComponent } from './overview/remaining-time/expired/expired.component';
 import { LinksGridComponent } from './links-grid/links-grid.component';
-
+import { PlansComponent } from './plans/plans.component';
+import { PricePipe } from './pipes/price.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     DashboardRoutingModule
   ],
-  declarations: [OverviewComponent, NavBarComponent, DashboardStartComponent, PremiumCtaComponent, RemainingTimeComponent, ExpiredComponent, LinksGridComponent]
+  declarations: [OverviewComponent, NavBarComponent, DashboardStartComponent,
+     PremiumCtaComponent, RemainingTimeComponent, ExpiredComponent, LinksGridComponent, PlansComponent, PricePipe]
 })
 export class DashboardModule { }

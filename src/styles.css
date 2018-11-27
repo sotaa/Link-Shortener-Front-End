@@ -48,3 +48,9 @@ a {
 .menu-text {
   margin-right: 7px;
 }
+
+.card-img {
+  width: 100px;
+  display: block;
+  margin:auto;
+}

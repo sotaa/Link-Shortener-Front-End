@@ -80,4 +80,8 @@ export class AuthService extends BaseService {
   emitUserUpdate() {
     this.updateUserInfo.emit(this.userInfo);
   }
+// get user information from server.
+  getUserInfo() {
+    return this.get(AuthUrls.info).pipe(map<Response,IUser>(res => res.json()));
+  }
 }

@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { OverviewComponent } from '../overview/overview.component';
 import { DashboardStartComponent } from '../dashboard-start/dashboard-start.component';
+import { PlansComponent } from '../plans/plans.component';
 
 const routes: Routes = [
   {path: '' , component: DashboardStartComponent , children: [
-    {path:'' , component: OverviewComponent}
+    {path:'' , component: OverviewComponent},
+    {path: 'plans' , component: PlansComponent}
   ]}
 ]
 
