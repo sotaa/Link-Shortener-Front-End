@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group" [ngClass]="{'has-success': shortenIsValid === true , 'has-danger': shortenIsValid === false}">
+      <input type="text" class="form-control" [(ngModel)]="selectedShorten" (keyup)="checkShorten()"/>
+    </div>
+    <p class="text-danger">{{message}}</p>
+  </div>
+  <label class="col-md-6 host-address align-middle text-primary"> {{ hostAddress }} </label>
+</div>
+
+<button class="btn btn-primary align-center" (click)="save()" [disabled]="!shortenIsValid || (selectedShorten.length < minimumLength)">ذخیره</button>

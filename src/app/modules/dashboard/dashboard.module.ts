@@ -7,16 +7,18 @@ import { DashboardStartComponent } from './dashboard-start/dashboard-start.compo
 import { PremiumCtaComponent } from './overview/premium-cta/premium-cta.component';
 import { RemainingTimeComponent } from './overview/remaining-time/remaining-time.component';
 import { ExpiredComponent } from './overview/remaining-time/expired/expired.component';
-import { LinksGridComponent } from './links-grid/links-grid.component';
 import { PlansComponent } from './plans/plans.component';
 import { PricePipe } from './pipes/price.pipe';
+import { LinksModule } from '../link/link.module';
+import { CreateLinkComponent } from './create-link/create-link.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    LinksModule
   ],
   declarations: [OverviewComponent, NavBarComponent, DashboardStartComponent,
-     PremiumCtaComponent, RemainingTimeComponent, ExpiredComponent, LinksGridComponent, PlansComponent, PricePipe]
+     PremiumCtaComponent, RemainingTimeComponent, ExpiredComponent, PlansComponent, PricePipe, CreateLinkComponent]
 })
 export class DashboardModule { }

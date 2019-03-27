@@ -1,0 +1,6 @@
+<div class="row">
+  <div class="col-md-6">
+    <app-condition *ngFor="let item of link.conditions" [condition]="item"></app-condition>
+</div>
+</div>
+<button class="btn btn-primary align-center" (click)="save()">ذخیره</button>

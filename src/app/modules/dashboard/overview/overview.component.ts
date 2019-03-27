@@ -1,5 +1,7 @@
+import { ILink } from './../../models/link.interface';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
+import { LinkService } from '../../link/services/link.service';
 
 @Component({
   selector: 'app-overview',
@@ -8,7 +10,9 @@ import { AuthService } from '../../auth/services/auth.service';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  links: ILink[];
+
+  constructor(private authService: AuthService, private linkService: LinkService) { }
 
   ngOnInit() {
   this.updateUserInfo();
@@ -25,5 +29,9 @@ export class OverviewComponent implements OnInit {
       // TODO: handle the error.
       console.log(err);
     })
+  }
+
+  getUserLinks() {
+    this.linkService.getUserLinks().subscribe(links => this.links = links);
   }
 }

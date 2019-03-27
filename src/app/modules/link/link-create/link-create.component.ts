@@ -1,46 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import { LinkService } from '../services/link.service';
-import { ILink } from '../../models/link.interface';
-import { SystemMessagesService } from '../services/system-messages.service';
+import { Component, OnInit } from "@angular/core";
+import { LinkService } from "../services/link.service";
+import { ILink, Link } from "../../models/link.interface";
+import { SystemMessagesService } from "../services/system-messages.service";
+import { PremiumFeature } from "../../models/premium-feature.model";
 
 @Component({
-  selector: 'app-link-create',
-  templateUrl: './link-create.component.html',
-  styleUrls: ['./link-create.component.css']
+  selector: "app-link-create",
+  templateUrl: "./link-create.component.html",
+  styleUrls: ["./link-create.component.css"]
 })
-export class LinkCreateComponent implements OnInit {
+export class LinkCreateComponent extends PremiumFeature implements OnInit {
   link: ILink;
   messages;
   linkAddress: string;
   address: string;
 
-  constructor(private linkService: LinkService, msgService: SystemMessagesService) {
+  modalComponent: string;
+
+  constructor(
+    private linkService: LinkService,
+    msgService: SystemMessagesService
+  ) {
+    super();
     this.messages = msgService.getMessages();
   }
 
   ngOnInit() {
+    // init link.
+      // create new link.
+      this.link = new Link();
   }
 
   generate() {
-    this.linkService.generate(this.address)
-    .subscribe(link => {
+    this.linkService.generate(this.link).subscribe(link => {
       this.link = link;
-     this.linkAddress = window.location.href.concat(link.shorten);
+    console.log(this.link);
+      this.linkAddress = window.location.protocol + window.location.host.concat(link.shorten);
     });
   }
 
   copyToClipBoard() {
     const str = this.linkAddress.slice();
-    const el = document.createElement('textarea');
+    const el = document.createElement("textarea");
     el.value = str;
-    el.setAttribute('readonly', '');
-    el.style.position = 'absolute';
-    el.style.left = '-9999px';
+    el.setAttribute("readonly", "");
+    el.style.position = "absolute";
+    el.style.left = "-9999px";
     document.body.appendChild(el);
     el.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(el);
-    alert('کپی شد')
+    alert("کپی شد");
   }
 
+  setModalComponent(key: string) {
+    this.modalComponent = key;
+  }
 }

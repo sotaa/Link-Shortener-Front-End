@@ -1,13 +1,204 @@
 <div class="form-group">
-  <input type="text" name="address" placeholder="https://example.com" [(ngModel)]="address" class="form-control"/>
+  <input
+    type="text"
+    name="address"
+    placeholder="https://example.com"
+    [(ngModel)]="link.address"
+    class="form-control"
+  />
 </div>
-<button (click)="generate()" class="btn btn-large bg-gradient-info btn-info" type="button">{{messages["generate-short-link"]}}</button>
+<button
+  (click)="generate()"
+  class="btn btn-large bg-gradient-info btn-info"
+  type="button"
+>
+  {{ messages["generate-short-link"] }}
+</button>
 
-<div class="row" id="shorted-link" *ngIf="link" >
+<div class="row" id="shorted-link" *ngIf="link._id">
   <div class="col-sm-12 card shadow">
     <div class="row">
-        <div class="col-md-11"><a href={{linkAddress}}>{{linkAddress}}</a></div>
-        <div class="col-md-1"><button class="btn btn-outline-success pull-right" (click)="copyToClipBoard()">کپی شود</button></div>
+      <div class="col-md-11">
+        <a href="{{linkAddress}}">{{ linkAddress }}</a>
+      </div>
+      <div class="col-md-1">
+        <button
+          class="btn btn-outline-success pull-right"
+          (click)="copyToClipBoard()"
+        >
+          کپی شود
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <button
+    class="btn btn-outline-primary"
+    (click)="setModalComponent('customLink')"
+    data-toggle="modal"
+    data-target="#modal-form"
+  >
+    <div
+      class="custom-control custom-checkbox mb-3"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="برای پسوند لینک کوتاه خود نام دلخواه بگذارید"
+    >
+      <input
+        class="custom-control-input"
+        id="custom-link"
+        type="checkbox"
+        disabled
+      />
+      <label class="custom-control-label" for="custom-link">لینک دلخواه</label>
+    </div>
+  </button>
+  <button
+    class="btn btn-outline-primary"
+    (click)="setModalComponent('password')"
+    data-toggle="modal"
+    data-target="#modal-form"
+  >
+    <div
+      class="custom-control custom-checkbox mb-3"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="برای نمایش گزارش مربوط به کلیک ها باید کلمه عبور وارد شود ، با وارد کردن کلمه عبور حتی اگر نتایج خصوصی باشد نیزگزارش نمایش داده میشود"
+    >
+      <input
+        class="custom-control-input"
+        id="password"
+        type="checkbox"
+        disabled
+      />
+      <label class="custom-control-label" for="password">پسورد</label>
+    </div>
+  </button>
+  <button class="btn btn-outline-primary">
+    <div
+      class="custom-control custom-checkbox mb-3"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="فقط شما میتوانید گزارش کلیک های لینک را ببینید"
+    >
+      <input
+        class="custom-control-input"
+        id="custom-link"
+        type="checkbox"
+        disabled
+      />
+      <label class="custom-control-label" for="custom-link"
+        >نتایج خصوصی باشد</label
+      >
+    </div>
+  </button>
+  <button
+    class="btn btn-outline-primary"
+    (click)="setModalComponent('category')"
+    data-toggle="modal"
+    data-target="#modal-form"
+  >
+    <div
+      class="custom-control custom-checkbox mb-3"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="برای لینک خود دسته بندی تعریف کنید تا بهتر آنها را سازمان دهی کنید"
+    >
+      <input
+        class="custom-control-input"
+        id="category"
+        type="checkbox"
+        disabled
+      />
+      <label class="custom-control-label" for="category">دسته بندی</label>
+    </div>
+  </button>
+  <!-- <button
+    class="btn btn-outline-primary"
+    (click)="setModalComponent('deepLink')"
+    data-toggle="modal"
+    data-target="#modal-form"
+  >
+    <div
+      class="custom-control custom-checkbox mb-3"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="با فعال کردن لینک شرطی میتوانید با توجه به شرایط کاربر وی را به مقاصد مختلفی هدایت کنید، مثلا اگر فردی با موبایل روی لینک شما کلیک کرد او را به صفحه مخصوص موبایل در سایت خود بفرستید"
+    >
+      <input
+        class="custom-control-input"
+        id="deep-link"
+        type="checkbox"
+        disabled
+      />
+      <label class="custom-control-label" for="deep-link"
+        >لینک شرطی (Deep Link)</label
+      >
+    </div>
+  </button> -->
+  <!-- <button
+    class="btn btn-outline-primary"
+    (click)="setModalComponent('utm')"
+    data-toggle="modal"
+    data-target="#modal-form"
+  >
+    <div
+      class="custom-control custom-checkbox mb-3"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="برای لینک خود utm ست کنید"
+    >
+      <input class="custom-control-input" id="utm" type="checkbox" disabled />
+      <label class="custom-control-label" for="utm">UTM</label>
+    </div>
+  </button> -->
+</div>
+
+<div
+  class="modal fade"
+  id="modal-form"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modal-form"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-lg modal-dialog-centered modal-sm"
+    role="document"
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="card bg-secondary shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <app-password-form
+              [link]="link"
+              *ngIf="modalComponent === 'password'"
+            ></app-password-form>
+            <app-deep-link-form
+              *ngIf="modalComponent === 'deepLink'"
+            ></app-deep-link-form>
+            <app-custom-link-form
+              [link]="link"
+              *ngIf="modalComponent === 'customLink'"
+            ></app-custom-link-form>
+            <app-utm-form *ngIf="modalComponent === 'utm'"></app-utm-form>
+            <app-category-form
+              *ngIf="modalComponent === 'category'"
+            ></app-category-form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

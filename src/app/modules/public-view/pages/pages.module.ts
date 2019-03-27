@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
-import { LinkModule } from '../../link/link.module';
+import { LinksModule } from '../../link/link.module';
 import { AuthModule } from '../../auth/auth.module';
 
 @NgModule({
   imports: [
     CommonModule,
     PagesRoutingModule,
-    LinkModule,
+    LinksModule,
     AuthModule
   ],
   declarations: [HomeComponent],

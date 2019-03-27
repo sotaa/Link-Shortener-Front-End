@@ -5,6 +5,12 @@
 <div class="divider"></div>
 <div class="row">
   <div class="container-fluid">
-    <div class="card card-shadow"><app-links-grid></app-links-grid></div>
+    <div class="card card-shadow">
+        <div class="alert text-danger alert-outline text-center" role="alert">
+            <strong>چرا</strong> هنوز <strong>لینکی</strong> ایجاد نکرده اید ؟؟؟
+            <button class="btn btn-outline-success" routerLink="init-link">ساخت لینک جدید</button>
+        </div>
+      <app-links-grid *ngIf="links" ></app-links-grid>
+    </div>
   </div>
 </div>

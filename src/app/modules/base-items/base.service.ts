@@ -39,6 +39,11 @@ export class BaseService {
     return this.http.delete(url, this.requestOptions);
   }
 
+  // send HTTP HEAD request.
+  protected head(url) {
+    return this.http.head(url , this.requestOptions);
+  }
+
   // append token to header.
   private appendAuthToken() {
    const userInfo = this.storageService.getSavedUserInfo();

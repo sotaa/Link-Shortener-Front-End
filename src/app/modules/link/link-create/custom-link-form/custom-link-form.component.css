@@ -1,0 +1,11 @@
+.host-address , .form-control  {
+   direction: ltr;
+}
+
+.host-address {
+  font-size: 25px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

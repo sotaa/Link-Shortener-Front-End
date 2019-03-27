@@ -54,3 +54,22 @@ a {
   display: block;
   margin:auto;
 }
+
+.k-treeview .k-i-expand, .k-treeview .k-i-collapse {
+  margin-left: inherit;
+}
+
+.k-i-expand::before, .k-i-expand-e::before {
+  content: "\e007";
+}
+
+.hidden-btn-container > .fa {
+  visibility: hidden;
+  opacity: 0;
+  transition: .5s;
+}
+
+.hidden-btn-container:hover > .fa {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,8 +1,14 @@
+
+import { LinksGridComponent } from './links-grid/links-grid.component';
 import { FormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { LinkRoutingModule } from "./link-routing.module";
 import { LinkCreateComponent } from "./link-create/link-create.component";
 import { HttpModule } from "@angular/http";
+import { AppCommonModule } from "../common/common.module";
+import { CommonModule } from "@angular/common";
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { LinkInfoComponent } from "./link-info/link-info.component";
 import { ChartModule } from "angular-highcharts";
 import { ClickDayChartComponent } from "./link-info/click-day-chart/click-day-chart.component";
@@ -10,8 +16,12 @@ import { BrowserChartComponent } from "./link-info/browser-chart/browser-chart.c
 import { LocationChartComponent } from "./link-info/location-chart/location-chart.component";
 import { ReferrersChartComponent } from "./link-info/referrers-chart/referrers-chart.component";
 import { PlatformsChartComponent } from './link-info/platforms-chart/platforms-chart.component';
-import { AppCommonModule } from "../common/common.module";
-import { CommonModule } from "@angular/common";
+import { PasswordFormComponent } from './link-create/password-form/password-form.component';
+import { UtmFormComponent } from './link-create/utm-form/utm-form.component';
+import { CustomLinkFormComponent } from './link-create/custom-link-form/custom-link-form.component';
+import { CategoryFormComponent } from './link-create/category-form/category-form.component';
+import { DeepLinkFormComponent } from './link-create/deep-link-form/deep-link-form.component';
+import { ConditionComponent } from './link-create/deep-link-form/condition/condition.component';
 
 @NgModule({
   imports: [
@@ -20,7 +30,8 @@ import { CommonModule } from "@angular/common";
     FormsModule,
     HttpModule,
     ChartModule,
-    AppCommonModule
+    AppCommonModule,
+    NgSelectModule
   ],
   declarations: [
     LinkCreateComponent,
@@ -29,8 +40,15 @@ import { CommonModule } from "@angular/common";
     BrowserChartComponent,
     LocationChartComponent,
     ReferrersChartComponent,
-    PlatformsChartComponent
+    PlatformsChartComponent,
+    LinksGridComponent,
+    PasswordFormComponent,
+    UtmFormComponent,
+    CustomLinkFormComponent,
+    CategoryFormComponent,
+    DeepLinkFormComponent,
+    ConditionComponent
   ],
-  exports: [LinkCreateComponent, LinkInfoComponent]
+  exports: [LinkCreateComponent, LinkInfoComponent, LinksGridComponent]
 })
-export class LinkModule {}
+export class LinksModule {}
