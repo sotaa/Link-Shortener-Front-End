@@ -111,7 +111,11 @@
         type="checkbox"
         disabled
       />
-      <label class="custom-control-label" for="category">دسته بندی</label>
+      <!-- <label class="custom-control-label" for="category">دسته بندی</label> -->
+      <app-category-form
+      [link]="link"
+      *ngIf="modalComponent === 'category'"
+    ></app-category-form>
     </div>
   </button>
   <!-- <button
@@ -193,9 +197,6 @@
               *ngIf="modalComponent === 'customLink'"
             ></app-custom-link-form>
             <app-utm-form *ngIf="modalComponent === 'utm'"></app-utm-form>
-            <app-category-form
-              *ngIf="modalComponent === 'category'"
-            ></app-category-form>
           </div>
         </div>
       </div>

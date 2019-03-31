@@ -11,14 +11,19 @@ export interface ILink {
     conditions?: ICondition[];
 }
 
-export class Link implements ILink{
-  password: string;  _id: string;
+export class Link implements ILink {
+  password: string;
+  _id: string;
   userId?: string;
   address: string;
   shorten: string;
   createDate: Date;
+  categories: string[];
   data: AnalyticsData[];
-  conditions: ICondition[]
+  conditions: ICondition[];
+  constructor() {
+    this.categories = [];
+  }
 }
 
 export enum UserAgent {

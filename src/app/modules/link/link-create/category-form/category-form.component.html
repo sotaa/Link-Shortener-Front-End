@@ -1,4 +1,6 @@
-<div>
-  category form
-</div>
-
+<ng-select [items]="data"
+[addTag]="true"
+[hideSelected]="true"
+multiple="true"
+bindLabel="title"
+[(ngModel)]="link.categories"></ng-select>
