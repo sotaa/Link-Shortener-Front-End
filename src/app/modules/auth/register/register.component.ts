@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IRegisterModel } from '../model/register.viewmodel';
 import { AuthService } from '../services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
