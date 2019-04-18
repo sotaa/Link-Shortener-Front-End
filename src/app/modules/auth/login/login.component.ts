@@ -12,6 +12,7 @@ export class LoginComponent  {
 
 
   credentials: ILoginModel;
+  errorMessage: string;
 
   constructor(private authService: AuthService, private router: Router) {
     this.credentials = { remember: true, password: '', email: ''}
@@ -30,7 +31,7 @@ export class LoginComponent  {
   handleSubmitError(err: any) {
     // TODO: handle form error.
     // for now just log the error.
-    console.log(err);
+    this.errorMessage = err.message;
   }
 
 
