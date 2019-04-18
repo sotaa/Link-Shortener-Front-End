@@ -12,6 +12,7 @@ import { Route } from '@angular/compiler/src/core';
 export class RegisterComponent implements OnInit {
 
   credentials: IRegisterModel;
+  errorMessage: any;
 
   constructor(private authService: AuthService, private router: Router) {
     this.credentials = {name: '', agree: true, password: '', email: ''}
@@ -31,8 +32,7 @@ export class RegisterComponent implements OnInit {
 
   handleSubmitError(err: any) {
     // TODO: handle form error.
-    // for now just log the error.
-    console.log(err);
+    this.errorMessage = err.message;
   }
 
 }
