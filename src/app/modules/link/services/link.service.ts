@@ -11,14 +11,13 @@ import { BaseService } from "../../base-items/base.service";
   providedIn: "root"
 })
 export class LinkService extends BaseService {
-
   constructor(injector: Injector) {
     super(injector);
   }
 
   shortenIsExists(selectedShorten: string) {
     return new Observable<boolean>(observer => {
-     this.head(LinkUrls.info(selectedShorten)).subscribe(
+      this.head(LinkUrls.info(selectedShorten)).subscribe(
         res => {
           observer.next(res.ok);
           observer.complete();
@@ -46,5 +45,10 @@ export class LinkService extends BaseService {
     return this.get(LinkUrls.getUserLinks).pipe(
       map<Response, ILink[]>(res => res.json())
     );
+  }
+
+  deleteUserLink(id) {
+    const url = LinkUrls.deleteUserLink(id);
+    return this.delete(url);
   }
 }
