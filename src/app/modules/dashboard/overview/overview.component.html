@@ -6,11 +6,32 @@
 <div class="row">
   <div class="container-fluid">
     <div class="card card-shadow">
-        <div class="alert text-danger alert-outline text-center" role="alert">
-            <strong>چرا</strong> هنوز <strong>لینکی</strong> ایجاد نکرده اید ؟؟؟
-            <button class="btn btn-outline-success" routerLink="init-link">ساخت لینک جدید</button>
+      <div
+        *ngIf="links && links.length === 0"
+        class="alert text-danger alert-outline text-center"
+        role="alert"
+      >
+        <div>
+          <strong>چرا</strong> هنوز <strong>لینکی</strong> ایجاد نکرده اید ؟؟؟
         </div>
-      <app-links-grid *ngIf="links" ></app-links-grid>
+        <br />
+        <button class="btn btn-outline-success" routerLink="init-link">
+          ساخت لینک جدید
+        </button>
+      </div>
+      <button
+        *ngIf="links && links.length !== 0"
+        class="btn btn-outline-success"
+        routerLink="init-link"
+      >
+        ساخت لینک جدید
+      </button>
     </div>
   </div>
 </div>
+<hr />
+<app-links-grid
+  [links]="links"
+  (delete)="deleteUserLink($event)"
+  *ngIf="links && links.length !== 0"
+></app-links-grid>
