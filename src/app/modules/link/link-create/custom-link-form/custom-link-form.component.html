@@ -1,11 +1,33 @@
 <div class="row">
-  <div class="col-md-6">
-    <div class="form-group" [ngClass]="{'has-success': shortenIsValid === true , 'has-danger': shortenIsValid === false}">
-      <input type="text" class="form-control" [(ngModel)]="selectedShorten" (keyup)="checkShorten()"/>
+  <div class="col-md-12">
+    <div class="form-group">
+      <div
+        class="custom-control custom-checkbox mb-3"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="برای پسوند لینک کوتاه خود نام دلخواه بگذارید"
+      >
+        <label class="container">
+          <input
+            type="checkbox"
+            id="saveLink"
+            (click)="save()"
+            [disabled]="
+              !shortenIsValid || selectedShorten.length < minimumLength
+            "
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="selectedShorten"
+        (keyup)="checkShorten()"
+        placeholder="لینک دلخواه ..."
+        style="direction: rtl"
+      />
     </div>
-    <p class="text-danger">{{message}}</p>
+    <p class="text-danger">{{ message }}</p>
   </div>
-  <label class="col-md-6 host-address align-middle text-primary"> {{ hostAddress }} </label>
 </div>
-
-<button class="btn btn-primary align-center" (click)="save()" [disabled]="!shortenIsValid || (selectedShorten.length < minimumLength)">ذخیره</button>
