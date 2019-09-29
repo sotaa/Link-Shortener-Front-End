@@ -12,21 +12,20 @@ export class CustomLinkFormComponent implements OnInit {
   selectedShorten: string;
   hostAddress: string;
   shortenIsValid: boolean;
-  message: string = '';
+  message: string = "";
   minimumLength: number;
+  test: string;
 
   constructor(private linkService: LinkService) {
     this.shortenIsValid = undefined;
-    this.minimumLength = 1;
-    this.selectedShorten = '';
+    this.minimumLength = 5;
+    this.selectedShorten = "";
   }
 
-  ngOnInit() {
-    this.hostAddress = window.location.host.concat('/');
-  }
+  ngOnInit() {}
 
   checkShorten() {
-    if(this.selectedShorten.length < this.minimumLength) return;
+    if (this.selectedShorten.length < this.minimumLength) return;
     this.linkService.shortenIsExists(this.selectedShorten).subscribe(res => {
       this.handleExistentResult(res);
     });
@@ -34,15 +33,20 @@ export class CustomLinkFormComponent implements OnInit {
 
   handleExistentResult(isExists: boolean) {
     this.shortenIsValid = !isExists;
-    this.message = '';
+    this.message = "";
     if (isExists) {
-      this.message = 'این لینک قبلا ثبت شده است';
+      this.message = "این لینک قبلا ثبت شده است";
     } else {
-      this.message = '';
+      this.message = "";
     }
   }
 
   save() {
+    const ck = document.getElementById("saveLink") as HTMLInputElement;
+    if (ck.checked === true) {
       this.link.shorten = this.selectedShorten;
+    } else {
+      this.link.shorten = undefined;
+    }
   }
 }
