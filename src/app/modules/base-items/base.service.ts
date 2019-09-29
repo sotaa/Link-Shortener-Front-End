@@ -2,7 +2,7 @@ import { Http , Headers} from "@angular/http";
 import { Injector } from "@angular/core";
 import { StorageService } from "./storage.service";
 
-export class BaseService {
+export abstract class BaseService {
 
   protected headers: Headers;
   protected requestOptions: any;
