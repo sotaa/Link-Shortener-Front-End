@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { LinkInfo } from "../../models/link-info.interface";
-import * as PersianDate from 'persian-date';
+import * as PersianDate from "persian-date";
 
 @Component({
   selector: "app-link-info",
@@ -30,9 +30,10 @@ export class LinkInfoComponent implements OnInit {
           this.data = data;
           this.notFound = !this.data;
           this.getWindowUrl();
-          this.createDate = new PersianDate(data.linkInfo.createDateFa).toLocale('fa').format();
+          this.createDate = new PersianDate(data.linkInfo.createDateFa)
+            .toLocale("fa")
+            .format();
         });
-
       if (!this.data) this.notFound = true;
     });
   }
@@ -41,6 +42,6 @@ export class LinkInfoComponent implements OnInit {
     const protocol = location.protocol;
     const slashes = protocol.concat("//");
     const host = slashes.concat(window.location.hostname);
-    this.shortenLink = host.concat('/' , this.data.linkInfo.shorten);
+    this.shortenLink = host.concat("/", this.data.linkInfo.shorten);
   }
 }
