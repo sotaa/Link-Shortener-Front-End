@@ -14,7 +14,6 @@ export class CustomLinkFormComponent implements OnInit {
   shortenIsValid: boolean;
   message: string = "";
   minimumLength: number;
-  test: string;
 
   constructor(private linkService: LinkService) {
     this.shortenIsValid = undefined;
@@ -25,28 +24,43 @@ export class CustomLinkFormComponent implements OnInit {
   ngOnInit() {}
 
   checkShorten() {
-    if (this.selectedShorten.length < this.minimumLength) return;
+    if (this.selectedShorten.length < this.minimumLength) {
+      this.link.shorten = undefined;
+      return (this.message = "حداقل 5 کاراکتر");
+    }
     this.linkService.shortenIsExists(this.selectedShorten).subscribe(res => {
       this.handleExistentResult(res);
     });
   }
 
   handleExistentResult(isExists: boolean) {
-    this.shortenIsValid = !isExists;
+    // this.shortenIsValid = !isExists;
     this.message = "";
     if (isExists) {
       this.message = "این لینک قبلا ثبت شده است";
-    } else {
-      this.message = "";
+      this.link.shorten = undefined;
     }
+    if (!isExists) {
+      this.message = "";
+      this.link.shorten = this.selectedShorten;
+    }
+    if (this.selectedShorten === "") {
+      this.link.shorten = undefined;
+    } else return;
   }
 
-  save() {
-    const ck = document.getElementById("saveLink") as HTMLInputElement;
-    if (ck.checked === true) {
-      this.link.shorten = this.selectedShorten;
+  checkBox() {
+    const check = document.getElementById("check") as HTMLInputElement;
+    const customLink = document.getElementById(
+      "customLink"
+    ) as HTMLInputElement;
+    if (check.checked === true) {
+      customLink.removeAttribute("disabled");
     } else {
       this.link.shorten = undefined;
+      customLink.setAttribute("disabled", "true");
+      customLink.value = "";
+      this.message = "";
     }
   }
 }
