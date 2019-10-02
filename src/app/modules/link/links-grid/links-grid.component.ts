@@ -32,7 +32,10 @@ export class LinksGridComponent implements OnInit {
   }
 
   deleteUserLink(id: string) {
-    this.delete.emit(id);
+    const deleteAlert = confirm("ایا مایل به حذف این لینک هستید؟");
+    if (deleteAlert == true) {
+      this.delete.emit(id);
+    } else return;
   }
   updateUserLink(id: string) {
     this.update.emit(id);
