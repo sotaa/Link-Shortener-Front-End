@@ -1,5 +1,6 @@
 <div class="form-group">
   <input
+    *ngIf="!link._id"
     type="text"
     name="address"
     placeholder="https://example.com"
@@ -8,18 +9,18 @@
   />
 </div>
 <button
+  *ngIf="!link._id"
   (click)="generate()"
   class="btn btn-large bg-gradient-info btn-info"
   type="button"
 >
   {{ messages["generate-short-link"] }}
 </button>
-
 <div class="row" id="shorted-link" *ngIf="link._id">
   <div class="col-sm-12 card shadow">
     <div class="row">
       <div class="col-md-11">
-        <a href="{{linkAddress}}">{{ linkAddress }}</a>
+        <a href="{{ linkAddress }}" target="_blank">{{ linkAddress }}</a>
       </div>
       <div class="col-md-1">
         <button
@@ -32,50 +33,20 @@
     </div>
   </div>
 </div>
+<br />
+<button
+  *ngIf="link._id"
+  (click)="resetLink()"
+  class="btn btn-large bg-gradient-info btn-info"
+>
+  شروع مجدد
+</button>
+<br /><br />
 <div class="row">
-  <button
-    class="btn btn-outline-primary"
-    (click)="setModalComponent('customLink')"
-    data-toggle="modal"
-    data-target="#modal-form"
-  >
-    <div
-      class="custom-control custom-checkbox mb-3"
-      data-toggle="tooltip"
-      data-placement="top"
-      title="برای پسوند لینک کوتاه خود نام دلخواه بگذارید"
-    >
-      <input
-        class="custom-control-input"
-        id="custom-link"
-        type="checkbox"
-        disabled
-      />
-      <label class="custom-control-label" for="custom-link">لینک دلخواه</label>
-    </div>
-  </button>
-  <button
-    class="btn btn-outline-primary"
-    (click)="setModalComponent('password')"
-    data-toggle="modal"
-    data-target="#modal-form"
-  >
-    <div
-      class="custom-control custom-checkbox mb-3"
-      data-toggle="tooltip"
-      data-placement="top"
-      title="برای نمایش گزارش مربوط به کلیک ها باید کلمه عبور وارد شود ، با وارد کردن کلمه عبور حتی اگر نتایج خصوصی باشد نیزگزارش نمایش داده میشود"
-    >
-      <input
-        class="custom-control-input"
-        id="password"
-        type="checkbox"
-        disabled
-      />
-      <label class="custom-control-label" for="password">پسورد</label>
-    </div>
-  </button>
-  <button class="btn btn-outline-primary">
+  <app-custom-link-form [link]="link"></app-custom-link-form>
+  <app-password-form [link]="link"></app-password-form>
+
+  <!-- <button class="btn btn-outline-primary">
     <div
       class="custom-control custom-checkbox mb-3"
       data-toggle="tooltip"
@@ -92,32 +63,19 @@
         >نتایج خصوصی باشد</label
       >
     </div>
-  </button>
-  <button
+  </button> -->
+  <app-category-form [link]="link"></app-category-form>
+  <!-- <button
     class="btn btn-outline-primary"
     (click)="setModalComponent('category')"
     data-toggle="modal"
     data-target="#modal-form"
   >
-    <div
-      class="custom-control custom-checkbox mb-3"
-      data-toggle="tooltip"
-      data-placement="top"
-      title="برای لینک خود دسته بندی تعریف کنید تا بهتر آنها را سازمان دهی کنید"
-    >
-      <input
-        class="custom-control-input"
-        id="category"
-        type="checkbox"
-        disabled
-      />
-      <!-- <label class="custom-control-label" for="category">دسته بندی</label> -->
-      <app-category-form
-      [link]="link"
-      *ngIf="modalComponent === 'category'"
-    ></app-category-form>
+
+      <label class="custom-control-label" for="category">دسته بندی</label>
     </div>
-  </button>
+  </button> -->
+
   <!-- <button
     class="btn btn-outline-primary"
     (click)="setModalComponent('deepLink')"
@@ -157,49 +115,4 @@
       <label class="custom-control-label" for="utm">UTM</label>
     </div>
   </button> -->
-</div>
-
-<div
-  class="modal fade"
-  id="modal-form"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modal-form"
-  aria-hidden="true"
->
-  <div
-    class="modal-dialog modal-lg modal-dialog-centered modal-sm"
-    role="document"
-  >
-    <div class="modal-content">
-      <div class="modal-header">
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body p-0">
-        <div class="card bg-secondary shadow border-0">
-          <div class="card-body px-lg-5 py-lg-5">
-            <app-password-form
-              [link]="link"
-              *ngIf="modalComponent === 'password'"
-            ></app-password-form>
-            <app-deep-link-form
-              *ngIf="modalComponent === 'deepLink'"
-            ></app-deep-link-form>
-            <app-custom-link-form
-              [link]="link"
-              *ngIf="modalComponent === 'customLink'"
-            ></app-custom-link-form>
-            <app-utm-form *ngIf="modalComponent === 'utm'"></app-utm-form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
