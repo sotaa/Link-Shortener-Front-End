@@ -33,5 +33,6 @@
 <app-links-grid
   [links]="links"
   (delete)="deleteUserLink($event)"
+  (update)="updateUserLink($event)"
   *ngIf="links && links.length !== 0"
 ></app-links-grid>
