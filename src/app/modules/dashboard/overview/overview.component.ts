@@ -36,8 +36,11 @@ export class OverviewComponent implements OnInit {
       .deleteUserLink(id)
       .toPromise()
       .then(result => {
-        this.getUserLinks();
+        this.links = this.links.filter(item => item._id !== id);
       });
+  }
+  async updateUserLink(id) {
+    
   }
 
   updateUserInfo() {
