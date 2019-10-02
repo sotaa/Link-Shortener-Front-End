@@ -10,6 +10,8 @@
 }
 
 input {
-  text-align: center
+  text-align: center;
 }
-
+.row {
+  padding-right: 15px;
+}
