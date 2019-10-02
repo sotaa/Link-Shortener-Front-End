@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+
 import { LinkService } from "../services/link.service";
 import { ILink, Link } from "../../models/link.interface";
 import { SystemMessagesService } from "../services/system-messages.service";
 import { PremiumFeature } from "../../models/premium-feature.model";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: "app-link-create",
@@ -13,9 +15,6 @@ export class LinkCreateComponent extends PremiumFeature implements OnInit {
   link: ILink;
   messages;
   linkAddress: string;
-  address: string;
-
-  modalComponent: string;
 
   constructor(
     private linkService: LinkService,
@@ -27,16 +26,19 @@ export class LinkCreateComponent extends PremiumFeature implements OnInit {
 
   ngOnInit() {
     // init link.
-      // create new link.
-      this.link = new Link();
+    // create new link.
+    this.link = new Link();
   }
 
   generate() {
     this.linkService.generate(this.link).subscribe(link => {
       this.link = link;
-    console.log(this.link);
-      this.linkAddress = window.location.protocol + window.location.host.concat(link.shorten);
+      this.linkAddress = environment.apiUrl.concat(`/${link.shorten}`);
     });
+  }
+
+  resetLink() {
+    this.link = new Link();
   }
 
   copyToClipBoard() {
@@ -51,9 +53,5 @@ export class LinkCreateComponent extends PremiumFeature implements OnInit {
     document.execCommand("copy");
     document.body.removeChild(el);
     alert("کپی شد");
-  }
-
-  setModalComponent(key: string) {
-    this.modalComponent = key;
   }
 }
