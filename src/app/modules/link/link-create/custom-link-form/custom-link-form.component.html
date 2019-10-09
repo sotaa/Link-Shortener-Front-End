@@ -8,11 +8,18 @@
         title="برای پسوند لینک کوتاه خود نام دلخواه بگذارید"
       >
         <label class="container">
-          <input type="checkbox" id="check" (click)="checkBox()" />
+          <input
+            type="checkbox"
+            id="check"
+            (click)="checkBox()"
+            [checked]="check"
+          />
           <span class="checkmark"></span>
         </label>
       </div>
       <input
+        [disabled]="disabled"
+        [value]="value"
         type="text"
         id="customLink"
         class="form-control"
@@ -20,7 +27,6 @@
         (keyup)="checkShorten()"
         placeholder="لینک دلخواه ..."
         style="direction: rtl"
-        disabled
       />
     </div>
     <p class="text-danger">{{ message }}</p>
