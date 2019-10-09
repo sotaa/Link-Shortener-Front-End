@@ -13,14 +13,14 @@
       <td>{{ link.address }}</td>
       <td>
         <a
-          style="cursor: pointer; color:lightblue;"
+          class="shorten"
           href="{{ host }}/{{ link.shorten }}"
           target="_blank"
           >{{ link.shorten }}</a
         >
       </td>
       <td>{{ link.createDate }}</td>
-      <td>
+      <td (click)="updateUserLink(link._id)">
         <i
           class="fa fa-edit"
           style=" cursor:pointer;font-size:22px;color:lightgreen"
