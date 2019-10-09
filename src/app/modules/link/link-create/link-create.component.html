@@ -1,6 +1,6 @@
 <div class="form-group">
   <input
-    *ngIf="!link._id"
+    *ngIf="!linkAddress"
     type="text"
     name="address"
     placeholder="https://example.com"
@@ -9,14 +9,15 @@
   />
 </div>
 <button
-  *ngIf="!link._id"
-  (click)="generate()"
+  *ngIf="!linkAddress"
+  (click)="submit()"
   class="btn btn-large bg-gradient-info btn-info"
   type="button"
 >
-  {{ messages["generate-short-link"] }}
+  {{ messages }}
 </button>
-<div class="row" id="shorted-link" *ngIf="link._id">
+<!-- show created Link and reset Link -->
+<div class="row" id="shorted-link" *ngIf="linkAddress">
   <div class="col-sm-12 card shadow">
     <div class="row">
       <div class="col-md-11">
@@ -35,15 +36,19 @@
 </div>
 <br />
 <button
-  *ngIf="link._id"
+  *ngIf="linkAddress"
   (click)="resetLink()"
   class="btn btn-large bg-gradient-info btn-info"
 >
   شروع مجدد
 </button>
 <br /><br />
-<div class="row">
-  <app-custom-link-form [link]="link"></app-custom-link-form>
+<!-- others component -->
+<div class="row" *ngIf="!isLoading">
+  <app-custom-link-form
+    [link]="link"
+    [editMode]="editMode"
+  ></app-custom-link-form>
   <app-password-form [link]="link"></app-password-form>
 
   <!-- <button class="btn btn-outline-primary">
@@ -64,7 +69,7 @@
       >
     </div>
   </button> -->
-  <app-category-form [link]="link"></app-category-form>
+  <!-- <app-category-form [link]="link"></app-category-form> -->
   <!-- <button
     class="btn btn-outline-primary"
     (click)="setModalComponent('category')"
