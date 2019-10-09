@@ -17,7 +17,7 @@ export class PasswordFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.password = this.link.password;
+    // this.password = this.link.password;
   }
 
   save() {
