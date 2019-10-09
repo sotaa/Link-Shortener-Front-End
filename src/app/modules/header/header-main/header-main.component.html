@@ -38,44 +38,12 @@
         </div>
 
         <ul class="navbar-nav ml-lg-auto">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="#">
-              <i class="ni ni-favourite-28"></i>
-              <span class="nav-link-inner--text d-lg-none">Discover</span>
+          <app-user-info *ngIf="userInfo" [user]="userInfo"></app-user-info>
+          <li class="nav-item" *ngIf="!userInfo">
+            <a class="nav-link nav-link-icon" routerLink="login">
+              ورود / ثبت نام
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="#">
-              <i class="ni ni-notification-70"></i>
-              <span class="nav-link-inner--text d-lg-none">Profile</span>
-            </a>
-          </li>
-            <app-user-info
-              *ngIf="userInfo; else: auth"
-              [user]="userInfo"
-            ></app-user-info>
-          <ng-template #auth>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link nav-link-icon"
-                href="#"
-                id="navbar-default_dropdown_1"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <i class="fa fa-user-circle"></i>
-                <span class="menu-text">ورود / ثبت نام</span>
-              </a>
-              <div
-                class="dropdown-menu dropdown-menu-right dropdown-menu-xl"
-                aria-labelledby="navbar-default_dropdown_1"
-              >
-                <app-auth></app-auth>
-              </div>
-            </li>
-          </ng-template>
         </ul>
       </div>
     </div>
