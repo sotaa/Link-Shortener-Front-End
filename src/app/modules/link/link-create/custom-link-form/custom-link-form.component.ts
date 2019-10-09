@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { LinkService } from "../../services/link.service";
 import { ILink } from "src/app/modules/models/link.interface";
 
@@ -9,11 +9,15 @@ import { ILink } from "src/app/modules/models/link.interface";
 })
 export class CustomLinkFormComponent implements OnInit {
   @Input() link: ILink;
+  @Input() editMode: boolean;
   selectedShorten: string;
   hostAddress: string;
   shortenIsValid: boolean;
   message: string = "";
   minimumLength: number;
+  check;
+  disabled;
+  value;
 
   constructor(private linkService: LinkService) {
     this.shortenIsValid = undefined;
@@ -21,46 +25,60 @@ export class CustomLinkFormComponent implements OnInit {
     this.selectedShorten = "";
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.disabled = true;
+    if (this.editMode) {
+      this.disabled = false;
+      this.check = true;
+      this.selectedShorten = this.link.shorten;
+    } else this.selectedShorten;
+
+    this.linkService.resetCheckBox.subscribe(() => {
+      this.check = false;
+      this.disabled = true;
+      this.value = "";
+      this.message = "";
+    });
+  }
 
   checkShorten() {
     if (this.selectedShorten.length < this.minimumLength) {
       this.link.shorten = undefined;
-      return (this.message = "حداقل 5 کاراکتر");
+      return (
+        (this.message = "حداقل 5 کاراکتر"),
+        (this.linkService.alertMessage = this.message)
+      );
     }
     this.linkService.shortenIsExists(this.selectedShorten).subscribe(res => {
       this.handleExistentResult(res);
     });
+    this;
   }
 
   handleExistentResult(isExists: boolean) {
-    // this.shortenIsValid = !isExists;
     this.message = "";
+    this.linkService.alertMessage = this.message;
     if (isExists) {
       this.message = "این لینک قبلا ثبت شده است";
+      this.linkService.alertMessage = this.message;
       this.link.shorten = undefined;
-    }
-    if (!isExists) {
+    } else {
       this.message = "";
+      this.linkService.alertMessage = this.message;
       this.link.shorten = this.selectedShorten;
     }
-    if (this.selectedShorten === "") {
-      this.link.shorten = undefined;
-    } else return;
   }
 
   checkBox() {
-    const check = document.getElementById("check") as HTMLInputElement;
-    const customLink = document.getElementById(
-      "customLink"
-    ) as HTMLInputElement;
-    if (check.checked === true) {
-      customLink.removeAttribute("disabled");
+    this.check = !this.check;
+    if (this.check === true) {
+      this.disabled = false;
     } else {
-      this.link.shorten = undefined;
-      customLink.setAttribute("disabled", "true");
-      customLink.value = "";
+      this.value = "";
+      this.disabled = true;
       this.message = "";
+      this.linkService.alertMessage = this.message;
+      this.link.shorten = undefined;
     }
   }
 }
