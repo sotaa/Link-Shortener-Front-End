@@ -1,6 +1,7 @@
 .shorten {
   cursor: pointer;
-  color: lightblue;
+  color: rgb(26, 28, 168);
+  font-weight: bold;
 }
 .shorten:hover {
   color: rgb(104, 104, 141);
