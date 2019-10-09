@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, EventEmitter } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { ILink } from "./../../models/link.interface";
 import { AuthService } from "../../auth/services/auth.service";
@@ -14,7 +15,9 @@ export class OverviewComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private linkService: LinkService
+    private linkService: LinkService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -39,8 +42,8 @@ export class OverviewComponent implements OnInit {
         this.links = this.links.filter(item => item._id !== id);
       });
   }
-  async updateUserLink(id) {
-    
+  updateUserLink(id) {
+    this.router.navigate(["edit-link", id], { relativeTo: this.route });
   }
 
   updateUserInfo() {
