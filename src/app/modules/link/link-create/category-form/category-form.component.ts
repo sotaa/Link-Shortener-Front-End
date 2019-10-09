@@ -18,7 +18,7 @@ export class CategoryFormComponent implements OnInit {
 
   ngOnInit() {
     this.categoryService.getUserCategories().subscribe(cats => {
-      if (cats) this.data = cats;
+      // if (cats) this.data = cats;
     });
   }
 
@@ -43,6 +43,6 @@ export class CategoryFormComponent implements OnInit {
     this.link.categories = [node];
   }
   save() {
-    this.message = 'ذخیره شد';
+    this.message = "ذخیره شد";
   }
 }
