@@ -10,7 +10,8 @@ const routes: Routes = [
   {path: '' , component: DashboardStartComponent , children: [
     {path:'' , component: OverviewComponent},
     {path: 'plans' , component: PlansComponent},
-    {path: 'init-link' , component: CreateLinkComponent}
+    {path: 'init-link' , component: CreateLinkComponent},
+    {path: 'edit-link/:id' , component: CreateLinkComponent}
   ]}
 ]
 
