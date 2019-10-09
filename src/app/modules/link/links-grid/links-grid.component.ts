@@ -3,7 +3,6 @@ import * as PersianDate from "persian-date";
 
 import { ILink } from "../../models/link.interface";
 import { environment } from "../../../../environments/environment";
-import { LinkService } from "../services/link.service";
 
 @Component({
   selector: "app-links-grid",
@@ -15,8 +14,9 @@ export class LinksGridComponent implements OnInit {
   @Output() delete: EventEmitter<string>;
   @Output() update: EventEmitter<string>;
   host: string;
+  store;
 
-  constructor(private linkService: LinkService) {
+  constructor() {
     this.delete = new EventEmitter<string>();
     this.update = new EventEmitter<string>();
   }
@@ -32,10 +32,10 @@ export class LinksGridComponent implements OnInit {
   }
 
   deleteUserLink(id: string) {
-    const deleteAlert = confirm("ایا مایل به حذف این لینک هستید؟");
-    if (deleteAlert == true) {
+    const deleteConfirmed = confirm("ایا مایل به حذف این لینک هستید؟");
+    if (deleteConfirmed == true) {
       this.delete.emit(id);
-    } else return;
+    }
   }
   updateUserLink(id: string) {
     this.update.emit(id);
