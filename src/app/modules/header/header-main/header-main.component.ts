@@ -17,12 +17,6 @@ export class HeaderMainComponent implements OnInit, OnDestroy {
   userInfoSubscription: Subscription;
 
   ngOnInit() {
-    $(".dropdown-menu")
-      .parent()
-      .on("click", function() {
-        $(this).toggleClass("show");
-      });
-
     this.userInfo = this.authService.getSavedUserInfo();
     this.userInfoSubscription = this.authService.updateUserInfo.subscribe(
       user => {
