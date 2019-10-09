@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class SystemMessagesService {
-
-  constructor() { }
+  constructor() {}
 
   getMessages() {
     return Messages;
@@ -12,5 +11,6 @@ export class SystemMessagesService {
 }
 
 const Messages = {
-  "generate-short-link": "کوتاهش کن"
-}
+  "generate-short-link": "کوتاهش کن",
+  "edit-short-link": "اصلاحش کن"
+};
