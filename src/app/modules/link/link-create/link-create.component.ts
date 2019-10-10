@@ -53,7 +53,7 @@ export class LinkCreateComponent extends PremiumFeature implements OnInit {
     } else {
       if (this.editMode) {
         this.linkService.updateLink(this.paramId, this.link).subscribe(() => {
-          this.router.navigate(["../dashboard"]);
+          this.router.navigate(["../dashboard/link"]);
         });
       } else {
         this.linkService.generateLink(this.link).subscribe(link => {
