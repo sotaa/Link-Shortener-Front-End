@@ -43,7 +43,7 @@ export class OverviewComponent implements OnInit {
       });
   }
   updateUserLink(id) {
-    this.router.navigate(["edit-link", id], { relativeTo: this.route });
+    this.router.navigate(["edit", id], { relativeTo: this.route });
   }
 
   updateUserInfo() {
