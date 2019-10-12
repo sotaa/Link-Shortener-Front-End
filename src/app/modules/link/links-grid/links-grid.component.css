@@ -4,5 +4,6 @@
   font-weight: bold;
 }
 .shorten:hover {
-  color: rgb(104, 104, 141);
+  color: rgb(6, 141, 6);
+  text-decoration: underline darkgreen;
 }
