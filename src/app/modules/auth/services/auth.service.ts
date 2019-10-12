@@ -12,7 +12,8 @@ import { EventEmitter } from "@angular/core";
   providedIn: "root"
 })
 export class AuthService extends BaseService {
-  private userInfo: IUser;
+  userInfo: IUser;
+
   @Output() updateUserInfo: EventEmitter<IUser>;
 
   constructor(injector: Injector) {
@@ -80,8 +81,10 @@ export class AuthService extends BaseService {
   emitUserUpdate() {
     this.updateUserInfo.emit(this.userInfo);
   }
-// get user information from server.
+  // get user information from server.
   getUserInfo() {
-    return this.get(AuthUrls.info).pipe(map<Response,IUser>(res => res.json()));
+    return this.get(AuthUrls.info).pipe(
+      map<Response, IUser>(res => res.json())
+    );
   }
 }
