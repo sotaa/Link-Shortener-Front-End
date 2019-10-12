@@ -5,11 +5,13 @@ import { OverviewComponent } from "../overview/overview.component";
 import { DashboardStartComponent } from "../dashboard-start/dashboard-start.component";
 import { PlansComponent } from "../plans/plans.component";
 import { CreateLinkComponent } from "../create-link/create-link.component";
+import { AuthGuard } from "../../auth/auth.gaurd";
 
 const routes: Routes = [
   {
     path: "link",
     component: DashboardStartComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: "", component: OverviewComponent },
       { path: "plans", component: PlansComponent },
