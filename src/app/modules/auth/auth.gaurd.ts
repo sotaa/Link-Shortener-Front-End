@@ -16,7 +16,8 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     router: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.getItem("userInfo")) {
+    const userInfo = this.authService.getSavedUserInfo();
+    if (userInfo) {
       return true;
     } else {
       this.router.navigate(["login"]);
