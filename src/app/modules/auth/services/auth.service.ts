@@ -13,7 +13,7 @@ import { LinkService } from "../../link/services/link.service";
   providedIn: "root"
 })
 export class AuthService extends BaseService {
-  userInfo: IUser;
+  private userInfo: IUser;
 
   @Output() updateUserInfo: EventEmitter<IUser>;
 
