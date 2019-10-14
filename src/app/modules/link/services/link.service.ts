@@ -71,4 +71,8 @@ export class LinkService extends BaseService {
   resetCustomLink() {
     this.resetCheckBox.emit();
   }
+
+  removeAuthTokenFromHeader() {
+    this.headers.delete("Authorization");
+  }
 }
