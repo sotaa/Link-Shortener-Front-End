@@ -7,6 +7,7 @@ import { IUser } from "../../models/user.interface";
 import { IRegisterModel } from "../model/register.viewmodel";
 import { ILoginModel } from "../model/login.viewmodel";
 import { EventEmitter } from "@angular/core";
+import { LinkService } from "../../link/services/link.service";
 
 @Injectable({
   providedIn: "root"
@@ -16,7 +17,7 @@ export class AuthService extends BaseService {
 
   @Output() updateUserInfo: EventEmitter<IUser>;
 
-  constructor(injector: Injector) {
+  constructor(injector: Injector, private linkService: LinkService) {
     super(injector);
     this.updateUserInfo = new EventEmitter<IUser>();
   }
@@ -27,7 +28,9 @@ export class AuthService extends BaseService {
         const token = response.headers.get("x-new-token");
         // save new token if exists in the response.
         if (token) this.storageService.saveUserInfo({ token }, false);
-
+        // append token to http header for next requests
+        this.appendAuthToken();
+        this.linkService.appendAuthToken();
         // return the response in json format.
         return response.json();
       })
@@ -67,6 +70,7 @@ export class AuthService extends BaseService {
   // logout the user.
   logout() {
     this.storageService.removeUserInfo();
+    this.removeAuthTokenFromHeader();
     this.userInfo = undefined;
     this.emitUserUpdate();
   }
@@ -86,5 +90,11 @@ export class AuthService extends BaseService {
     return this.get(AuthUrls.info).pipe(
       map<Response, IUser>(res => res.json())
     );
+  }
+
+  //remove Authorization from http header in all of services
+  removeAuthTokenFromHeader() {
+    this.headers.delete("Authorization");
+    this.linkService.removeAuthTokenFromHeader();
   }
 }
