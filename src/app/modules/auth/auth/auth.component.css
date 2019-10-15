@@ -2,7 +2,7 @@
   padding-left: 1.75rem;
 }
 
-#container {
-  padding-left: 350px;
-  padding-right: 350px;
+.bottom {
+  width: 600px;
+  margin: 0px auto;
 }
