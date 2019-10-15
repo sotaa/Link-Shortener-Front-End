@@ -44,7 +44,8 @@ export class AuthService extends BaseService {
         const token = response.headers.get("x-new-token");
         // save new token if exists in the response.
         if (token) this.storageService.saveUserInfo({ token }, false);
-
+        this.appendAuthToken();
+        this.linkService.appendAuthToken();
         // return the response in json format.
         return response.json();
       })
@@ -85,8 +86,10 @@ export class AuthService extends BaseService {
   emitUserUpdate() {
     this.updateUserInfo.emit(this.userInfo);
   }
+
   // get user information from server.
   getUserInfo() {
+    // return this.get(AuthUrls.info).subscribe(res => console.table(res));
     return this.get(AuthUrls.info).pipe(
       map<Response, IUser>(res => res.json())
     );
