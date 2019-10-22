@@ -1,15 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { LinkService } from "../../services/link.service";
 import { ILink } from "src/app/modules/models/link.interface";
+import { Subscription } from "rxjs";
+import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
   selector: "app-custom-link-form",
   templateUrl: "./custom-link-form.component.html",
   styleUrls: ["./custom-link-form.component.css"]
 })
-export class CustomLinkFormComponent implements OnInit {
+export class CustomLinkFormComponent implements OnInit, OnDestroy {
   @Input() link: ILink;
   @Input() editMode: boolean;
+  @Input() isExpired: boolean;
   selectedShorten: string;
   hostAddress: string;
   shortenIsValid: boolean;
@@ -18,27 +21,37 @@ export class CustomLinkFormComponent implements OnInit {
   check;
   disabled;
   value;
+  navigationSubscription: Subscription;
 
-  constructor(private linkService: LinkService) {
+  constructor(private linkService: LinkService, private router: Router) {
     this.shortenIsValid = undefined;
     this.minimumLength = 5;
     this.selectedShorten = "";
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.initValues();
+      }
+    });
   }
 
   ngOnInit() {
-    this.disabled = true;
-    if (this.editMode) {
-      this.disabled = false;
-      this.check = true;
-      this.selectedShorten = this.link.shorten;
-    } else this.selectedShorten;
-
+    this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
       this.check = false;
       this.disabled = true;
       this.value = "";
       this.message = "";
     });
+  }
+
+  initValues() {
+    this.disabled = true;
+    this.check = false;
+    if (this.editMode) {
+      this.disabled = false;
+      this.check = true;
+      this.selectedShorten = this.link.shorten;
+    } else this.selectedShorten;
   }
 
   checkShorten() {
@@ -79,6 +92,12 @@ export class CustomLinkFormComponent implements OnInit {
       this.message = "";
       this.linkService.alertMessage = this.message;
       this.link.shorten = undefined;
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
     }
   }
 }
