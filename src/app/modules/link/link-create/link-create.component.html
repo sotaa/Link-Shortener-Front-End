@@ -1,55 +1,66 @@
 <div class="form-group">
   <input
     *ngIf="!linkAddress"
-    type="text"
-    name="address"
-    placeholder="https://example.com"
-    [(ngModel)]="link.address"
     class="form-control"
+    placeholder="https://example.com"
+    type="text"
+    [(ngModel)]="link.address"
+    name="address"
   />
 </div>
-<button
-  *ngIf="!linkAddress"
-  (click)="submit()"
-  class="btn btn-large bg-gradient-info btn-info"
-  type="button"
->
-  {{ messages }}
-</button>
-<!-- show created Link and reset Link -->
-<div class="row" id="shorted-link" *ngIf="linkAddress">
-  <div class="col-sm-12 card shadow">
-    <div class="row">
-      <div class="col-md-11">
-        <a href="{{ linkAddress }}" target="_blank">{{ linkAddress }}</a>
-      </div>
-      <div class="col-md-1">
-        <button
-          class="btn btn-outline-success pull-right"
-          (click)="copyToClipBoard()"
-        >
-          کپی شود
-        </button>
+<div class="buttons">
+  <button
+    *ngIf="!linkAddress"
+    (click)="submit()"
+    class="btn btn-large bg-gradient-info btn-info"
+    type="button"
+    [disabled]="disabled"
+  >
+    {{ messages }}
+  </button>
+  <!-- show created Link and reset Link -->
+  <div class="row" id="shorted-link" *ngIf="linkAddress">
+    <div class="col-sm-12 card shadow">
+      <div class="row">
+        <div class="col-md-11">
+          <a href="{{ linkAddress }}" target="_blank">{{ linkAddress }}</a>
+        </div>
+        <div class="col-md-1">
+          <button
+            class="btn btn-outline-success pull-right"
+            (click)="copyToClipBoard()"
+          >
+            کپی شود
+          </button>
+        </div>
       </div>
     </div>
   </div>
+  <br />
+  <button
+    *ngIf="linkAddress"
+    (click)="resetLink()"
+    class="btn btn-large bg-gradient-info btn-info"
+  >
+    شروع مجدد
+  </button>
 </div>
-<br />
-<button
-  *ngIf="linkAddress"
-  (click)="resetLink()"
-  class="btn btn-large bg-gradient-info btn-info"
->
-  شروع مجدد
-</button>
 <br /><br />
+<p class="goPermium" *ngIf="isExpired">
+  برای استفاده از ویژگی های سایت نیازمند به خرید اکانت می باشید!
+  <br />
+  <span (click)="goPermium()">کلیک کنید</span>
+</p>
+<br />
 <!-- others component -->
 <div class="row" *ngIf="!isLoading">
   <app-custom-link-form
     [link]="link"
     [editMode]="editMode"
+    [isExpired]="isExpired"
   ></app-custom-link-form>
-  <app-password-form [link]="link"></app-password-form>
+
+  <!-- <app-password-form [link]="link"></app-password-form> -->
 
   <!-- <button class="btn btn-outline-primary">
     <div
