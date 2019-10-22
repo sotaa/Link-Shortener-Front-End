@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { LinkInfo } from "../../models/link-info.interface";
 import * as PersianDate from "persian-date";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: "app-link-info",
@@ -39,9 +40,7 @@ export class LinkInfoComponent implements OnInit {
   }
 
   private getWindowUrl() {
-    const protocol = location.protocol;
-    const slashes = protocol.concat("//");
-    const host = slashes.concat(window.location.hostname);
+    const host = environment.apiUrl;
     this.shortenLink = host.concat("/", this.data.linkInfo.shorten);
   }
 }
