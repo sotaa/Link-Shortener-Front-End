@@ -25,7 +25,7 @@ export class PremiumCtaComponent implements OnInit, OnDestroy {
   }
 
   goToPlans() {
-    this.router.navigate(["dashboard", "plans"]);
+    this.router.navigate(["dashboard/link", "plans"]);
   }
 
   ngOnDestroy() {
