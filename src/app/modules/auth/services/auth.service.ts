@@ -8,6 +8,7 @@ import { IRegisterModel } from "../model/register.viewmodel";
 import { ILoginModel } from "../model/login.viewmodel";
 import { EventEmitter } from "@angular/core";
 import { LinkService } from "../../link/services/link.service";
+import { PlansService } from "../../dashboard/services/plans.service";
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +18,11 @@ export class AuthService extends BaseService {
 
   @Output() updateUserInfo: EventEmitter<IUser>;
 
-  constructor(injector: Injector, private linkService: LinkService) {
+  constructor(
+    injector: Injector,
+    private linkService: LinkService,
+    private plansService: PlansService
+  ) {
     super(injector);
     this.updateUserInfo = new EventEmitter<IUser>();
   }
@@ -31,6 +36,7 @@ export class AuthService extends BaseService {
         // append token to http header for next requests
         this.appendAuthToken();
         this.linkService.appendAuthToken();
+        this.plansService.appendAuthToken();
         // return the response in json format.
         return response.json();
       })
@@ -46,6 +52,7 @@ export class AuthService extends BaseService {
         if (token) this.storageService.saveUserInfo({ token }, false);
         this.appendAuthToken();
         this.linkService.appendAuthToken();
+        this.plansService.appendAuthToken();
         // return the response in json format.
         return response.json();
       })
@@ -62,7 +69,6 @@ export class AuthService extends BaseService {
     }
     // store the information in client system.
     this.storageService.saveUserInfo(userInfo, remember);
-
     // sync the new information in application.
     this.userInfo = userInfo;
     this.emitUserUpdate();
@@ -89,7 +95,6 @@ export class AuthService extends BaseService {
 
   // get user information from server.
   getUserInfo() {
-    // return this.get(AuthUrls.info).subscribe(res => console.table(res));
     return this.get(AuthUrls.info).pipe(
       map<Response, IUser>(res => res.json())
     );
@@ -99,5 +104,6 @@ export class AuthService extends BaseService {
   removeAuthTokenFromHeader() {
     this.headers.delete("Authorization");
     this.linkService.removeAuthTokenFromHeader();
+    this.plansService.removeAuthTokenFromHeader();
   }
 }
