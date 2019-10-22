@@ -4,6 +4,8 @@
       <th scope="col">لینک</th>
       <th scope="col">لینک کوتاه شده</th>
       <th scope="col">در تاریخ</th>
+      <th></th>
+      <th>جزئیات</th>
       <th>ویرایش</th>
       <th>حذف</th>
     </tr>
@@ -12,25 +14,45 @@
     <tr *ngFor="let link of links; let i = index">
       <td>{{ link.address }}</td>
       <td>
-        <a
-          class="shorten"
-          href="{{ host }}/{{ link.shorten }}"
-          target="_blank"
-          >{{ link.shorten }}</a
-        >
+        <a class="shorten" href="{{ host }}/{{ link.shorten }}" target="_blank"
+          >{{ link.shorten }}
+        </a>
       </td>
       <td>{{ link.createDate }}</td>
-      <td (click)="updateUserLink(link._id)">
+      <td>
         <i
-          class="fa fa-edit"
-          style=" cursor:pointer;font-size:22px;color:green"
+          class="fas fa-copy"
+          (click)="copyToClipBoard(link.shorten)"
+          title="لینک کوتاه کپی شود"
         ></i>
       </td>
-      <td (click)="deleteUserLink(link._id)">
-        <i
+      <td>
+        <button
+          class="fa fa-info-circle"
+          (click)="getLinkInfo(link.shorten)"
+        ></button>
+      </td>
+      <td>
+        <button
+          [disabled]="disabled"
+          (click)="updateUserLink(link._id)"
+          class="fa fa-edit"
+          title="{{
+            remainingDays == 0
+              ? 'برای ویرایش لینک نیاز به خرید اکانت دارید.'
+              : ''
+          }}"
+        ></button>
+      </td>
+      <td>
+        <button
+          [disabled]="disabled"
+          (click)="deleteUserLink(link._id)"
           class="fa fa-trash-o"
-          style="cursor: pointer;font-size:22px;color:red"
-        ></i>
+          title="{{
+            remainingDays == 0 ? 'برای حذف لینک نیاز به خرید اکانت دارید.' : ''
+          }}"
+        ></button>
       </td>
     </tr>
   </tbody>
