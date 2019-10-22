@@ -11,7 +11,7 @@ import { BaseService } from "../../base-items/base.service";
   providedIn: "root"
 })
 export class LinkService extends BaseService {
- private links: ILink[];
+  private links: ILink[];
   alertMessage: string;
   @Output() resetCheckBox: EventEmitter<null>;
 
