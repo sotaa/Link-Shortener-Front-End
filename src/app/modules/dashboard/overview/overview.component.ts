@@ -12,6 +12,7 @@ import { LinkService } from "../../link/services/link.service";
 })
 export class OverviewComponent implements OnInit {
   links: ILink[];
+  remainingDays: Number;
 
   constructor(
     private authService: AuthService,
@@ -50,6 +51,7 @@ export class OverviewComponent implements OnInit {
     // TODO: show spinner until get new data.
     this.authService.getUserInfo().subscribe(
       user => {
+        this.remainingDays = user.remainingDays;
         if (user) {
           this.authService.updateSavedUser(user, true);
         }
