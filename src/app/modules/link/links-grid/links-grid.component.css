@@ -7,3 +7,42 @@
   color: rgb(6, 141, 6);
   text-decoration: underline darkgreen;
 }
+
+.fa-edit {
+  cursor: pointer;
+  font-size: 24px;
+  color: green;
+  border: none;
+  background: none;
+}
+.fa-edit:hover {
+  font-weight: bold;
+}
+
+.fa-trash-o {
+  cursor: pointer;
+  font-size: 24px;
+  color: red;
+  border: none;
+  background: none;
+}
+.fa-trash-o:hover {
+  font-weight: bold;
+}
+
+.fa-info-circle {
+  cursor: pointer;
+  font-size: 25px;
+  color: rgb(88, 141, 202);
+  border: none;
+  background: none;
+}
+.fa-info-circle:hover {
+  font-weight: bold;
+}
+
+.fa-copy {
+  cursor: pointer;
+  font-size: 25px;
+  margin-left: 20px;
+}
