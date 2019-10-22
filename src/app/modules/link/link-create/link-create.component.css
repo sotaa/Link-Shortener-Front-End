@@ -15,3 +15,33 @@ input {
 .row {
   padding-right: 15px;
 }
+
+.goPermium {
+  background: rgb(153, 153, 153);
+  color: floralwhite;
+  width: 500px;
+  height: 60px;
+  margin: 0 auto;
+  text-align: center;
+}
+.goPermium > span {
+  text-decoration-line: underline;
+  cursor: pointer;
+  color: rgb(104, 6, 6);
+  font-weight: bold;
+}
+
+.goPermium > span:hover {
+  font-size: 20px;
+
+  color: rgb(3, 77, 36);
+}
+
+.buttons {
+  text-align: center;
+}
+
+.errorMessage{
+  color: rgb(124, 2, 2);
+  background: rgb(175, 174, 174, 0.3);
+}
