@@ -3,6 +3,8 @@ import * as PersianDate from "persian-date";
 
 import { ILink } from "../../models/link.interface";
 import { environment } from "../../../../environments/environment";
+import { AuthService } from "../../auth/services/auth.service";
+import { IUser } from "../../models/user.interface";
 
 @Component({
   selector: "app-links-grid",
@@ -11,10 +13,12 @@ import { environment } from "../../../../environments/environment";
 })
 export class LinksGridComponent implements OnInit {
   @Input() links: ILink[];
+  @Input() remainingDays: Number;
   @Output() delete: EventEmitter<string>;
   @Output() update: EventEmitter<string>;
   host: string;
   store;
+  disabled;
 
   constructor() {
     this.delete = new EventEmitter<string>();
@@ -22,6 +26,9 @@ export class LinksGridComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.remainingDays == 0) {
+      this.disabled = true;
+    }
     this.host = environment.apiUrl;
     this.links = this.links.map(link => {
       link.createDate = new PersianDate(link.createDate)
@@ -39,5 +46,24 @@ export class LinksGridComponent implements OnInit {
   }
   updateUserLink(id: string) {
     this.update.emit(id);
+  }
+
+  getLinkInfo(shortenCode) {
+    open(`http://localhost:3000/${shortenCode}/info`, "_blank");
+  }
+
+  copyToClipBoard(shorten) {
+    const linkAddress = environment.apiUrl.concat(`/${shorten}`);
+    const str = linkAddress.slice();
+    const el = document.createElement("textarea");
+    el.value = str;
+    el.setAttribute("readonly", "");
+    el.style.position = "absolute";
+    el.style.left = "-9999px";
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    alert("کپی شد");
   }
 }
