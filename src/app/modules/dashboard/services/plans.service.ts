@@ -25,4 +25,8 @@ export class PlansService extends BaseService {
       map<Response, { url: string }>(res => res.json())
     );
   }
+
+  removeAuthTokenFromHeader() {
+    this.headers.delete("Authorization");
+  }
 }
