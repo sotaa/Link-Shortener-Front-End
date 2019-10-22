@@ -1,10 +1,10 @@
 <button class="btn btn-block bg-gradient-danger" (click)="goToPlans()">
   <img src="../../../../assets/img/icons/common/premium.png" alt="" />
   <h4 class="text-center text-white text-heading">
-    <span *ngIf="user.remainingDays == 0">
+    <span *ngIf="user && user.remainingDays == 0">
       همین الان به کاربر حرفه ای تبدیل شوید</span
     >
-    <div style="margin-top: 52px;" *ngIf="user.remainingDays != 0">
+    <div style="margin-top: 52px;" *ngIf="user && user.remainingDays != 0">
       حساب خود را تمدید کنید
     </div>
   </h4>
