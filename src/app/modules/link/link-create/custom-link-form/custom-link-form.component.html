@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="form-group">
+    <div
+      class="form-group"
+      [ngStyle]="{ 'pointer-events': isExpired === true ? 'none' : 'auto' }"
+    >
       <div
         class="custom-control custom-checkbox mb-3"
         data-toggle="tooltip"
@@ -17,17 +20,18 @@
           <span class="checkmark"></span>
         </label>
       </div>
+
       <input
         [disabled]="disabled"
         [value]="value"
-        type="text"
         id="customLink"
+        type="text"
         class="form-control"
         [(ngModel)]="selectedShorten"
         (keyup)="checkShorten()"
-        placeholder="لینک دلخواه ..."
+        placeholder=" ..."
         style="direction: rtl"
-      />
+      /><label class="customLabel"> لینک کوتاه دلخواه خود را داشته باشید</label>
     </div>
     <p class="text-danger">{{ message }}</p>
   </div>
