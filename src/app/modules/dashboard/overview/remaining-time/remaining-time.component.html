@@ -1,19 +1,19 @@
-<app-expired *ngIf="user.remainingDays == 0; else remaining"></app-expired>
+<app-expired *ngIf="user && user.remainingDays == 0"></app-expired>
 
-<ng-template #remaining>
-  <div class="card card-shadow">
-    <div class="card-content">
-      <img
-        class="card-img"
-        src="../../../../../assets/img/icons/common/calendar.png"
-        alt=""
-      />
-      <h5 class="text-center text-heading">
-        <h3 style="color: darkred; font-weight: bold;">
-          {{ user.remainingDays }} روز
-        </h3>
-        از حساب شما باقی مانده است!
-      </h5>
-    </div>
+<!-- <ng-template> -->
+<div class="card card-shadow" *ngIf="user && user.remainingDays != 0">
+  <div class="card-content">
+    <img
+      class="card-img"
+      src="../../../../../assets/img/icons/common/calendar.png"
+      alt=""
+    />
+    <h5 class="text-center text-heading">
+      <h3 style="color: darkred; font-weight: bold;">
+        {{ user.remainingDays }} روز
+      </h3>
+      از حساب شما باقی مانده است!
+    </h5>
   </div>
-</ng-template>
+</div>
+<!-- </ng-template> -->
