@@ -5,6 +5,7 @@ import { ILink } from "../../models/link.interface";
 import { environment } from "../../../../environments/environment";
 import { AuthService } from "../../auth/services/auth.service";
 import { IUser } from "../../models/user.interface";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-links-grid",
@@ -31,7 +32,7 @@ export class LinksGridComponent implements OnInit {
     }
     this.host = environment.apiUrl;
     this.links = this.links.map(link => {
-      link.createDate = new PersianDate(link.createDate)
+      link.createDate = new PersianDate(link.createDateFa)
         .toLocale("fa")
         .format();
       return link;
@@ -49,7 +50,7 @@ export class LinksGridComponent implements OnInit {
   }
 
   getLinkInfo(shortenCode) {
-    open(`http://localhost:3000/${shortenCode}/info`, "_blank");
+    open(`${environment.apiUrl}/${shortenCode}/info`, "_blank");
   }
 
   copyToClipBoard(shorten) {
