@@ -1,5 +1,6 @@
 import { AnalyticsData } from "./analytics-data.interface";
 export interface ILink {
+  createDateFa: any;
   password: string;
   _id: string;
   userId?: string;
@@ -18,6 +19,7 @@ export class Link implements ILink {
   address: string;
   shorten: string;
   createDate: Date;
+  createDateFa: Date;
   categories: string[];
   data: AnalyticsData[];
   conditions: ICondition[];
