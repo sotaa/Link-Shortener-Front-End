@@ -6,7 +6,7 @@ import { AuthComponent } from "../auth/auth/auth.component";
 const appRoutes: Routes = [
   {
     path: "",
-    pathMatch: "full",
+    // pathMatch: "",
     loadChildren: "../public-view/pages/pages.module#PagesModule"
   },
   {
