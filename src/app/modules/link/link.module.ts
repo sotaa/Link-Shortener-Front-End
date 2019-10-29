@@ -22,6 +22,10 @@ import { CustomLinkFormComponent } from './link-create/custom-link-form/custom-l
 import { CategoryFormComponent } from './link-create/category-form/category-form.component';
 import { DeepLinkFormComponent } from './link-create/deep-link-form/deep-link-form.component';
 import { ConditionComponent } from './link-create/deep-link-form/condition/condition.component';
+import { ContinentsComponent } from './link-info/continents/continents.component';
+import { RegionsComponent } from './link-info/regions/regions.component';
+import { CitiesComponent } from './link-info/cities/cities.component';
+import { LanguagesComponent } from './link-info/languages/languages.component';
 
 @NgModule({
   imports: [
@@ -47,7 +51,11 @@ import { ConditionComponent } from './link-create/deep-link-form/condition/condi
     CustomLinkFormComponent,
     CategoryFormComponent,
     DeepLinkFormComponent,
-    ConditionComponent
+    ConditionComponent,
+    ContinentsComponent,
+    RegionsComponent,
+    CitiesComponent,
+    LanguagesComponent
   ],
   exports: [LinkCreateComponent, LinkInfoComponent, LinksGridComponent]
 })
