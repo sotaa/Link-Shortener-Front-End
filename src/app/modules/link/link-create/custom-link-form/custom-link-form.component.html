@@ -14,8 +14,8 @@
           <input
             type="checkbox"
             id="check"
-            (click)="checkBox()"
-            [checked]="check"
+            (change)="toggleCheckbox()"
+            [checked]="checked"
           />
           <span class="checkmark"></span>
         </label>
@@ -23,7 +23,6 @@
 
       <input
         [disabled]="disabled"
-        [value]="value"
         id="customLink"
         type="text"
         class="form-control"

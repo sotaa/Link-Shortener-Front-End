@@ -18,7 +18,7 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
   shortenIsValid: boolean;
   message: string = "";
   minimumLength: number;
-  check;
+  checked;
   disabled;
   value;
   navigationSubscription: Subscription;
@@ -37,19 +37,19 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
-      this.check = false;
+      this.checked = false;
       this.disabled = true;
-      this.value = "";
+      this.selectedShorten = "";
       this.message = "";
     });
   }
 
   initValues() {
     this.disabled = true;
-    this.check = false;
+    this.checked = false;
     if (this.editMode) {
       this.disabled = false;
-      this.check = true;
+      this.checked = true;
       this.selectedShorten = this.link.shorten;
     } else this.selectedShorten;
   }
@@ -82,16 +82,16 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkBox() {
-    this.check = !this.check;
-    if (this.check === true) {
+  toggleCheckbox() {
+    this.checked = !this.checked;
+    if (this.checked) {
       this.disabled = false;
     } else {
-      this.value = "";
-      this.disabled = true;
       this.message = "";
       this.linkService.alertMessage = this.message;
+      this.selectedShorten = "";
       this.link.shorten = undefined;
+      this.disabled = true;
     }
   }
 
