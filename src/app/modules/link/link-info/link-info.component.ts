@@ -13,6 +13,7 @@ import { environment } from "../../../../environments/environment";
 })
 export class LinkInfoComponent implements OnInit {
   data: LinkInfo;
+  userIsExpired;
   notFound = false;
   routeSubscription: Subscription;
   shortenLink: string;
@@ -28,6 +29,7 @@ export class LinkInfoComponent implements OnInit {
       const code = params["code"];
       if (code)
         this.linkService.getInfo(code).subscribe(data => {
+          this.userIsExpired = data.userIsExpired;
           this.data = data;
           this.notFound = !this.data;
           this.getWindowUrl();
