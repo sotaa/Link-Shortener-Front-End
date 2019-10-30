@@ -157,7 +157,7 @@ export class LinkCreateComponent extends PremiumFeature
     if (!userLocalStorage) {
       this.router.navigate(["/login"]);
     }
-    this.router.navigate(["/dashboard/link"]);
+    this.router.navigate(["/dashboard/link/plans"]);
   }
 
   ngOnDestroy() {
