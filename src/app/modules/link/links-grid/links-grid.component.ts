@@ -21,7 +21,7 @@ export class LinksGridComponent implements OnInit {
   store;
   disabled;
 
-  constructor() {
+  constructor(private router: Router) {
     this.delete = new EventEmitter<string>();
     this.update = new EventEmitter<string>();
   }
@@ -50,7 +50,7 @@ export class LinksGridComponent implements OnInit {
   }
 
   getLinkInfo(shortenCode) {
-    open(`${environment.apiUrl}/${shortenCode}/info`, "_blank");
+    this.router.navigate([`/${shortenCode}/info`]);
   }
 
   copyToClipBoard(shorten) {
