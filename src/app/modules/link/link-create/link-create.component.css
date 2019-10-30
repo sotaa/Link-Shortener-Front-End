@@ -18,9 +18,11 @@ input {
 
 .goPermium {
   background: rgb(153, 153, 153);
+  border-radius: 5px;
   color: floralwhite;
   width: 500px;
   height: 60px;
+  padding-top: 3px;
   margin: 0 auto;
   text-align: center;
 }
@@ -41,7 +43,7 @@ input {
   text-align: center;
 }
 
-.errorMessage{
+.errorMessage {
   color: rgb(124, 2, 2);
   background: rgb(175, 174, 174, 0.3);
 }
