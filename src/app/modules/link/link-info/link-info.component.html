@@ -51,6 +51,14 @@
       </div>
       <div class="col-md-6">
         <div class="card card-shadow">
+          <app-devices
+            [data]="data.devices"
+            [userIsExpired]="userIsExpired"
+          ></app-devices>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-shadow">
           <app-referrers-chart [data]="data.referrers"></app-referrers-chart>
         </div>
       </div>
