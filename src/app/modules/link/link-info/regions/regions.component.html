@@ -1,3 +1,8 @@
-<p>
-  regions works!
+<div [chart]="chart"></div>
+<p class="bePermium" *ngIf="userIsExpired">
+  برای مشاهده استان ها نیاز به خرید اکانت دارید!
+  <br />
+  <button class="goToPermium" (click)="goToPermium()">
+    کلیک کنید
+  </button>
 </p>

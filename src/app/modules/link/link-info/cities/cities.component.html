@@ -1,3 +1,8 @@
-<p>
-  cities works!
+<div [chart]="chart"></div>
+<p class="bePermium" *ngIf="userIsExpired">
+  برای مشاهده شهر ها نیاز به خرید اکانت دارید!
+  <br />
+  <button class="goToPermium" (click)="goToPermium()">
+    کلیک کنید
+  </button>
 </p>
