@@ -11,9 +11,10 @@ import { PlansComponent } from "./plans/plans.component";
 import { PricePipe } from "./pipes/price.pipe";
 import { LinksModule } from "../link/link.module";
 import { CreateLinkComponent } from "./create-link/create-link.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [CommonModule, DashboardRoutingModule, LinksModule],
+  imports: [CommonModule, DashboardRoutingModule, LinksModule, FormsModule],
   declarations: [
     OverviewComponent,
     NavBarComponent,
