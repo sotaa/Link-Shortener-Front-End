@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Chart } from 'angular-highcharts';
-import { ToChartData } from '../../helpers/make-chart-data.helper';
+import { Component, OnInit, Input } from "@angular/core";
+import { Chart } from "angular-highcharts";
+import { ToChartData } from "../../helpers/make-chart-data.helper";
 
 @Component({
-  selector: 'app-location-chart',
-  templateUrl: './location-chart.component.html',
-  styleUrls: ['./location-chart.component.css']
+  selector: "app-location-chart",
+  templateUrl: "./location-chart.component.html",
+  styleUrls: ["./location-chart.component.css"]
 })
 export class LocationChartComponent implements OnInit {
   chart: Chart;
@@ -17,7 +17,7 @@ export class LocationChartComponent implements OnInit {
     this.createChart(ToChartData(this.data));
   }
 
-  private createChart(data: { name: string; y: number; }[]) {
+  private createChart(data: { name: string; y: number }[]) {
     this.chart = new Chart({
       chart: {
         animation: true,
@@ -25,7 +25,7 @@ export class LocationChartComponent implements OnInit {
         margin: 50
       },
       title: {
-        text: "مکان های جغرافیایی",
+        text: "کشور ها",
         floating: true
       },
       series: [
@@ -37,7 +37,7 @@ export class LocationChartComponent implements OnInit {
       xAxis: {
         tickInterval: 1,
         labels: {
-          formatter: function () {
+          formatter: function() {
             return data[this.value].name;
           }
         }
