@@ -26,6 +26,7 @@ import { RegionsComponent } from "./link-info/regions/regions.component";
 import { CitiesComponent } from "./link-info/cities/cities.component";
 import { LanguagesComponent } from "./link-info/languages/languages.component";
 import { DevicesComponent } from "./link-info/devices/devices.component";
+import { LinkPasswordComponent } from './link-password/link-password.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { DevicesComponent } from "./link-info/devices/devices.component";
     RegionsComponent,
     CitiesComponent,
     LanguagesComponent,
-    DevicesComponent
+    DevicesComponent,
+    LinkPasswordComponent
   ],
   exports: [LinkCreateComponent, LinkInfoComponent, LinksGridComponent]
 })
