@@ -35,5 +35,6 @@
   [remainingDays]="remainingDays"
   (delete)="deleteUserLink($event)"
   (update)="updateUserLink($event)"
+  (info)="getLinkInfo($event)"
   *ngIf="links && links.length !== 0"
 ></app-links-grid>
