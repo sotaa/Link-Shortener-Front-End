@@ -1,3 +1,4 @@
+<!-- input for getting addrees of site -->
 <div class="form-group">
   <input
     *ngIf="!linkAddress"
@@ -8,6 +9,7 @@
     name="address"
   />
 </div>
+<!-- button to submitting action -->
 <div class="buttons">
   <button
     *ngIf="!linkAddress"
@@ -37,6 +39,7 @@
     </div>
   </div>
   <br />
+  <!-- button for resetting created link -->
   <button
     *ngIf="linkAddress"
     (click)="resetLink()"
@@ -46,6 +49,7 @@
   </button>
 </div>
 <br /><br />
+<!-- show message for offer to buy permium account -->
 <p class="goPermium" *ngIf="isExpired">
   برای استفاده از ویژگی های سایت نیازمند به خرید اکانت می باشید!
   <br />
@@ -60,8 +64,18 @@
     [isExpired]="isExpired"
   ></app-custom-link-form>
 
-  <!-- <app-password-form [link]="link"></app-password-form> -->
+  <app-password-form
+    [link]="link"
+    [editMode]="editMode"
+    [isExpired]="isExpired"
+  ></app-password-form>
 
+  <!-- <app-category-form [link]="link"></app-category-form>
+  <button class="btn btn-outline-primary">
+    <div>
+      <label class="custom-control-label" for="category">دسته بندی</label>
+    </div>
+  </button> -->
   <!-- <button class="btn btn-outline-primary">
     <div
       class="custom-control custom-checkbox mb-3"
@@ -78,17 +92,6 @@
       <label class="custom-control-label" for="custom-link"
         >نتایج خصوصی باشد</label
       >
-    </div>
-  </button> -->
-  <!-- <app-category-form [link]="link"></app-category-form> -->
-  <!-- <button
-    class="btn btn-outline-primary"
-    (click)="setModalComponent('category')"
-    data-toggle="modal"
-    data-target="#modal-form"
-  >
-
-      <label class="custom-control-label" for="category">دسته بندی</label>
     </div>
   </button> -->
 
