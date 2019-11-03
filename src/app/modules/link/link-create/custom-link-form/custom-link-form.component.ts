@@ -58,8 +58,8 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
     if (this.selectedShorten.length < this.minimumLength) {
       this.link.shorten = undefined;
       return (
-        (this.message = "حداقل 5 کاراکتر"),
-        (this.linkService.alertMessage = this.message)
+        (this.message = "لینک کوتاه دلخواه: حداقل 5 کاراکتر"),
+        (this.linkService.alertMessageCustomLink = this.message)
       );
     }
     this.linkService.shortenIsExists(this.selectedShorten).subscribe(res => {
@@ -70,14 +70,14 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
 
   handleExistentResult(isExists: boolean) {
     this.message = "";
-    this.linkService.alertMessage = this.message;
+    this.linkService.alertMessageCustomLink = this.message;
     if (isExists) {
-      this.message = "این لینک قبلا ثبت شده است";
-      this.linkService.alertMessage = this.message;
+      this.message = "این لینک کوتاه دلخواه قبلا ثبت شده است";
+      this.linkService.alertMessageCustomLink = this.message;
       this.link.shorten = undefined;
     } else {
       this.message = "";
-      this.linkService.alertMessage = this.message;
+      this.linkService.alertMessageCustomLink = this.message;
       this.link.shorten = this.selectedShorten;
     }
   }
@@ -88,7 +88,7 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
       this.disabled = false;
     } else {
       this.message = "";
-      this.linkService.alertMessage = this.message;
+      this.linkService.alertMessageCustomLink = this.message;
       this.selectedShorten = "";
       this.link.shorten = undefined;
       this.disabled = true;
