@@ -12,7 +12,8 @@ import { BaseService } from "../../base-items/base.service";
 })
 export class LinkService extends BaseService {
   private links: ILink[];
-  alertMessage: string;
+  alertMessageCustomLink: string;
+  alertMessagePassword: string;
   @Output() resetCheckBox: EventEmitter<null>;
 
   constructor(injector: Injector) {
@@ -63,6 +64,7 @@ export class LinkService extends BaseService {
       map<Response, ILink>(res => <ILink>res.json())
     );
   }
+
   deleteUserLink(id) {
     const url = LinkUrls.deleteUserLink(id);
     return this.delete(url);
@@ -74,5 +76,11 @@ export class LinkService extends BaseService {
 
   removeAuthTokenFromHeader() {
     this.headers.delete("Authorization");
+  }
+  appendPassword(password) {
+    this.headers.append("LinkPassword", password);
+  }
+  removePasswordFromHeader() {
+    this.headers.delete("LinkPassword");
   }
 }
