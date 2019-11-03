@@ -25,13 +25,12 @@
         [disabled]="disabled"
         id="customLink"
         type="text"
-        class="form-control"
+        class="form-control pass-input"
         [(ngModel)]="selectedShorten"
         (keyup)="checkShorten()"
         placeholder=" ..."
-        style="direction: rtl"
       /><label class="customLabel"> لینک کوتاه دلخواه خود را داشته باشید</label>
     </div>
-    <p class="text-danger">{{ message }}</p>
+    <p class="textDanger">{{ message }}</p>
   </div>
 </div>
