@@ -60,6 +60,18 @@ export class LinkCreateComponent extends PremiumFeature
     });
   }
 
+  initSomeValuesAgain() {
+    this.isLoading = true;
+    const userLocalStorage = this.authService.getSavedUserInfo();
+    if (userLocalStorage) {
+      this.getUserInfo();
+    } else {
+      this.userInfo = undefined;
+      this.isExpired = true;
+      this.isLoading = false;
+    }
+  }
+
   async fetchLinkData(id: string) {
     return await this.linkService.getUserLink(id).toPromise();
   }
@@ -73,8 +85,14 @@ export class LinkCreateComponent extends PremiumFeature
     const myURL = this.regexURL.exec(this.link.address);
     if (myURL == null) return alert("لطفا ادرس صحیح را وارد کنید!");
     //check childeren component validate like custom link
-    if (this.linkService.alertMessage) {
-      return alert(`${this.linkService.alertMessage}`);
+    if (
+      this.linkService.alertMessagePassword ||
+      this.linkService.alertMessageCustomLink
+    ) {
+      return alert(
+        `${this.linkService.alertMessagePassword}` ||
+          `${this.linkService.alertMessageCustomLink}`
+      );
     }
 
     if (this.editMode) {
@@ -138,18 +156,6 @@ export class LinkCreateComponent extends PremiumFeature
         this.isLoading = false;
       }
     });
-  }
-
-  initSomeValuesAgain() {
-    this.isLoading = true;
-    const userLocalStorage = this.authService.getSavedUserInfo();
-    if (userLocalStorage) {
-      this.getUserInfo();
-    } else {
-      this.userInfo = undefined;
-      this.isExpired = true;
-      this.isLoading = false;
-    }
   }
 
   goPermium() {
