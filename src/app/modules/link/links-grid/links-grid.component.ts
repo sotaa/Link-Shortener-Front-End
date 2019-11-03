@@ -17,13 +17,15 @@ export class LinksGridComponent implements OnInit {
   @Input() remainingDays: Number;
   @Output() delete: EventEmitter<string>;
   @Output() update: EventEmitter<string>;
+  @Output() info: EventEmitter<string>;
   host: string;
   store;
   disabled;
 
-  constructor(private router: Router) {
+  constructor() {
     this.delete = new EventEmitter<string>();
     this.update = new EventEmitter<string>();
+    this.info = new EventEmitter<string>();
   }
 
   ngOnInit() {
@@ -49,8 +51,8 @@ export class LinksGridComponent implements OnInit {
     this.update.emit(id);
   }
 
-  getLinkInfo(shortenCode) {
-    this.router.navigate([`/${shortenCode}/info`]);
+  getLinkInfo(shortenCode: string) {
+    this.info.emit(shortenCode);
   }
 
   copyToClipBoard(shorten) {
