@@ -43,8 +43,14 @@ export class OverviewComponent implements OnInit {
         this.links = this.links.filter(item => item._id !== id);
       });
   }
+
   updateUserLink(id) {
     this.router.navigate(["edit", id], { relativeTo: this.route });
+  }
+
+  getLinkInfo(shortenCode) {
+    this.linkService.removePasswordFromHeader();
+    this.router.navigate([`/${shortenCode}/info`]);
   }
 
   updateUserInfo() {
