@@ -85,16 +85,13 @@ export class LinkCreateComponent extends PremiumFeature
     const myURL = this.regexURL.exec(this.link.address);
     if (myURL == null) return alert("لطفا ادرس صحیح را وارد کنید!");
     //check childeren component validate like custom link
-    if (
-      this.linkService.alertMessagePassword ||
-      this.linkService.alertMessageCustomLink
-    ) {
-      return alert(
-        `${this.linkService.alertMessagePassword}` ||
-          `${this.linkService.alertMessageCustomLink}`
-      );
+    if (this.linkService.alertMessagePassword) {
+      return alert(`${this.linkService.alertMessagePassword}`);
     }
-
+    if (this.linkService.alertMessageCustomLink) {
+      return alert(`${this.linkService.alertMessageCustomLink}`);
+    }
+    // check action: update or create
     if (this.editMode) {
       this.linkService.updateLink(this.paramId, this.link).subscribe(
         res => {
