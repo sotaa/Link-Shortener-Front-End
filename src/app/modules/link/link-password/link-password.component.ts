@@ -28,7 +28,8 @@ export class LinkPasswordComponent implements OnInit {
   }
 
   submitPassword() {
-    if (this.linkPassword.length < 3) return alert("حداقل 3 کاراکتر!");
+    if (!this.linkPassword || this.linkPassword.length < 3)
+      return alert("حداقل 3 کاراکتر!");
     this.linkService.appendPassword(this.linkPassword);
     this.router.navigate([`/${this.shorten}/info`]);
   }
