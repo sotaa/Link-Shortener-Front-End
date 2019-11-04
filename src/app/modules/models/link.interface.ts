@@ -2,6 +2,7 @@ import { AnalyticsData } from "./analytics-data.interface";
 export interface ILink {
   createDateFa: any;
   password: string;
+  private: boolean;
   _id: string;
   userId?: string;
   categories?: string[]; //TODO: has to be in tag system, just now it's fine
@@ -14,6 +15,7 @@ export interface ILink {
 
 export class Link implements ILink {
   password: string;
+  private: boolean;
   _id: string;
   userId?: string;
   address: string;
