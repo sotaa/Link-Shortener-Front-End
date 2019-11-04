@@ -1,3 +1,7 @@
+input {
+  text-align: center;
+}
+
 #shorted-link {
   margin-top: 30px;
   font-size: 25px;
@@ -9,10 +13,8 @@
   padding-bottom: 20px;
 }
 
-input {
-  text-align: center;
-}
-.row {
+.component {
+  display: block;
   padding-right: 15px;
 }
 
@@ -26,6 +28,7 @@ input {
   margin: 0 auto;
   text-align: center;
 }
+
 .goPermium > span {
   text-decoration-line: underline;
   cursor: pointer;
