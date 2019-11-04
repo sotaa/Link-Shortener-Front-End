@@ -44,21 +44,14 @@ export class PasswordFormComponent implements OnInit {
     this.disabled = true;
     this.checked = false;
     if (this.editMode) {
-      this.disabled = false;
-      this.checked = true;
-      this.selectedPassword = this.link.password;
+      if (this.link.password) {
+        this.disabled = false;
+        this.checked = true;
+        this.linkService.alertMessagePassword = "پسورد: حداقل 3 کاراکتر";
+      }
     } else this.selectedPassword;
   }
 
-  // save() {
-  //   const ck = document.getElementById("savePass") as HTMLInputElement;
-  //   if (ck.checked === true) {
-  //     this.link.password = this.selectedPassword;
-  //     alert("تغییرات پسورد اعمال شد");
-  //   } else {
-  //     this.link.password = "";
-  //   }
-  // }
   checkPassword() {
     if (this.selectedPassword.length < this.minimumLength) {
       this.link.password = undefined;
@@ -75,6 +68,7 @@ export class PasswordFormComponent implements OnInit {
   toggleCheckbox() {
     this.checked = !this.checked;
     if (this.checked) {
+      this.linkService.alertMessagePassword = "پسورد: حداقل 3 کاراکتر";
       this.disabled = false;
     } else {
       this.message = "";
