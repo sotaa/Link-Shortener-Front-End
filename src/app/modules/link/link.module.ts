@@ -27,6 +27,9 @@ import { CitiesComponent } from "./link-info/cities/cities.component";
 import { LanguagesComponent } from "./link-info/languages/languages.component";
 import { DevicesComponent } from "./link-info/devices/devices.component";
 import { LinkPasswordComponent } from './link-password/link-password.component';
+import { PrivateLinkFormComponent } from './link-create/private-link-form/private-link-form.component';
+import { LinkResultPrivateComponent } from './link-result-private/link-result-private.component';
+import { LinkNotFoundComponent } from './link-not-found/link-not-found.component';
 
 @NgModule({
   imports: [
@@ -58,7 +61,10 @@ import { LinkPasswordComponent } from './link-password/link-password.component';
     CitiesComponent,
     LanguagesComponent,
     DevicesComponent,
-    LinkPasswordComponent
+    LinkPasswordComponent,
+    PrivateLinkFormComponent,
+    LinkResultPrivateComponent,
+    LinkNotFoundComponent
   ],
   exports: [LinkCreateComponent, LinkInfoComponent, LinksGridComponent]
 })
