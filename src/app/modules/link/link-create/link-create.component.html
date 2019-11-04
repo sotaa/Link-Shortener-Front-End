@@ -27,7 +27,7 @@
         <div class="col-md-11">
           <a href="{{ linkAddress }}" target="_blank">{{ linkAddress }}</a>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 copy">
           <button
             class="btn btn-outline-success pull-right"
             (click)="copyToClipBoard()"
@@ -56,8 +56,8 @@
   <span (click)="goPermium()">کلیک کنید</span>
 </p>
 <br />
-<!-- others component -->
-<div class="row" *ngIf="!isLoading">
+<!-- Others Component -->
+<div class="row component" *ngIf="!isLoading">
   <app-custom-link-form
     [link]="link"
     [editMode]="editMode"
@@ -70,28 +70,16 @@
     [isExpired]="isExpired"
   ></app-password-form>
 
+  <app-private-link-form
+    [link]="link"
+    [editMode]="editMode"
+    [isExpired]="isExpired"
+  ></app-private-link-form>
+
   <!-- <app-category-form [link]="link"></app-category-form>
   <button class="btn btn-outline-primary">
     <div>
       <label class="custom-control-label" for="category">دسته بندی</label>
-    </div>
-  </button> -->
-  <!-- <button class="btn btn-outline-primary">
-    <div
-      class="custom-control custom-checkbox mb-3"
-      data-toggle="tooltip"
-      data-placement="top"
-      title="فقط شما میتوانید گزارش کلیک های لینک را ببینید"
-    >
-      <input
-        class="custom-control-input"
-        id="custom-link"
-        type="checkbox"
-        disabled
-      />
-      <label class="custom-control-label" for="custom-link"
-        >نتایج خصوصی باشد</label
-      >
     </div>
   </button> -->
 
