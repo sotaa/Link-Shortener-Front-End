@@ -85,6 +85,8 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
   toggleCheckbox() {
     this.checked = !this.checked;
     if (this.checked) {
+      this.linkService.alertMessageCustomLink =
+        "لینک کوتاه دلخواه: حداقل 5 کاراکتر";
       this.disabled = false;
     } else {
       this.message = "";
