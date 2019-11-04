@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-12">
+    <div
+      class="form-group"
+      [ngStyle]="{ 'pointer-events': isExpired === true ? 'none' : 'auto' }"
+    >
+      <div
+        class="custom-control custom-checkbox mb-3"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="فقط شما میتوانید گزارش کلیک های لینک را ببینید"
+      >
+        <label class="container">
+          <input
+            type="checkbox"
+            id="check"
+            (change)="toggleCheckbox()"
+            [checked]="checked"
+          />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <label class="privateLink">نتایج خصوصی باشد</label>
+    </div>
+    <p class="textDanger">{{ message }}</p>
+  </div>
+</div>
