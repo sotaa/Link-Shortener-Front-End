@@ -1,13 +1,16 @@
-
 <ul style="margin-right: 100px;" class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/dashboard/link">
-        <i class="ni ni-tv-2 text-primary"></i>
-        <span class="menu-text">داشبورد</span>
-      </a>
-    </li>
-  </ul>
-<div class="container">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/dashboard/link">
+      <i class="ni ni-tv-2 text-primary"></i>
+      <span class="menu-text">داشبورد</span>
+    </a>
+  </li>
+</ul>
+<!-- link info html -->
+<div
+  class="container"
+  *ngIf="!passwordRequired && !linkIsPrivate && !linkNotFound"
+>
   <app-loading *ngIf="!data"></app-loading>
   <div *ngIf="notFound" class="container card card-shadow bg-gradient-danger">
     <!-- <h2>
@@ -60,20 +63,12 @@
       </div>
       <div class="col-md-6">
         <div class="card card-shadow">
-          <app-devices
-            [data]="data.devices"
-            [userIsExpired]="userIsExpired"
-          ></app-devices>
+          <app-location-chart [data]="data.locations"></app-location-chart>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card card-shadow">
           <app-referrers-chart [data]="data.referrers"></app-referrers-chart>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card card-shadow">
-          <app-location-chart [data]="data.locations"></app-location-chart>
         </div>
       </div>
       <!-- <div class="col-md-6">
@@ -87,18 +82,26 @@
       </div> -->
       <div class="col-md-6">
         <div class="card card-shadow">
-          <app-cities
-            [data]="data.locationDetails.cities"
-            [userIsExpired]="userIsExpired"
-          ></app-cities>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card card-shadow">
           <app-regions
             [data]="data.locationDetails.regions"
             [userIsExpired]="userIsExpired"
           ></app-regions>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-shadow">
+          <app-devices
+            [data]="data.devices"
+            [userIsExpired]="userIsExpired"
+          ></app-devices>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-shadow">
+          <app-cities
+            [data]="data.locationDetails.cities"
+            [userIsExpired]="userIsExpired"
+          ></app-cities>
         </div>
       </div>
       <div class="col-md-6">
@@ -112,3 +115,12 @@
     </div>
   </section>
 </div>
+
+<!-- Other component -->
+<app-link-password
+  *ngIf="passwordRequired && !linkIsPrivate && !linkNotFound"
+></app-link-password>
+<app-link-result-private
+  *ngIf="linkIsPrivate && !passwordRequired && !linkNotFound"
+></app-link-result-private>
+<app-link-not-found *ngIf="linkNotFound"></app-link-not-found>
