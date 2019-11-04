@@ -6,7 +6,7 @@ import {
   ElementRef,
   OnDestroy
 } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
 import { LinkInfo } from "../../models/link-info.interface";
 import * as PersianDate from "persian-date";
@@ -24,14 +24,28 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
   routeSubscription: Subscription;
   shortenLink: string;
   createDate;
+  passwordRequired;
+  linkIsPrivate;
+  linkNotFound;
+  navigationSubscription: Subscription;
 
   constructor(
     private linkService: LinkService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.initValues();
+      }
+    });
+  }
 
-  ngOnInit() {
+  ngOnInit() {}
+  initValues() {
+    this.passwordRequired = false;
+    this.linkIsPrivate = false;
+    this.linkNotFound = false;
     let code;
     this.routeSubscription = this.route.params.subscribe(params => {
       code = params["code"];
@@ -49,17 +63,22 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
               .format();
           })
           .catch(err => {
-            if (err.status == 401) this.router.navigate([`${code}/password/`]);
+            if (err.status == 401) return (this.passwordRequired = true);
             if (err.status == 400) {
               alert("رمز عبور صحیح نمی باشد!");
-              this.router.navigate([`${code}/password/`]);
+              return (this.passwordRequired = true);
+            }
+            if (err.status == 403) {
+              return (this.linkIsPrivate = true);
+            }
+            if (err.status == 404) {
+              return (this.linkNotFound = true);
             }
           });
       }
       if (!this.data) return (this.notFound = true);
     });
   }
-
   private getWindowUrl() {
     const host = environment.apiUrl;
     this.shortenLink = host.concat("/", this.data.linkInfo.shorten);
