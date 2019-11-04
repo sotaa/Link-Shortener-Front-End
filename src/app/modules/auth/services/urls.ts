@@ -1,5 +1,6 @@
+import { environment } from 'src/environments/environment'
 
-const serverAddress = 'http://localhost:3000'
+const serverAddress = environment.apiUrl;
 
 export const AuthUrls = {
   register: serverAddress.concat('/user'),
