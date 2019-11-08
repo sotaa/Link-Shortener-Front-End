@@ -23,4 +23,8 @@ export class CategoryService extends BaseService {
       // map<Response, ICategory[]>(res => res.json())
       ();
   }
+
+  removeAuthTokenFromHeader() {
+    this.headers.delete("Authorization");
+  }
 }
