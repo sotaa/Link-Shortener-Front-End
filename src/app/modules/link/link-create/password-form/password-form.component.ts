@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { LinkService } from "../../services/link.service";
 import { Subscription } from "rxjs";
 import { Router, NavigationEnd } from "@angular/router";
+import { AlertMessageLinkService } from "../../services/alert-message-link.service";
 
 @Component({
   selector: "app-password-form",
@@ -20,7 +21,11 @@ export class PasswordFormComponent implements OnInit {
   disabled;
   navigationSubscription: Subscription;
 
-  constructor(private linkService: LinkService, private router: Router) {
+  constructor(
+    private linkService: LinkService,
+    private router: Router,
+    private alertMessageLink: AlertMessageLinkService
+  ) {
     this.minimumLength = 3;
     this.selectedPassword = "";
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -47,7 +52,7 @@ export class PasswordFormComponent implements OnInit {
       if (this.link.password) {
         this.disabled = false;
         this.checked = true;
-        this.linkService.alertMessagePassword = "پسورد: حداقل 3 کاراکتر";
+        this.link.password = undefined;
       }
     } else this.selectedPassword;
   }
@@ -56,25 +61,25 @@ export class PasswordFormComponent implements OnInit {
     if (this.selectedPassword.length < this.minimumLength) {
       this.link.password = undefined;
       return (
-        (this.message = "پسورد: حداقل 3 کاراکتر"),
-        (this.linkService.alertMessagePassword = this.message)
+        (this.message = this.alertMessageLink.moreThanSomeCharacterForPass),
+        this.alertMessageLink.addMoreThanSomeCharacterForPass()
       );
     } else {
       this.link.password = this.selectedPassword;
       this.message = "";
-      this.linkService.alertMessagePassword = this.message;
+      this.alertMessageLink.deletePasswordLinkMesage();
     }
   }
   toggleCheckbox() {
     this.checked = !this.checked;
     if (this.checked) {
-      this.linkService.alertMessagePassword = "پسورد: حداقل 3 کاراکتر";
+      this.link.password = undefined;
       this.disabled = false;
     } else {
       this.message = "";
-      this.linkService.alertMessagePassword = this.message;
+      this.alertMessageLink.deletePasswordLinkMesage();
       this.selectedPassword = "";
-      this.link.password = undefined;
+      this.link.password = "";
       this.disabled = true;
     }
   }
