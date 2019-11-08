@@ -9,6 +9,7 @@ import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { AuthService } from "../../auth/services/auth.service";
 import { Subscription } from "rxjs";
 import { IUser } from "../../models/user.interface";
+import { AlertMessageLinkService } from "../services/alert-message-link.service";
 
 @Component({
   selector: "app-link-create",
@@ -34,6 +35,7 @@ export class LinkCreateComponent extends PremiumFeature
     private linkService: LinkService,
     private authService: AuthService,
     private msgService: SystemMessagesService,
+    private alertMessageLink: AlertMessageLinkService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -61,6 +63,7 @@ export class LinkCreateComponent extends PremiumFeature
   }
 
   initSomeValuesAgain() {
+    this.alertMessageLink.clearAllMessages();
     this.isLoading = true;
     const userLocalStorage = this.authService.getSavedUserInfo();
     if (userLocalStorage) {
@@ -79,17 +82,17 @@ export class LinkCreateComponent extends PremiumFeature
   submit() {
     //check adrress existence
     if (!this.link.address) {
-      return alert("لطفا ادرس سایت را وارد کنید!");
+      return this.alertMessageLink.alertAddressLink();
     }
     //check address url validate
     const myURL = this.regexURL.exec(this.link.address);
-    if (myURL == null) return alert("لطفا ادرس صحیح را وارد کنید!");
-    //check childeren component validate like custom link
-    if (this.linkService.alertMessagePassword) {
-      return alert(`${this.linkService.alertMessagePassword}`);
+    if (myURL == null) return this.alertMessageLink.alertCorrectAddressLink();
+    //check childeren component validate
+    if (this.alertMessageLink.customLinkMessages != "") {
+      return this.alertMessageLink.alertCustomLink();
     }
-    if (this.linkService.alertMessageCustomLink) {
-      return alert(`${this.linkService.alertMessageCustomLink}`);
+    if (this.alertMessageLink.passwordLinkMessage != "") {
+      return this.alertMessageLink.alertPasswordLink();
     }
     // check action: update or create
     if (this.editMode) {
@@ -99,7 +102,7 @@ export class LinkCreateComponent extends PremiumFeature
         },
         error => {
           if (error.status === 400)
-            return alert("لطفا ادرس صحیح را وارد کنید!");
+            return this.alertMessageLink.alertCorrectAddressLink();
         }
       );
     }
@@ -111,7 +114,7 @@ export class LinkCreateComponent extends PremiumFeature
         },
         error => {
           if (error.status === 400) {
-            return alert("لطفا ادرس صحیح را وارد کنید!");
+            return this.alertMessageLink.alertCorrectAddressLink();
           }
           console.log(error);
         }
