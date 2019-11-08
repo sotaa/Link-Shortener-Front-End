@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { LinkService } from "../services/link.service";
+import { AlertMessageLinkService } from "../services/alert-message-link.service";
 
 @Component({
   selector: "app-link-password",
@@ -16,7 +17,8 @@ export class LinkPasswordComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private linkService: LinkService,
-    private router: Router
+    private router: Router,
+    private alertMessageLink: AlertMessageLinkService
   ) {
     this.linkService.removePasswordFromHeader();
   }
@@ -29,7 +31,7 @@ export class LinkPasswordComponent implements OnInit {
 
   submitPassword() {
     if (!this.linkPassword || this.linkPassword.length < 3)
-      return alert("حداقل 3 کاراکتر!");
+      return this.alertMessageLink.alertPasswordLink();
     this.linkService.appendPassword(this.linkPassword);
     this.router.navigate([`/${this.shorten}/info`]);
   }
