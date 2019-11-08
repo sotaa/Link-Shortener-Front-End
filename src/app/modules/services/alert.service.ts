@@ -9,4 +9,7 @@ export class AlertService {
   alert(msg: string) {
     alert(msg);
   }
+  confirm(msg: string) {
+    this.confirm(msg);
+  }
 }
