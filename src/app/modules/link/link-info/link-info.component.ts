@@ -11,6 +11,7 @@ import { Subscription } from "rxjs";
 import { LinkInfo } from "../../models/link-info.interface";
 import * as PersianDate from "persian-date";
 import { environment } from "../../../../environments/environment";
+import { AlertMessageLinkService } from "../services/alert-message-link.service";
 
 @Component({
   selector: "app-link-info",
@@ -32,7 +33,8 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
   constructor(
     private linkService: LinkService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertMessageLink: AlertMessageLinkService
   ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
@@ -65,7 +67,7 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
           .catch(err => {
             if (err.status == 401) return (this.passwordRequired = true);
             if (err.status == 400) {
-              alert("رمز عبور صحیح نمی باشد!");
+              this.alertMessageLink.alertIncorrectPasswordLink();
               return (this.passwordRequired = true);
             }
             if (err.status == 403) {
