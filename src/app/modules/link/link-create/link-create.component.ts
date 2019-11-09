@@ -125,7 +125,7 @@ export class LinkCreateComponent extends PremiumFeature
   resetLink() {
     this.link = new Link();
     this.linkAddress = "";
-    this.linkService.resetCustomLink();
+    this.linkService.resetLinkComponents();
   }
 
   copyToClipBoard() {
@@ -159,7 +159,7 @@ export class LinkCreateComponent extends PremiumFeature
   }
 
   showUpgradeMessage() {
-    alert('gikhari nakon');
+    alert("gikhari nakon");
   }
 
   goPermium() {
