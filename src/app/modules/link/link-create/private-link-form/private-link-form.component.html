@@ -1,27 +1,24 @@
 <div class="row">
   <div class="col-md-12">
-    <div
-      class="form-group"
-      [ngStyle]="{ 'pointer-events': isExpired === true ? 'none' : 'auto' }"
-    >
-      <div
-        class="custom-control custom-checkbox mb-3"
-        data-toggle="tooltip"
-        data-placement="top"
-        title="فقط شما میتوانید گزارش کلیک های لینک را ببینید"
-      >
-        <label class="container">
-          <input
-            type="checkbox"
-            id="check"
-            (change)="toggleCheckbox()"
-            [checked]="checked"
-          />
-          <span class="checkmark"></span>
-        </label>
+    <div class="form-group">
+      <div class="row pointer">
+        <div class="col-1">
+          <label class="custom-toggle">
+            <input
+              type="checkbox"
+              id="check"
+              [disabled]="isGikhar"
+              [checked]="isEnable"
+              (click)="toggleCheckbox()"
+            />
+            <span class="custom-toggle-slider rounded-circle"></span>
+          </label>
+        </div>
+        <div class="col text-right" (click)="toggleCheckbox()">
+         <span> نتایج خصوصی باشد</span>
+        </div>
       </div>
-
-      <label class="privateLink">نتایج خصوصی باشد</label>
+      <!-- <div class="row" *ngIf="isEnable"></div> -->
     </div>
   </div>
 </div>

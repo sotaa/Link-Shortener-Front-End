@@ -1,18 +1,19 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <div class="row pointer" (click)="toggleCheckbox($event)">
+      <div class="row pointer">
         <div class="col-1">
-          <label class="custom-toggle">
+          <label class="custom-toggle" >
             <input
               type="checkbox"
               id="check"
               [disabled]="isGikhar"
               [checked]="isEnable"
+              (click)="toggleCheckbox($event)"
             />
             <span class="custom-toggle-slider rounded-circle"></span>
           </label></div>
-        <div class="col text-right">
+        <div class="col text-right" (click)="toggleCheckbox($event)">
           مخفف لینک دلخواه
         </div>
       </div>

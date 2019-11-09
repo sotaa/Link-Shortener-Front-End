@@ -2,20 +2,21 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Subscription } from "rxjs";
 import { LinkService } from "../../services/link.service";
 import { Router, NavigationEnd } from "@angular/router";
+import { PremiumFeature } from "../premium-feature.class";
 
 @Component({
   selector: "app-private-link-form",
   templateUrl: "./private-link-form.component.html",
   styleUrls: ["./private-link-form.component.css"]
 })
-export class PrivateLinkFormComponent implements OnInit {
+export class PrivateLinkFormComponent extends PremiumFeature implements OnInit {
   @Input() link;
   @Input() editMode;
-  @Input() isExpired;
-  checked;
+
   navigationSubscription: Subscription;
 
   constructor(private linkService: LinkService, private router: Router) {
+    super();
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.initValues();
@@ -26,26 +27,20 @@ export class PrivateLinkFormComponent implements OnInit {
   ngOnInit() {
     this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
-      this.checked = false;
+      this.isEnable = false;
     });
   }
 
   initValues() {
-    this.checked = false;
-    if (this.editMode) {
-      if (this.link.private === true) {
-        this.checked = true;
-      } else {
-        this.checked = false;
-      }
-    }
+    this.isEnable = this.link.private;
   }
 
   toggleCheckbox() {
-    this.checked = !this.checked;
-    if (this.checked) {
-      this.link.private = true;
+    if (!this.isEnable) {
+      this.enable();
+      this.link.private = this.isEnable;
     } else {
+      this.disable();
       this.link.private = false;
     }
   }
