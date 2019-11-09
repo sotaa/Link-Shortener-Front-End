@@ -21,7 +21,7 @@ export class ClickDayChartComponent implements OnInit {
     this.chart = new Chart({
       chart: {
         animation: true,
-        type: "line",
+        type: data.length < 3 ? 'bar' : "line",
         marginTop: 50
       },
       title: {
