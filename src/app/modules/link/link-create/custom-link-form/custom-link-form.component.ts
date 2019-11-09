@@ -91,7 +91,6 @@ export class CustomLinkFormComponent extends PremiumFeature implements OnInit, O
   }
 
   toggleCheckbox(e) {
-    e.preventDefault();
     if (!this.isEnable) {
       this.enable();
     } else {

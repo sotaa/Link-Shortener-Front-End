@@ -69,12 +69,14 @@
     [link]="link"
     [editMode]="editMode"
     [isExpired]="isExpired"
+    (gikhariKard)="showUpgradeMessage()"
   ></app-password-form>
 
   <app-private-link-form
     [link]="link"
     [editMode]="editMode"
     [isExpired]="isExpired"
+    (gikhariKard)="showUpgradeMessage()"
   ></app-private-link-form>
 
   <!-- <app-category-form [link]="link"></app-category-form>
