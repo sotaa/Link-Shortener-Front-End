@@ -3,9 +3,6 @@ import * as PersianDate from "persian-date";
 
 import { ILink } from "../../models/link.interface";
 import { environment } from "../../../../environments/environment";
-import { AuthService } from "../../auth/services/auth.service";
-import { IUser } from "../../models/user.interface";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-links-grid",
