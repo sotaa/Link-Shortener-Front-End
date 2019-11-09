@@ -31,6 +31,6 @@ export class LoginComponent {
   handleSubmitError(err: any) {
     // TODO: handle form error.
     // for now just log the error.
-    this.errorMessage = err.message;
+    this.errorMessage = err._body;
   }
 }

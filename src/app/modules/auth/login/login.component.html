@@ -20,6 +20,7 @@
     <div class="text-center text-muted mb-4">
       <small>اطلاعات ورود</small>
     </div>
+    <p class="text-danger text-center">{{ errorMessage }}</p>
     <form class="form" role="form" (ngSubmit)="submit()" #f="ngForm">
       <div class="form-group mb-3">
         <div class="input-group input-group-alternative">
@@ -67,7 +68,6 @@
       </div>
       <br />
       <div class="text-center">
-        <p class="text-danger text-center">{{ errorMessage }}</p>
         <button class="btn btn-primary my-4" [disabled]="f.invalid">
           ورود
         </button>
