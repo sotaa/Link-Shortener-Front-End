@@ -58,12 +58,8 @@ export class CustomLinkFormComponent extends PremiumFeature
   }
 
   initValues() {
-    // this.disabled = true;
-    // this.checked = false;
     if (this.editMode) {
-      // this.disabled = false;
-      // this.checked = true;
-      if (this.link.password) {
+      if (this.link.shorten) {
         this.isEnable = true;
       }
       this.selectedShorten = this.link.shorten;
