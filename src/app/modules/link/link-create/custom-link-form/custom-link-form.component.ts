@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter
+} from "@angular/core";
 import { LinkService } from "../../services/link.service";
 import { ILink } from "src/app/modules/models/link.interface";
 import { Subscription } from "rxjs";
@@ -11,7 +18,8 @@ import { PremiumFeature } from "../premium-feature.class";
   templateUrl: "./custom-link-form.component.html",
   styleUrls: ["./custom-link-form.component.css"]
 })
-export class CustomLinkFormComponent extends PremiumFeature implements OnInit, OnDestroy {
+export class CustomLinkFormComponent extends PremiumFeature
+  implements OnInit, OnDestroy {
   @Input() link: ILink;
   @Input() editMode: boolean;
   selectedShorten: string;
@@ -23,7 +31,6 @@ export class CustomLinkFormComponent extends PremiumFeature implements OnInit, O
   // disabled;
   value;
   navigationSubscription: Subscription;
-
 
   constructor(
     private linkService: LinkService,
@@ -44,8 +51,7 @@ export class CustomLinkFormComponent extends PremiumFeature implements OnInit, O
   ngOnInit() {
     this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
-      // this.checked = false;
-      // this.disabled = true;
+      this.isEnable = false;
       this.selectedShorten = "";
       this.message = "";
     });
@@ -57,6 +63,9 @@ export class CustomLinkFormComponent extends PremiumFeature implements OnInit, O
     if (this.editMode) {
       // this.disabled = false;
       // this.checked = true;
+      if (this.link.password) {
+        this.isEnable = true;
+      }
       this.selectedShorten = this.link.shorten;
     } else this.selectedShorten;
   }

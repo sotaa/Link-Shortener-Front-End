@@ -39,8 +39,7 @@ export class PasswordFormComponent extends PremiumFeature implements OnInit {
   ngOnInit() {
     this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
-      // this.checked = false;
-      // this.disabled = true;
+      this.isEnable = false;
       this.selectedPassword = "";
       this.message = "";
     });
@@ -53,6 +52,9 @@ export class PasswordFormComponent extends PremiumFeature implements OnInit {
       if (this.link.password) {
         // this.disabled = false;
         // this.checked = true;
+        if (this.link.password) {
+          this.isEnable = true;
+        }
         this.link.password = undefined;
       }
     } else this.selectedPassword;
@@ -74,7 +76,7 @@ export class PasswordFormComponent extends PremiumFeature implements OnInit {
   toggleCheckbox(e) {
     if (!this.isEnable) {
       this.enable();
-      if(!this.isEnable) return;
+      if (!this.isEnable) return;
       this.link.password = undefined;
     } else {
       this.message = "";
