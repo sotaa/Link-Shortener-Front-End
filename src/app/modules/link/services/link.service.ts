@@ -68,7 +68,7 @@ export class LinkService extends BaseService {
     return this.delete(url);
   }
 
-  resetCustomLink() {
+  resetLinkComponents() {
     this.resetCheckBox.emit();
   }
 
