@@ -1,36 +1,37 @@
 <div class="row">
   <div class="col-md-12">
-    <div
-      class="form-group"
-      [ngStyle]="{ 'pointer-events': isExpired === true ? 'none' : 'auto' }"
-    >
-      <div
-        class="custom-control custom-checkbox mb-3"
-        data-toggle="tooltip"
-        data-placement="top"
-        title="برای پسوند لینک کوتاه خود نام دلخواه بگذارید"
-      >
-        <label class="container">
-          <input
-            type="checkbox"
-            id="check"
-            (change)="toggleCheckbox()"
-            [checked]="checked"
-          />
-          <span class="checkmark"></span>
-        </label>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-1">
+          <label class="custom-toggle">
+            <input
+              type="checkbox"
+              id="check"
+              (click)="toggleCheckbox($event)"
+              [checked]="isEnable"
+            />
+            <span class="custom-toggle-slider rounded-circle"></span>
+          </label></div>
+        <div class="col text-right">
+          مخفف لینک دلخواه
+        </div>
       </div>
 
-      <input
-        [disabled]="disabled"
-        id="customLink"
-        type="text"
-        class="form-control pass-input"
-        [(ngModel)]="selectedShorten"
-        (keyup)="checkShorten()"
-        placeholder=" . . ."
-      /><label class="customLabel"> لینک کوتاه دلخواه خود را داشته باشید</label>
+
+      <div class="row" *ngIf="isEnable">
+        <div class="col">
+          <input
+            [disabled]="!isEnable"
+            id="customLink"
+            type="text"
+            class="form-control pass-input"
+            [(ngModel)]="selectedShorten"
+            (keyup)="checkShorten()"
+            placeholder=" . . ."
+          />
+        </div>
+      </div>
     </div>
-    <p class="textDanger">{{ message }}</p>
+    <p class="text-danger">{{ message }}</p>
   </div>
 </div>

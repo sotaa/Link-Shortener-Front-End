@@ -158,6 +158,10 @@ export class LinkCreateComponent extends PremiumFeature
     });
   }
 
+  showUpgradeMessage() {
+    alert('gikhari nakon');
+  }
+
   goPermium() {
     const userLocalStorage = this.authService.getSavedUserInfo();
     if (!userLocalStorage) {

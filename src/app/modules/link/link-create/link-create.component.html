@@ -50,18 +50,19 @@
 </div>
 <br /><br />
 <!-- show message for offer to buy permium account -->
-<p class="goPermium" *ngIf="isExpired">
-  برای استفاده از ویژگی های سایت نیازمند به خرید اکانت می باشید!
+<!-- <p class="text-primary" *ngIf="isExpired">
+  برای استفاده از امکانات وشژه سایت نیازمند به اکانت می باشید!
   <br />
-  <span (click)="goPermium()">کلیک کنید</span>
-</p>
+  <span style="cursor: pointer;" class="btn btn-outline-info" (click)="goPermium()">کلیک کنید</span>
+</p> -->
 <br />
-<!-- Others Component -->
+<!-- Others Component-->
 <div class="row component" *ngIf="!isLoading">
   <app-custom-link-form
     [link]="link"
     [editMode]="editMode"
     [isExpired]="isExpired"
+    (gikhariKard)="showUpgradeMessage()"
   ></app-custom-link-form>
 
   <app-password-form

@@ -1,34 +1,36 @@
-import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from "@angular/core";
 import { LinkService } from "../../services/link.service";
 import { ILink } from "src/app/modules/models/link.interface";
 import { Subscription } from "rxjs";
 import { Router, NavigationEnd } from "@angular/router";
 import { AlertMessageLinkService } from "../../services/alert-message-link.service";
+import { PremiumFeature } from "../premium-feature.class";
 
 @Component({
   selector: "app-custom-link-form",
   templateUrl: "./custom-link-form.component.html",
   styleUrls: ["./custom-link-form.component.css"]
 })
-export class CustomLinkFormComponent implements OnInit, OnDestroy {
+export class CustomLinkFormComponent extends PremiumFeature implements OnInit, OnDestroy {
   @Input() link: ILink;
   @Input() editMode: boolean;
-  @Input() isExpired: boolean;
   selectedShorten: string;
   hostAddress: string;
   shortenIsValid: boolean;
   message: string = "";
   minimumLength: number;
-  checked;
-  disabled;
+  // checked;
+  // disabled;
   value;
   navigationSubscription: Subscription;
+
 
   constructor(
     private linkService: LinkService,
     private router: Router,
     private alertMessageLink: AlertMessageLinkService
   ) {
+    super();
     this.shortenIsValid = undefined;
     this.minimumLength = 5;
     this.selectedShorten = "";
@@ -42,19 +44,19 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
-      this.checked = false;
-      this.disabled = true;
+      // this.checked = false;
+      // this.disabled = true;
       this.selectedShorten = "";
       this.message = "";
     });
   }
 
   initValues() {
-    this.disabled = true;
-    this.checked = false;
+    // this.disabled = true;
+    // this.checked = false;
     if (this.editMode) {
-      this.disabled = false;
-      this.checked = true;
+      // this.disabled = false;
+      // this.checked = true;
       this.selectedShorten = this.link.shorten;
     } else this.selectedShorten;
   }
@@ -88,16 +90,16 @@ export class CustomLinkFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleCheckbox() {
-    this.checked = !this.checked;
-    if (this.checked) {
-      this.disabled = false;
+  toggleCheckbox(e) {
+    e.preventDefault();
+    if (!this.isEnable) {
+      this.enable();
     } else {
       this.message = "";
       this.alertMessageLink.deleteCustomLinkMessage();
       this.selectedShorten = "";
       this.link.shorten = undefined;
-      this.disabled = true;
+      this.disable();
     }
   }
 
