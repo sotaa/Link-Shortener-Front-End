@@ -58,26 +58,32 @@
 <br />
 <!-- Others Component-->
 <div class="row component" *ngIf="!isLoading">
-  <app-custom-link-form
-    [link]="link"
-    [editMode]="editMode"
-    [isExpired]="isExpired"
-    (gikhariKard)="showUpgradeMessage()"
-  ></app-custom-link-form>
-
-  <app-password-form
-    [link]="link"
-    [editMode]="editMode"
-    [isExpired]="isExpired"
-    (gikhariKard)="showUpgradeMessage()"
-  ></app-password-form>
-
-  <app-private-link-form
-    [link]="link"
-    [editMode]="editMode"
-    [isExpired]="isExpired"
-    (gikhariKard)="showUpgradeMessage()"
-  ></app-private-link-form>
+  <div class="row">
+    <div class="col">
+        <app-custom-link-form
+        [link]="link"
+        [editMode]="editMode"
+        [isExpired]="isExpired"
+        (gikhariKard)="showUpgradeMessage()"
+      ></app-custom-link-form>
+    </div>
+    <div class="col">
+      <app-password-form
+        [link]="link"
+        [editMode]="editMode"
+        [isExpired]="isExpired"
+        (gikhariKard)="showUpgradeMessage()"
+      ></app-password-form>
+    </div>
+    <div class="col">
+      <app-private-link-form
+        [link]="link"
+        [editMode]="editMode"
+        [isExpired]="isExpired"
+        (gikhariKard)="showUpgradeMessage()"
+      ></app-private-link-form>
+    </div>
+  </div>
 
   <!-- <app-category-form [link]="link"></app-category-form>
   <button class="btn btn-outline-primary">
