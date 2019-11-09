@@ -38,3 +38,24 @@
   (info)="getLinkInfo($event)"
   *ngIf="links && links.length !== 0"
 ></app-links-grid>
+
+
+
+
+<div class="modal-content bg-gradient-danger" *ngIf="showModal">
+    <div class="modal-header">
+      <h6 class="modal-title display-3" id="modal-title-notification"></h6>
+
+    </div>
+    <div class="modal-body text-white">
+      <div class="py-3 text-center">
+        <i class="ni ni-bell-55 ni-3x"></i>
+        <h4 class="heading mt-4">توجه !</h4>
+        <p>برای استفاده از این فیچر باید حرفه ای باشید</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-white" (click)="goPermium()">باشه، حرفه ای میشم</button>
+      <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="closeModal()">میخوام غیرحرفه ای بمانم</button>
+    </div>
+  </div>

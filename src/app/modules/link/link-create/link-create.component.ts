@@ -158,8 +158,13 @@ export class LinkCreateComponent extends PremiumFeature
     });
   }
 
+  showModal = false;
   showUpgradeMessage() {
-    alert('gikhari nakon');
+   this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 
   goPermium() {
