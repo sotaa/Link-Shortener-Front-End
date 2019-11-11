@@ -7,7 +7,6 @@
   color: rgb(6, 141, 6);
   text-decoration: underline darkgreen;
 }
-
 .fa-edit {
   cursor: pointer;
   font-size: 24px;
@@ -18,7 +17,6 @@
 .fa-edit:hover {
   font-weight: bold;
 }
-
 .fa-trash-o {
   cursor: pointer;
   font-size: 24px;
@@ -29,7 +27,6 @@
 .fa-trash-o:hover {
   font-weight: bold;
 }
-
 .fa-info-circle {
   cursor: pointer;
   font-size: 25px;
@@ -40,9 +37,14 @@
 .fa-info-circle:hover {
   font-weight: bold;
 }
-
 .fa-copy {
   cursor: pointer;
   font-size: 25px;
   margin-left: 20px;
+}
+.tdAdress {
+  border: 1px solid green;
+  width: 200px;
+  display: block;
+  word-wrap: break-word;
 }

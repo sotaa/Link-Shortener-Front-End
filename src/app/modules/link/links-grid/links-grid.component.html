@@ -1,9 +1,9 @@
 <table class="table table-striped table-responsive-md">
   <thead>
     <tr>
-      <th scope="col">لینک</th>
-      <th scope="col">لینک کوتاه شده</th>
-      <th scope="col">در تاریخ</th>
+      <th>لینک</th>
+      <th>لینک کوتاه شده</th>
+      <th>در تاریخ</th>
       <th></th>
       <th>جزئیات</th>
       <th>ویرایش</th>
@@ -12,7 +12,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let link of links; let i = index">
-      <td>{{ link.address }}</td>
+      <td class="tdAdress">
+        {{ link.address }}
+      </td>
       <td>
         <a class="shorten" href="{{ host }}/{{ link.shorten }}" target="_blank"
           >{{ link.shorten }}
