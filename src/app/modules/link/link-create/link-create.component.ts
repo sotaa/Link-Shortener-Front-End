@@ -27,9 +27,9 @@ export class LinkCreateComponent extends PremiumFeature
   messages;
   linkAddress: string;
   navigationSubscription: Subscription;
-  regexURL = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
-  disabled;
-  value;
+  regexURL = /\b((http|https):\/\/?)[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/?))/;
+  // disabled;
+  // value;
 
   constructor(
     private linkService: LinkService,
@@ -160,7 +160,7 @@ export class LinkCreateComponent extends PremiumFeature
 
   showModal = false;
   showUpgradeMessage() {
-   this.showModal = true;
+    this.showModal = true;
   }
 
   closeModal() {
