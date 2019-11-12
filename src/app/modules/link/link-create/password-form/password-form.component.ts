@@ -12,13 +12,9 @@ import { PremiumFeature } from "../premium-feature.class";
   styleUrls: ["./password-form.component.css"]
 })
 export class PasswordFormComponent extends PremiumFeature implements OnInit {
-  @Input() link: ILink;
-  @Input() editMode: boolean;
   selectedPassword: string;
   minimumLength: number;
   message: string = "";
-  // checked;
-  // disabled;
   navigationSubscription: Subscription;
 
   constructor(
@@ -39,22 +35,16 @@ export class PasswordFormComponent extends PremiumFeature implements OnInit {
   ngOnInit() {
     this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
-      this.isEnable = false;
+      this.disable();
       this.selectedPassword = "";
       this.message = "";
     });
   }
 
   initValues() {
-    // this.disabled = true;
-    // this.checked = false;
     if (this.editMode) {
       if (this.link.password) {
-        // this.disabled = false;
-        // this.checked = true;
-        if (this.link.password) {
-          this.isEnable = true;
-        }
+        this.enable();
         this.link.password = undefined;
       }
     } else this.selectedPassword;
@@ -73,7 +63,7 @@ export class PasswordFormComponent extends PremiumFeature implements OnInit {
       this.alertMessageLink.deletePasswordLinkMesage();
     }
   }
-  toggleCheckbox(e) {
+  toggleCheckbox() {
     if (!this.isEnable) {
       this.enable();
       if (!this.isEnable) return;

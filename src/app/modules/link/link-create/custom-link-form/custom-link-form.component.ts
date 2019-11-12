@@ -1,11 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  OnDestroy,
-  Output,
-  EventEmitter
-} from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { LinkService } from "../../services/link.service";
 import { ILink } from "src/app/modules/models/link.interface";
 import { Subscription } from "rxjs";
@@ -20,16 +13,11 @@ import { PremiumFeature } from "../premium-feature.class";
 })
 export class CustomLinkFormComponent extends PremiumFeature
   implements OnInit, OnDestroy {
-  @Input() link: ILink;
-  @Input() editMode: boolean;
   selectedShorten: string;
   hostAddress: string;
   shortenIsValid: boolean;
   message: string = "";
   minimumLength: number;
-  // checked;
-  // disabled;
-  value;
   navigationSubscription: Subscription;
 
   constructor(
@@ -51,7 +39,7 @@ export class CustomLinkFormComponent extends PremiumFeature
   ngOnInit() {
     this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
-      this.isEnable = false;
+      this.disable();
       this.selectedShorten = "";
       this.message = "";
     });
@@ -60,7 +48,7 @@ export class CustomLinkFormComponent extends PremiumFeature
   initValues() {
     if (this.editMode) {
       if (this.link.shorten) {
-        this.isEnable = true;
+        this.enable();
       }
       this.selectedShorten = this.link.shorten;
     } else this.selectedShorten;
@@ -95,7 +83,7 @@ export class CustomLinkFormComponent extends PremiumFeature
     }
   }
 
-  toggleCheckbox(e) {
+  toggleCheckbox() {
     if (!this.isEnable) {
       this.enable();
     } else {

@@ -10,9 +10,6 @@ import { PremiumFeature } from "../premium-feature.class";
   styleUrls: ["./private-link-form.component.css"]
 })
 export class PrivateLinkFormComponent extends PremiumFeature implements OnInit {
-  @Input() link;
-  @Input() editMode;
-
   navigationSubscription: Subscription;
 
   constructor(private linkService: LinkService, private router: Router) {
@@ -27,7 +24,7 @@ export class PrivateLinkFormComponent extends PremiumFeature implements OnInit {
   ngOnInit() {
     this.initValues();
     this.linkService.resetCheckBox.subscribe(() => {
-      this.isEnable = false;
+      this.disable();
     });
   }
 
