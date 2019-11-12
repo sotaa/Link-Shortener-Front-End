@@ -49,22 +49,15 @@
   </button>
 </div>
 <br /><br />
-<!-- show message for offer to buy permium account -->
-<!-- <p class="text-primary" *ngIf="isExpired">
-  برای استفاده از امکانات وشژه سایت نیازمند به اکانت می باشید!
-  <br />
-  <span style="cursor: pointer;" class="btn btn-outline-info" (click)="goPermium()">کلیک کنید</span>
-</p> -->
-<br />
 <!-- Others Component-->
 <div class="row component" *ngIf="!isLoading">
   <div class="row">
     <div class="col">
-        <app-custom-link-form
+      <app-custom-link-form
         [link]="link"
         [editMode]="editMode"
         [isExpired]="isExpired"
-        (gikhariKard)="showUpgradeMessage()"
+        (unavailable)="showUpgradeMessage()"
       ></app-custom-link-form>
     </div>
     <div class="col">
@@ -72,7 +65,7 @@
         [link]="link"
         [editMode]="editMode"
         [isExpired]="isExpired"
-        (gikhariKard)="showUpgradeMessage()"
+        (unavailable)="showUpgradeMessage()"
       ></app-password-form>
     </div>
     <div class="col">
@@ -80,74 +73,35 @@
         [link]="link"
         [editMode]="editMode"
         [isExpired]="isExpired"
-        (gikhariKard)="showUpgradeMessage()"
+        (unavailable)="showUpgradeMessage()"
       ></app-private-link-form>
     </div>
   </div>
-
-  <!-- <app-category-form [link]="link"></app-category-form>
-  <button class="btn btn-outline-primary">
-    <div>
-      <label class="custom-control-label" for="category">دسته بندی</label>
-    </div>
-  </button> -->
-
-  <!-- <button
-    class="btn btn-outline-primary"
-    (click)="setModalComponent('deepLink')"
-    data-toggle="modal"
-    data-target="#modal-form"
-  >
-    <div
-      class="custom-control custom-checkbox mb-3"
-      data-toggle="tooltip"
-      data-placement="top"
-      title="با فعال کردن لینک شرطی میتوانید با توجه به شرایط کاربر وی را به مقاصد مختلفی هدایت کنید، مثلا اگر فردی با موبایل روی لینک شما کلیک کرد او را به صفحه مخصوص موبایل در سایت خود بفرستید"
-    >
-      <input
-        class="custom-control-input"
-        id="deep-link"
-        type="checkbox"
-        disabled
-      />
-      <label class="custom-control-label" for="deep-link"
-        >لینک شرطی (Deep Link)</label
-      >
-    </div>
-  </button> -->
-  <!-- <button
-    class="btn btn-outline-primary"
-    (click)="setModalComponent('utm')"
-    data-toggle="modal"
-    data-target="#modal-form"
-  >
-    <div
-      class="custom-control custom-checkbox mb-3"
-      data-toggle="tooltip"
-      data-placement="top"
-      title="برای لینک خود utm ست کنید"
-    >
-      <input class="custom-control-input" id="utm" type="checkbox" disabled />
-      <label class="custom-control-label" for="utm">UTM</label>
-    </div>
-  </button> -->
 </div>
 
-
-  <div class="modal-content bg-gradient-danger" *ngIf="showModal">
-      <div class="modal-header">
-        <h6 class="modal-title display-3" id="modal-title-notification"></h6>
-
-      </div>
-      <div class="modal-body text-white">
-        <div class="py-3 text-center">
-          <i class="ni ni-bell-55 ni-3x"></i>
-          <h4 class="heading mt-4">توجه !</h4>
-          <p>برای استفاده از این فیچر باید حرفه ای باشید</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-white" (click)="goPermium()">باشه، حرفه ای میشم</button>
-        <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="closeModal()">میخوام غیرحرفه ای بمانم</button>
-      </div>
+<!-- modal for expired users -->
+<div class="modal-content bg-gradient-danger" *ngIf="showModal">
+  <div class="modal-header">
+    <h6 class="modal-title display-3" id="modal-title-notification"></h6>
+  </div>
+  <div class="modal-body text-white">
+    <div class="py-3 text-center">
+      <i class="ni ni-bell-55 ni-3x"></i>
+      <h4 class="heading mt-4">توجه !</h4>
+      <p>برای استفاده از این فیچر باید حرفه ای باشید</p>
     </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-white" (click)="goPermium()">
+      باشه، حرفه ای میشم
+    </button>
+    <button
+      type="button"
+      class="btn btn-link text-white ml-auto"
+      data-dismiss="modal"
+      (click)="closeModal()"
+    >
+      میخوام غیرحرفه ای بمانم
+    </button>
+  </div>
+</div>

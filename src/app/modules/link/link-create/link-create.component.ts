@@ -21,6 +21,7 @@ export class LinkCreateComponent extends PremiumFeature
   link: ILink;
   userInfo: IUser;
   isExpired: boolean = true;
+  showModal = false;
   paramId: string;
   editMode: boolean = false;
   isLoading: boolean = true;
@@ -28,8 +29,6 @@ export class LinkCreateComponent extends PremiumFeature
   linkAddress: string;
   navigationSubscription: Subscription;
   regexURL = /\b((http|https):\/\/?)[^\s()<>]+(?:\([\w\d]+\)|([^[:punct:]\s]|\/?))/;
-  // disabled;
-  // value;
 
   constructor(
     private linkService: LinkService,
@@ -158,7 +157,6 @@ export class LinkCreateComponent extends PremiumFeature
     });
   }
 
-  showModal = false;
   showUpgradeMessage() {
     this.showModal = true;
   }
