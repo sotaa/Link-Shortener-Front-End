@@ -1,25 +1,26 @@
 import { EventEmitter, Output, Input } from "@angular/core";
+import { ILink } from "../../models/link.interface";
 
 export abstract class PremiumFeature {
-  @Output() gikhariKard: EventEmitter<void>;
-  @Input('isExpired') isGikhar: boolean;
-  @Input() isEnable = false;
-
+  @Output() unavailable: EventEmitter<void>;
+  @Input() link: ILink;
+  @Input() editMode: boolean;
+  @Input() isExpired: boolean;
+  isEnable = false;
 
   constructor() {
-    this.gikhariKard = new EventEmitter<void>();
+    this.unavailable = new EventEmitter<void>();
   }
 
-  giKhord() {
-    this.gikhariKard.emit();
+  cannotBeAccess() {
+    this.unavailable.emit();
   }
 
   enable() {
-    if (this.isGikhar) {
-      this.giKhord();
+    if (this.isExpired) {
+      this.cannotBeAccess();
       return;
     }
-
     this.isEnable = true;
   }
 

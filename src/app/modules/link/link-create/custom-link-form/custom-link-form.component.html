@@ -3,21 +3,21 @@
     <div class="form-group">
       <div class="row pointer">
         <div class="col-3">
-          <label class="custom-toggle" >
+          <label class="custom-toggle">
             <input
               type="checkbox"
               id="check"
-              [disabled]="isGikhar"
+              [disabled]="isExpired"
               [checked]="isEnable"
-              (click)="toggleCheckbox($event)"
+              (click)="toggleCheckbox()"
             />
             <span class="custom-toggle-slider rounded-circle"></span>
-          </label></div>
-        <div class="col text-right" (click)="toggleCheckbox($event)">
+          </label>
+        </div>
+        <div class="col text-right" (click)="toggleCheckbox()">
           مخفف لینک دلخواه
         </div>
       </div>
-
 
       <div class="row" *ngIf="isEnable">
         <div class="col">

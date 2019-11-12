@@ -7,7 +7,7 @@
             <input
               type="checkbox"
               id="check"
-              [disabled]="isGikhar"
+              [disabled]="isExpired"
               [checked]="isEnable"
               (click)="toggleCheckbox()"
             />
@@ -15,7 +15,7 @@
           </label>
         </div>
         <div class="col text-right" (click)="toggleCheckbox()">
-         <span> نتایج خصوصی باشد</span>
+          <span> نتایج خصوصی باشد</span>
         </div>
       </div>
       <!-- <div class="row" *ngIf="isEnable"></div> -->
