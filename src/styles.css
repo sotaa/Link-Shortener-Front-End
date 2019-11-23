@@ -1,10 +1,12 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 @font-face {
-  font-family: 'IRANSans';
-  src: url('assets/fonts/IRANSans.ttf')
+  font-family: "IRANSans";
+  src: url("assets/fonts/IRANSans.ttf");
 }
 
-*{
-  font-family: 'IRANSans';
+* {
+  font-family: "IRANSans";
 }
 
 .navbar-nav .dropdown-menu:before {
@@ -19,28 +21,38 @@ body {
 .pointer {
   cursor: pointer;
 }
-.input-group > .input-group-prepend > .btn, .input-group > .input-group-prepend > .input-group-text, .input-group > .input-group-append:not(:last-child) > .btn, .input-group > .input-group-append:not(:last-child) > .input-group-text, .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group > .input-group-append:last-child > .input-group-text:not(:last-child) {
+.input-group > .input-group-prepend > .btn,
+.input-group > .input-group-prepend > .input-group-text,
+.input-group > .input-group-append:not(:last-child) > .btn,
+.input-group > .input-group-append:not(:last-child) > .input-group-text,
+.input-group
+  > .input-group-append:last-child
+  > .btn:not(:last-child):not(.dropdown-toggle),
+.input-group
+  > .input-group-append:last-child
+  > .input-group-text:not(:last-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-   border-top-right-radius: .25rem;
-  border-bottom-right-radius: .25rem;;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
 }
 
-.input-group > .form-control:not(:first-child), .input-group > .custom-select:not(:first-child) {
+.input-group > .form-control:not(:first-child),
+.input-group > .custom-select:not(:first-child) {
   border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-left-radius: 0.25rem;
-      border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
 }
 
 .btn:not(:last-child) {
   margin-right: auto;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .btn-icon .btn-inner--text:not(:first-child) {
   margin-left: auto;
-  margin-right: .75rem;
+  margin-right: 0.75rem;
 }
 
 a {
@@ -54,28 +66,29 @@ a {
 .card-img {
   width: 100px;
   display: block;
-  margin:auto;
+  margin: auto;
 }
 
-.k-treeview .k-i-expand, .k-treeview .k-i-collapse {
+.k-treeview .k-i-expand,
+.k-treeview .k-i-collapse {
   margin-left: inherit;
 }
 
-.k-i-expand::before, .k-i-expand-e::before {
+.k-i-expand::before,
+.k-i-expand-e::before {
   content: "\e007";
 }
 
 .hidden-btn-container > .fa {
   visibility: hidden;
   opacity: 0;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .hidden-btn-container:hover > .fa {
   visibility: visible;
   opacity: 1;
 }
-
 
 .modal-content {
   width: 500px;
