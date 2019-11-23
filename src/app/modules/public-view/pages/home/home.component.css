@@ -1,8 +1,11 @@
 .shape {
-/* background: url(../../../../../assets/img/theme/bg-3.min.jpg) !important; */
-background-size: cover !important;
+  /* background: url(../../../../../assets/img/theme/bg-3.min.jpg) !important; */
+  background-size: cover !important;
 }
 
 .dark-bg {
-  background: rgba(0, 0, 0, 0.45)
+  background: rgba(0, 0, 0, 0.45);
+}
+.container {
+  width: 90%;
 }
