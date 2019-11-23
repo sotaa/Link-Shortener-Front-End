@@ -15,17 +15,16 @@
           </label>
         </div>
         <div class="col text-right" (click)="toggleCheckbox()">
-          مخفف لینک دلخواه
+          <span>مخفف لینک دلخواه</span>
         </div>
       </div>
-
       <div class="row" *ngIf="isEnable">
         <div class="col">
           <input
             [disabled]="!isEnable"
             id="customLink"
             type="text"
-            class="form-control pass-input"
+            class="form-control custome-input"
             [(ngModel)]="selectedShorten"
             (keyup)="checkShorten()"
             placeholder=" . . ."
