@@ -9,6 +9,7 @@ import { ILoginModel } from "../model/login.viewmodel";
 import { EventEmitter } from "@angular/core";
 import { LinkService } from "../../link/services/link.service";
 import { PlansService } from "../../dashboard/services/plans.service";
+import { CategoryService } from "../../link/services/category.service";
 
 @Injectable({
   providedIn: "root"
@@ -21,7 +22,8 @@ export class AuthService extends BaseService {
   constructor(
     injector: Injector,
     private linkService: LinkService,
-    private plansService: PlansService
+    private plansService: PlansService,
+    private categoryService: CategoryService
   ) {
     super(injector);
     this.updateUserInfo = new EventEmitter<IUser>();
@@ -37,6 +39,7 @@ export class AuthService extends BaseService {
         this.appendAuthToken();
         this.linkService.appendAuthToken();
         this.plansService.appendAuthToken();
+        this.categoryService.appendAuthToken();
         // return the response in json format.
         return response.json();
       })
@@ -53,6 +56,7 @@ export class AuthService extends BaseService {
         this.appendAuthToken();
         this.linkService.appendAuthToken();
         this.plansService.appendAuthToken();
+        this.categoryService.appendAuthToken();
         // return the response in json format.
         return response.json();
       })
@@ -105,5 +109,6 @@ export class AuthService extends BaseService {
     this.headers.delete("Authorization");
     this.linkService.removeAuthTokenFromHeader();
     this.plansService.removeAuthTokenFromHeader();
+    this.categoryService.removeAuthTokenFromHeader();
   }
 }
