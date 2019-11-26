@@ -14,8 +14,8 @@ input {
 }
 
 .component {
+  padding-right: 5%;
   display: block;
-  padding-right: 15px;
 }
 
 .goPermium {
