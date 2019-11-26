@@ -1,6 +1,5 @@
 import { IUser } from "./../../models/user.interface";
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import $ from "jquery";
 import { AuthService } from "../../auth/services/auth.service";
 import { Subscription } from "rxjs";
 
