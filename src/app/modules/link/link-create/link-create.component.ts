@@ -49,24 +49,36 @@ export class LinkCreateComponent extends PremiumFeature
 
   ngOnInit() {
     this.link = new Link();
-    this.messages = this.msgService.getMessages()["generate-short-link"];
-    this.route.params.subscribe(async (params: Params) => {
-      if (params.id) {
-        this.paramId = params.id;
-        this.editMode = true;
-        this.messages = this.msgService.getMessages()["edit-short-link"];
-        this.link = await this.fetchLinkData(params.id);
-        this.isLoading = false;
-      }
-    });
   }
 
   initSomeValuesAgain() {
-    this.alertMessageLink.clearAllMessages();
     this.isLoading = true;
+    this.checkEditMode();
+    if (this.editMode) {
+      this.messages = this.msgService.getMessages()["edit-short-link"];
+    } else {
+      this.messages = this.msgService.getMessages()["generate-short-link"];
+    }
+    this.alertMessageLink.clearAllMessages();
+
     const userLocalStorage = this.authService.getSavedUserInfo();
     if (userLocalStorage) {
-      this.getUserInfo();
+      this.getUserInfo().then(user => {
+        if (user) {
+          this.userInfo = user;
+        }
+        if (this.userInfo.remainingDays == 0 || null || undefined) {
+          this.isExpired = true;
+          this.isLoading = false;
+        } else {
+          this.isExpired = false;
+          if (this.editMode) {
+            this.loadDataIfEditMode();
+          } else {
+            this.isLoading = false;
+          }
+        }
+      });
     } else {
       this.userInfo = undefined;
       this.isExpired = true;
@@ -76,6 +88,24 @@ export class LinkCreateComponent extends PremiumFeature
 
   async fetchLinkData(id: string) {
     return await this.linkService.getUserLink(id).toPromise();
+  }
+
+  async getUserInfo() {
+    return await this.authService.getUserInfo().toPromise();
+  }
+
+  checkEditMode() {
+    this.route.params.subscribe(async (params: Params) => {
+      if (params.id) {
+        this.editMode = true;
+        this.paramId = params.id;
+      } else return (this.editMode = false);
+    });
+  }
+
+  async loadDataIfEditMode() {
+    this.link = await this.fetchLinkData(this.paramId);
+    this.isLoading = false;
   }
 
   submit() {
@@ -102,6 +132,8 @@ export class LinkCreateComponent extends PremiumFeature
         error => {
           if (error.status === 400)
             return this.alertMessageLink.alertCorrectAddressLink();
+          if (error.status === 401)
+            return this.alertMessageLink.alertUserIsUnauthorized();
         }
       );
     }
@@ -139,22 +171,6 @@ export class LinkCreateComponent extends PremiumFeature
     document.execCommand("copy");
     document.body.removeChild(el);
     alert("کپی شد");
-  }
-
-  getUserInfo() {
-    this.authService.getUserInfo().subscribe(user => {
-      if (user) {
-        this.userInfo = user;
-      }
-      if (this.userInfo.remainingDays == 0 || null || undefined) {
-        this.isExpired = true;
-      } else {
-        this.isExpired = false;
-      }
-      if (!this.editMode) {
-        this.isLoading = false;
-      }
-    });
   }
 
   showUpgradeMessage() {
