@@ -18,6 +18,8 @@ export class AlertMessageLinkService {
   // password link messages
   moreThanSomeCharacterForPass: string = "پسورد: حداقل 3 کاراکتر";
   passwordIsIncorrect: string = "رمز عبور صحیح نمی باشد!";
+  //
+  userIsUnauthorized: string = "!کاربر غیر مجاز است";
 
   constructor(private alertService: AlertService) {}
 
@@ -60,5 +62,8 @@ export class AlertMessageLinkService {
   }
   alertCorrectAddressLink() {
     this.alertService.alert(this.enterCorrectAddress);
+  }
+  alertUserIsUnauthorized() {
+    this.alertService.alert(this.userIsUnauthorized);
   }
 }
