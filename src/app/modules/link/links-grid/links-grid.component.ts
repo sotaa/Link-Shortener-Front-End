@@ -10,13 +10,15 @@ import { environment } from "../../../../environments/environment";
   styleUrls: ["./links-grid.component.css"]
 })
 export class LinksGridComponent implements OnInit {
+  isLoading: boolean = true;
   @Input() links: ILink[];
   @Input() remainingDays: Number;
+  @Input() selectedTags = [];
+  @Input() userTags = [];
   @Output() delete: EventEmitter<string>;
   @Output() update: EventEmitter<string>;
   @Output() info: EventEmitter<string>;
   host: string;
-  store;
   disabled;
 
   constructor() {
@@ -30,12 +32,15 @@ export class LinksGridComponent implements OnInit {
       this.disabled = true;
     }
     this.host = environment.apiUrl;
-    this.links = this.links.map(link => {
-      link.createDate = new PersianDate(link.createDateFa)
-        .toLocale("fa")
-        .format();
-      return link;
-    });
+    if (this.links) {
+      this.links = this.links.map(link => {
+        link.createDate = new PersianDate(link.createDateFa)
+          .toLocale("fa")
+          .format();
+        return link;
+      });
+    }
+    this.isLoading = false;
   }
 
   deleteUserLink(id: string) {
@@ -44,6 +49,7 @@ export class LinksGridComponent implements OnInit {
       this.delete.emit(id);
     }
   }
+
   updateUserLink(id: string) {
     this.update.emit(id);
   }
