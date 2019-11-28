@@ -12,9 +12,16 @@ import { PricePipe } from "./pipes/price.pipe";
 import { LinksModule } from "../link/link.module";
 import { CreateLinkComponent } from "./create-link/create-link.component";
 import { FormsModule } from "@angular/forms";
+import { AppCommonModule } from "../common/common.module";
 
 @NgModule({
-  imports: [CommonModule, DashboardRoutingModule, LinksModule, FormsModule],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    LinksModule,
+    FormsModule,
+    AppCommonModule
+  ],
   declarations: [
     OverviewComponent,
     NavBarComponent,
