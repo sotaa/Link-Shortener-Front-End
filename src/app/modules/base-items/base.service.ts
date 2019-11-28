@@ -23,8 +23,8 @@ export abstract class BaseService {
   }
 
   // send Http GET request.
-  protected get(url) {
-    return this.http.get(url, this.requestOptions);
+  protected get(url, params?) {
+    return this.http.get(url, {...this.requestOptions, params });
   }
 
   // send Http PUT request.
