@@ -48,11 +48,13 @@ export class LinkService extends BaseService {
 
   getInfo(code: string) {
     const url = LinkUrls.info(code);
-    return this.get(url).pipe(map<Response, LinkInfo>(res => res.json()));
+    return this.get(url).pipe(
+      map<Response, LinkInfo>(res => res.json())
+    );
   }
 
-  getUserLinks() {
-    return this.get(LinkUrls.getUserLinks).pipe(
+  getUserLinks(tags?: string[]) {
+    return this.get(LinkUrls.getUserLinks, { tags }).pipe(
       map<Response, ILink[]>(res => res.json())
     );
   }
