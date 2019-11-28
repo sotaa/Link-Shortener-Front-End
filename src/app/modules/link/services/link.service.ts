@@ -11,12 +11,15 @@ import { BaseService } from "../../base-items/base.service";
   providedIn: "root"
 })
 export class LinkService extends BaseService {
-  private links: ILink[];
   @Output() resetCheckBox: EventEmitter<null>;
+  @Output() addTag: EventEmitter<string>;
+  @Output() removeTag: EventEmitter<string>;
 
   constructor(injector: Injector) {
     super(injector);
     this.resetCheckBox = new EventEmitter();
+    this.addTag = new EventEmitter();
+    this.removeTag = new EventEmitter();
   }
 
   shortenIsExists(selectedShorten: string) {
@@ -72,6 +75,13 @@ export class LinkService extends BaseService {
 
   resetLinkComponents() {
     this.resetCheckBox.emit();
+  }
+
+  addTagtoSelectedArray(tag) {
+    this.addTag.emit(tag);
+  }
+  removeTagFromSelectedArray(tag) {
+    this.removeTag.emit(tag);
   }
 
   removeAuthTokenFromHeader() {
