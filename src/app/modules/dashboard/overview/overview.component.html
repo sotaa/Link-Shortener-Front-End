@@ -7,71 +7,31 @@
   <div class="container-fluid">
     <div class="card card-shadow">
       <div
-        *ngIf="links && links.length === 0"
+        *ngIf="links && links.length === 0 && selectedTags.length === 0"
         class="alert text-danger alert-outline text-center"
         role="alert"
       >
         <div>
           <strong>چرا</strong> هنوز <strong>لینکی</strong> ایجاد نکرده اید ؟؟؟
         </div>
-        <br />
-        <button class="btn btn-outline-success" routerLink="create">
-          ساخت لینک جدید
-        </button>
       </div>
-      <button
-        *ngIf="links && links.length !== 0"
-        class="btn btn-outline-success"
-        routerLink="create"
-      >
-        ساخت لینک جدید
-      </button>
     </div>
+    <button class="createLink btn btn-outline-success" routerLink="create">
+      ساخت لینک جدید
+    </button>
   </div>
 </div>
 <br />
-<br />
-<div class="tag-filter-container">
-  <div class="filter-tag">
-    <i class="fa fa-filter"></i>
-    <select
-      (change)="addToSelectedArray($event)"
-      class="form-control form-control-sm selectTags"
-    >
-      <option>تگ ها ...</option>
-      <option *ngFor="let tag of userTags; let i = index">{{ tag }}</option>
-    </select>
-  </div>
-  <div class="show-filter">
-    <div
-      class="selectedTag shadow p-1 mb-1 bg-white rounded"
-      *ngFor="let selectedTag of selectedTags; let i = index"
-    >
-      <i
-        (click)="removeTag(selectedTag)"
-        class="fa fa-times-circle"
-        style="color:red"
-      >
-      </i>
-      <span>
-        {{ selectedTag }}
-      </span>
-    </div>
-  </div>
-</div>
-
-<br />
-
 <br />
 <app-links-grid
   [links]="links"
   [remainingDays]="remainingDays"
+  [selectedTags]="selectedTags"
+  [userTags]="userTags"
   (delete)="deleteUserLink($event)"
   (update)="updateUserLink($event)"
   (info)="getLinkInfo($event)"
-  *ngIf="links && links.length !== 0"
 ></app-links-grid>
-
 <div class="modal-content bg-gradient-danger" *ngIf="showModal">
   <div class="modal-header">
     <h6 class="modal-title display-3" id="modal-title-notification"></h6>
