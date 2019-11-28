@@ -1,4 +1,13 @@
-<table class="table table-striped table-responsive-md">
+<app-link-filter
+  [selectedTags]="selectedTags"
+  [userTags]="userTags"
+></app-link-filter>
+<br />
+<br />
+<table
+  *ngIf="links && links.length !== 0"
+  class="table table-striped table-responsive-md"
+>
   <thead>
     <tr>
       <th>لینک</th>
@@ -57,3 +66,7 @@
     </tr>
   </tbody>
 </table>
+<app-link-doesnt-exist
+  *ngIf="links && links.length === 0"
+></app-link-doesnt-exist>
+<app-loading *ngIf="isLoading"></app-loading>
