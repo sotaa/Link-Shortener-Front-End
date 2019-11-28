@@ -1,9 +1,10 @@
-import { Component, OnInit, EventEmitter } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { ILink } from "./../../models/link.interface";
 import { AuthService } from "../../auth/services/auth.service";
 import { LinkService } from "../../link/services/link.service";
+import { CategoryService } from "../../link/services/category.service";
 
 @Component({
   selector: "app-overview",
@@ -12,32 +13,37 @@ import { LinkService } from "../../link/services/link.service";
 })
 export class OverviewComponent implements OnInit {
   links: ILink[];
+  userTags = [];
+  selectedTags = [];
+  selectedTag;
   remainingDays: Number;
   isUserExpired = true;
+  showModal = false;
 
   constructor(
     private authService: AuthService,
     private linkService: LinkService,
+    private categoryService: CategoryService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
-    this.updateUserInfo();
-    this.getUserLinks();
-  }
-
-  async getUserLinks() {
-    await this.linkService
-      .getUserLinks()
-      .toPromise()
-      .then(links => {
-        this.links = links;
+  async ngOnInit() {
+    await this.updateUserInfo();
+    this.getUserLinks(this.selectedTags);
+    if (!this.isUserExpired) {
+      this.categoryService.getUserCategories().subscribe(tags => {
+        if (tags) this.userTags = tags;
       });
+    }
+  }
+  async getUserLinks(selectedTags: string[]) {
+    const links = await this.linkService.getUserLinks(selectedTags).toPromise();
+    this.links = links;
   }
 
   async deleteUserLink(id) {
-    if(this.isUserExpired) {
+    if (this.isUserExpired) {
       this.showUpgradeMessage();
       return;
     }
@@ -50,7 +56,7 @@ export class OverviewComponent implements OnInit {
   }
 
   updateUserLink(id) {
-    if(this.isUserExpired) {
+    if (this.isUserExpired) {
       this.showUpgradeMessage();
       return;
     }
@@ -62,27 +68,18 @@ export class OverviewComponent implements OnInit {
     this.router.navigate([`/${shortenCode}/info`]);
   }
 
-  updateUserInfo() {
+  async updateUserInfo() {
     // TODO: show spinner until get new data.
-    this.authService.getUserInfo().subscribe(
-      user => {
-        this.remainingDays = user.remainingDays;
-        this.isUserExpired = this.remainingDays <= 0;
-        if (user) {
-          this.authService.updateSavedUser(user, true);
-        }
-      },
-      err => {
-        // TODO: handle the error.
-        console.log(err);
-      }
-    );
+    const user = await this.authService.getUserInfo().toPromise();
+    this.remainingDays = user.remainingDays;
+    this.isUserExpired = this.remainingDays <= 0;
+    if (user) {
+      this.authService.updateSavedUser(user, true);
+    }
   }
 
-
-  showModal = false;
   showUpgradeMessage() {
-   this.showModal = true;
+    this.showModal = true;
   }
 
   closeModal() {
@@ -95,5 +92,15 @@ export class OverviewComponent implements OnInit {
       this.router.navigate(["/login"]);
     }
     this.router.navigate(["/dashboard/link/plans"]);
+  }
+
+  addToSelectedArray(e) {
+    this.selectedTags.push(e.target.value);
+    this.getUserLinks(this.selectedTags);
+  }
+
+  removeTag(tag) {
+    this.selectedTags = this.selectedTags.filter(item => item !== tag);
+    this.getUserLinks(this.selectedTags);
   }
 }

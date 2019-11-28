@@ -1,7 +1,41 @@
 .divider {
-  height:50px;
+  height: 50px;
 }
 
 .alert {
   font-size: 1.5rem;
+}
+
+.tag-filter-container {
+  display: inline-block;
+}
+
+.filter-tag {
+  float: right;
+}
+.show-filter {
+  float: right;
+}
+
+.fa-filter {
+  font-size: 24px;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.selectTags {
+  cursor: pointer;
+  width: 9%;
+  float: right;
+}
+
+.selectedTag {
+  font-weight: bold;
+  margin-left: 5px;
+  float: right;
+}
+
+.selectedTag > i {
+  cursor: pointer;
 }
