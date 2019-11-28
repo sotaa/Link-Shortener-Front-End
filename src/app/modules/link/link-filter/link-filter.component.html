@@ -1,0 +1,28 @@
+<div class="tag-filter-container">
+  <div class="filter-tag">
+    <i class="fa fa-filter"></i>
+    <select
+      (change)="addTagtoSelectedArray($event)"
+      class="form-control form-control-sm selectTags"
+    >
+      <option>تگ ها ...</option>
+      <option *ngFor="let tag of userTags; let i = index">{{ tag }}</option>
+    </select>
+  </div>
+  <div class="show-filter">
+    <div
+      class="selectedTag shadow p-1 mb-1 bg-white rounded"
+      *ngFor="let selectedTag of selectedTags; let i = index"
+    >
+      <i
+        (click)="removeTagFromSelectedArray(selectedTag)"
+        class="fa fa-times-circle"
+        style="color:red"
+      >
+      </i>
+      <span>
+        {{ selectedTag }}
+      </span>
+    </div>
+  </div>
+</div>
