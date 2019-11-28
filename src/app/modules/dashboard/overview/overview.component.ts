@@ -36,6 +36,12 @@ export class OverviewComponent implements OnInit {
         if (tags) this.userTags = tags;
       });
     }
+    this.linkService.addTag.subscribe(tag => {
+      this.fetchLinksByTagFiltering(tag);
+    });
+    this.linkService.removeTag.subscribe(tag => {
+      this.fetchLinksByRemoveTagFiltering(tag);
+    });
   }
   async getUserLinks(selectedTags: string[]) {
     const links = await this.linkService.getUserLinks(selectedTags).toPromise();
@@ -94,12 +100,12 @@ export class OverviewComponent implements OnInit {
     this.router.navigate(["/dashboard/link/plans"]);
   }
 
-  addToSelectedArray(e) {
-    this.selectedTags.push(e.target.value);
+  fetchLinksByTagFiltering(tag) {
+    this.selectedTags.push(tag);
     this.getUserLinks(this.selectedTags);
   }
 
-  removeTag(tag) {
+  fetchLinksByRemoveTagFiltering(tag) {
     this.selectedTags = this.selectedTags.filter(item => item !== tag);
     this.getUserLinks(this.selectedTags);
   }
