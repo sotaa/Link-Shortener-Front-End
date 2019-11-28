@@ -30,6 +30,8 @@ import { LinkPasswordComponent } from './link-password/link-password.component';
 import { PrivateLinkFormComponent } from './link-create/private-link-form/private-link-form.component';
 import { LinkResultPrivateComponent } from './link-result-private/link-result-private.component';
 import { LinkNotFoundComponent } from './link-not-found/link-not-found.component';
+import { LinkFilterComponent } from './link-filter/link-filter.component';
+import { LinkDoesntExistComponent } from './link-doesnt-exist/link-doesnt-exist.component';
 
 @NgModule({
   imports: [
@@ -64,7 +66,9 @@ import { LinkNotFoundComponent } from './link-not-found/link-not-found.component
     LinkPasswordComponent,
     PrivateLinkFormComponent,
     LinkResultPrivateComponent,
-    LinkNotFoundComponent
+    LinkNotFoundComponent,
+    LinkFilterComponent,
+    LinkDoesntExistComponent
   ],
   exports: [LinkCreateComponent, LinkInfoComponent, LinksGridComponent]
 })
