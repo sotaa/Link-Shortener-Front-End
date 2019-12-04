@@ -8,9 +8,12 @@ export class AlertMessageLinkService {
   customLinkMessages: string;
   passwordLinkMessage: string;
   linkAddressMessage: string;
+  utmMedium: string;
+  utmSource: string;
+  utmCampaign: string;
 
   // Link address messages
-  enterAddress: string = "لطفا ادرس سایت را وارد کنید!";
+  enterAddress: string = "ابتدا ادرس سایت را وارد کنید!";
   enterCorrectAddress: string = "لطفا ادرس صحیح را وارد کنید!";
   // Custom link messages
   moreThanSomeCharacterForCustom: string = "لینک کوتاه دلخواه: حداقل 5 کاراکتر";
@@ -20,6 +23,10 @@ export class AlertMessageLinkService {
   passwordIsIncorrect: string = "رمز عبور صحیح نمی باشد!";
   //
   userIsUnauthorized: string = "!کاربر غیر مجاز است";
+  // UTM
+  mediumIsRequierd: string = "فیلد medium نباید خالی باشد";
+  sourceIsRequierd: string = "فیلد source نباید خالی باشد";
+  campaignIsRequierd: string = "فیلد campaign نباید خالی باشد";
 
   constructor(private alertService: AlertService) {}
 
@@ -40,6 +47,26 @@ export class AlertMessageLinkService {
   }
   deletePasswordLinkMesage() {
     this.passwordLinkMessage = "";
+  }
+
+  // UTM
+  addMediumIsRequierd() {
+    this.utmMedium = this.mediumIsRequierd;
+  }
+  deleteMediumIsRequierd() {
+    this.utmMedium = "";
+  }
+  addSourceIsRequierd() {
+    this.utmSource = this.sourceIsRequierd;
+  }
+  deleteSourceIsRequierd() {
+    this.utmSource = "";
+  }
+  addCampaignIsRequierd() {
+    this.utmCampaign = this.campaignIsRequierd;
+  }
+  deleteCampaignIsRequierd() {
+    this.utmCampaign = "";
   }
 
   clearAllMessages() {
@@ -65,5 +92,14 @@ export class AlertMessageLinkService {
   }
   alertUserIsUnauthorized() {
     this.alertService.alert(this.userIsUnauthorized);
+  }
+  alertMediumIsrequired() {
+    this.alertService.alert(this.utmMedium);
+  }
+  alertSourceIsrequired() {
+    this.alertService.alert(this.utmSource);
+  }
+  alertCampaignIsrequired() {
+    this.alertService.alert(this.utmCampaign);
   }
 }
