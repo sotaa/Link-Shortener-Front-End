@@ -12,12 +12,14 @@ import { BaseService } from "../../base-items/base.service";
 })
 export class LinkService extends BaseService {
   @Output() resetCheckBox: EventEmitter<null>;
+  @Output() utm: EventEmitter<null>;
   @Output() addTag: EventEmitter<string>;
   @Output() removeTag: EventEmitter<string>;
 
   constructor(injector: Injector) {
     super(injector);
     this.resetCheckBox = new EventEmitter();
+    this.utm = new EventEmitter();
     this.addTag = new EventEmitter();
     this.removeTag = new EventEmitter();
   }
@@ -80,16 +82,23 @@ export class LinkService extends BaseService {
   addTagtoSelectedArray(tag) {
     this.addTag.emit(tag);
   }
+
   removeTagFromSelectedArray(tag) {
     this.removeTag.emit(tag);
+  }
+
+  emitUtmParameters() {
+    this.utm.emit();
   }
 
   removeAuthTokenFromHeader() {
     this.headers.delete("Authorization");
   }
+
   appendPassword(password) {
     this.headers.append("LinkPassword", password);
   }
+
   removePasswordFromHeader() {
     this.headers.delete("LinkPassword");
   }
