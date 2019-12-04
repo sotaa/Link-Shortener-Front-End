@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { LinkService } from "../services/link.service";
 import { ILink, Link } from "../../models/link.interface";
 import { SystemMessagesService } from "../services/system-messages.service";
-import { PremiumFeature } from "../../models/premium-feature.model";
+import { PremiumFeature } from "../link-create/premium-feature.class";
 import { environment } from "../../../../environments/environment";
 import { ActivatedRoute, Params, Router, NavigationEnd } from "@angular/router";
 import { AuthService } from "../../auth/services/auth.service";
@@ -116,6 +116,7 @@ export class LinkCreateComponent extends PremiumFeature
     //check address url validate
     const myURL = this.regexURL.exec(this.link.address);
     if (myURL == null) return this.alertMessageLink.alertCorrectAddressLink();
+
     //check childeren component validate
     if (this.alertMessageLink.customLinkMessages != "") {
       return this.alertMessageLink.alertCustomLink();
@@ -123,6 +124,13 @@ export class LinkCreateComponent extends PremiumFeature
     if (this.alertMessageLink.passwordLinkMessage != "") {
       return this.alertMessageLink.alertPasswordLink();
     }
+    // UTM //
+    if (this.alertMessageLink.utmMedium)
+      return this.alertMessageLink.alertMediumIsrequired();
+    if (this.alertMessageLink.utmSource)
+      return this.alertMessageLink.alertSourceIsrequired();
+    if (this.alertMessageLink.utmCampaign)
+      return this.alertMessageLink.alertCampaignIsrequired();
     // check action: update or create
     if (this.editMode) {
       this.linkService.updateLink(this.paramId, this.link).subscribe(
@@ -175,6 +183,10 @@ export class LinkCreateComponent extends PremiumFeature
 
   showUpgradeMessage() {
     this.showModal = true;
+  }
+
+  emitUtm() {
+    this.linkService.emitUtmParameters();
   }
 
   closeModal() {
