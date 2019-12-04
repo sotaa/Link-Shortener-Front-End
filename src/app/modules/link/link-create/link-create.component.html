@@ -6,6 +6,7 @@
     placeholder="https://example.com"
     type="text"
     [(ngModel)]="link.address"
+    (input)="emitUtm()"
     name="address"
   />
 </div>
@@ -83,6 +84,16 @@
         [isExpired]="isExpired"
         (unavailable)="showUpgradeMessage()"
       ></app-category-form>
+    </div>
+  </div>
+  <div class="row utm">
+    <div class="col">
+      <app-utm-form
+        [link]="link"
+        [editMode]="editMode"
+        [isExpired]="isExpired"
+        (unavailable)="showUpgradeMessage()"
+      ></app-utm-form>
     </div>
   </div>
 </div>
