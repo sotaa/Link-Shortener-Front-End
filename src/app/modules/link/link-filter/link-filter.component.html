@@ -5,7 +5,7 @@
       (change)="addTagtoSelectedArray($event)"
       class="form-control form-control-sm selectTags"
     >
-      <option>تگ ها ...</option>
+      <option selected disabled>فیلتر با تگ ها ...</option>
       <option *ngFor="let tag of userTags; let i = index">{{ tag }}</option>
     </select>
   </div>
