@@ -101,7 +101,7 @@ export class OverviewComponent implements OnInit {
   }
 
   fetchLinksByTagFiltering(tag) {
-    this.selectedTags.push(tag);
+    if (!this.selectedTags.includes(tag)) this.selectedTags.push(tag);
     this.getUserLinks(this.selectedTags);
   }
 
