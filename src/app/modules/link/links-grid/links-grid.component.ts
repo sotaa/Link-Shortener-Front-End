@@ -19,6 +19,7 @@ export class LinksGridComponent implements OnInit {
   @Output() info: EventEmitter<string>;
   host: string;
   disabled;
+  isloading = true;
 
   constructor() {
     this.delete = new EventEmitter<string>();
