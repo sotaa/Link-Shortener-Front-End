@@ -32,6 +32,7 @@
   (update)="updateUserLink($event)"
   (info)="getLinkInfo($event)"
 ></app-links-grid>
+<app-loading *ngIf="isLoading"></app-loading>
 <div class="modal-content bg-gradient-danger" *ngIf="showModal">
   <div class="modal-header">
     <h6 class="modal-title display-3" id="modal-title-notification"></h6>

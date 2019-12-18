@@ -20,6 +20,7 @@ export class OverviewComponent implements OnInit {
   remainingDays: Number;
   isUserExpired = true;
   showModal = false;
+  isLoading = true;
 
   constructor(
     private authService: AuthService,
@@ -31,7 +32,8 @@ export class OverviewComponent implements OnInit {
 
   async ngOnInit() {
     await this.updateUserInfo();
-    this.getUserLinks(this.selectedTags);
+    await this.getUserLinks(this.selectedTags);
+    this.isLoading = false;
     if (!this.isUserExpired) {
       this.categoryService.getUserCategories().subscribe(tags => {
         if (tags) this.userTags = tags;
