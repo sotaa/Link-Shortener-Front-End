@@ -31,7 +31,6 @@ export class RegisterComponent implements OnInit {
   }
 
   handleSubmitError(err: any) {
-    // TODO: handle form error.
-    this.errorMessage = err.message;
+    this.errorMessage = err._body;
   }
 }
