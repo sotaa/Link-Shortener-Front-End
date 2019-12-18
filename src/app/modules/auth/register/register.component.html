@@ -22,6 +22,7 @@
     <div class="text-center text-muted mb-4">
       <small>اطلاعات کاربری</small>
     </div>
+    <p class="text-danger text-center">{{ errorMessage }}</p>
     <form class="form" role="form" (ngSubmit)="submit()">
       <div class="form-group">
         <div class="input-group input-group-alternative mb-3">
@@ -94,7 +95,6 @@
           </div>
         </div>
       </div>
-      <p class="text-danger text-center">{{ errorMessage }}</p>
       <br />
       <div class="text-center">
         <button class="btn btn-primary mt-4">ثبت نام</button>
