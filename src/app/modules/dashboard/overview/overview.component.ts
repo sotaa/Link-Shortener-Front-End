@@ -111,13 +111,19 @@ export class OverviewComponent implements OnInit {
     this.router.navigate(["/dashboard/link/plans"]);
   }
 
-  fetchLinksByTagFiltering(tag) {
-    if (!this.selectedTags.includes(tag)) this.selectedTags.push(tag);
-    this.getUserLinks(this.selectedTags);
+  async fetchLinksByTagFiltering(tag) {
+    this.isLoading = true;
+    if (!this.selectedTags.includes(tag)) {
+      this.selectedTags.push(tag);
+      await this.getUserLinks(this.selectedTags);
+    }
+    this.isLoading = false;
   }
 
-  fetchLinksByRemoveTagFiltering(tag) {
+  async fetchLinksByRemoveTagFiltering(tag) {
+    this.isLoading = true;
     this.selectedTags = this.selectedTags.filter(item => item !== tag);
-    this.getUserLinks(this.selectedTags);
+    await this.getUserLinks(this.selectedTags);
+    this.isLoading = false;
   }
 }
