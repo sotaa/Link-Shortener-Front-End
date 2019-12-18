@@ -1,27 +1,16 @@
 .tag-filter-container {
-  display: inline-block;
+  display: block;
 }
 
 .filter-tag {
-  float: right;
+  margin-bottom: 10px;
 }
-
-/* .fa-filter {
-  font-size: 24px;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-} */
 
 .selectTags {
   cursor: pointer;
-  width: 78%;
-  float: right;
+  width: 130px;
 }
 
-.show-filter {
-  float: right;
-}
 .selectedTag {
   font-weight: bold;
   margin-left: 5px;
