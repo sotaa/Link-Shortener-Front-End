@@ -1,11 +1,11 @@
 <div class="tag-filter-container">
   <div class="filter-tag">
-    <i class="fa fa-filter"></i>
+    <!-- <i class="fa fa-filter"></i> -->
     <select
       (change)="addTagtoSelectedArray($event)"
       class="form-control form-control-sm selectTags"
     >
-      <option selected disabled>فیلتر با تگ ها ...</option>
+      <option selected disabled>فیلتر با تگ ها</option>
       <option *ngFor="let tag of userTags; let i = index">{{ tag }}</option>
     </select>
   </div>

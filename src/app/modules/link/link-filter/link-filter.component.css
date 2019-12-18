@@ -6,17 +6,16 @@
   float: right;
 }
 
-
-.fa-filter {
+/* .fa-filter {
   font-size: 24px;
   font-weight: bold;
   float: right;
   margin-left: 5px;
-}
+} */
 
 .selectTags {
   cursor: pointer;
-  width: 70%;
+  width: 78%;
   float: right;
 }
 
