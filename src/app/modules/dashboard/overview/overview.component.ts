@@ -5,6 +5,7 @@ import { ILink } from "./../../models/link.interface";
 import { AuthService } from "../../auth/services/auth.service";
 import { LinkService } from "../../link/services/link.service";
 import { CategoryService } from "../../link/services/category.service";
+import * as PersianDate from "persian-date";
 
 @Component({
   selector: "app-overview",
@@ -44,7 +45,15 @@ export class OverviewComponent implements OnInit {
     });
   }
   async getUserLinks(selectedTags: string[]) {
-    const links = await this.linkService.getUserLinks(selectedTags).toPromise();
+    let links = await this.linkService.getUserLinks(selectedTags).toPromise();
+    if (links) {
+      links = links.map(link => {
+        link.createDate = new PersianDate(link.createDateFa)
+          .toLocale("fa")
+          .format();
+        return link;
+      });
+    }
     this.links = links;
   }
 

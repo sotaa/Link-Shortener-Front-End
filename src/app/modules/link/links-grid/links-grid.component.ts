@@ -10,7 +10,6 @@ import { environment } from "../../../../environments/environment";
   styleUrls: ["./links-grid.component.css"]
 })
 export class LinksGridComponent implements OnInit {
-  isLoading: boolean = true;
   @Input() links: ILink[];
   @Input() remainingDays: Number;
   @Input() selectedTags = [];
@@ -32,15 +31,6 @@ export class LinksGridComponent implements OnInit {
       this.disabled = true;
     }
     this.host = environment.apiUrl;
-    if (this.links) {
-      this.links = this.links.map(link => {
-        link.createDate = new PersianDate(link.createDateFa)
-          .toLocale("fa")
-          .format();
-        return link;
-      });
-    }
-    this.isLoading = false;
   }
 
   deleteUserLink(id: string) {
