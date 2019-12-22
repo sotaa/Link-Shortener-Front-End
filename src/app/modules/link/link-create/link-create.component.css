@@ -14,14 +14,12 @@ input {
 }
 
 .component {
-  padding-right: 5%;
   display: block;
 }
 
-.utm {
-  margin-top: 3%;
-  width: 25%;
+.modal-content {
 }
+
 .goPermium {
   background: rgb(153, 153, 153);
   border-radius: 5px;

@@ -60,7 +60,7 @@
   <div class="col-md-12">
     <!-- toggle feature -->
     <div class="row pointer">
-      <div class="col-3">
+      <div class="col-2">
         <label class="custom-toggle">
           <input
             type="checkbox"
@@ -78,99 +78,101 @@
     </div>
     <!-- form input -->
     <div class="row form" *ngIf="isEnable">
-      <form>
-        <div class="form-group">
-          <label for="medium">
-            Medium
-            <i
-              title=" محل قرار دادن لینک مثل
+      <div class="col-lg-6 col-md-12">
+        <form>
+          <div class="form-group">
+            <label for="medium">
+              Medium
+              <i
+                title=" محل قرار دادن لینک مثل
             ایمیل و تلگرام"
-              class="fa fa-question-circle"
-            ></i>
-          </label>
-          <input
-            [disabled]="!isEnable"
-            type="text"
-            class="form-control"
-            [(ngModel)]="utmParameters.utm_medium"
-            (input)="addUtmToLink()"
-            name="medium"
-            aria-describedby="mediumHelp"
-          />
-        </div>
-        <div class="form-group">
-          <label for="sorce"
-            >Source
-            <i title="نام مرجع اصلی لینک" class="fa fa-question-circle"></i
-          ></label>
-          <input
-            [disabled]="!isEnable"
-            type="text"
-            class="form-control"
-            [(ngModel)]="utmParameters.utm_source"
-            (input)="addUtmToLink()"
-            name="sorce"
-            id="sorce"
-            aria-describedby="sorceHelp"
-          />
-        </div>
-        <div class="form-group">
-          <label for="campaignName"
-            >Campaign Name
-            <i
-              title="یک اسم یکتا برای کمپین مورد نظر
+                class="fa fa-question-circle"
+              ></i>
+            </label>
+            <input
+              [disabled]="!isEnable"
+              type="text"
+              class="form-control"
+              [(ngModel)]="utmParameters.utm_medium"
+              (input)="addUtmToLink()"
+              name="medium"
+              aria-describedby="mediumHelp"
+            />
+          </div>
+          <div class="form-group">
+            <label for="sorce"
+              >Source
+              <i title="نام مرجع اصلی لینک" class="fa fa-question-circle"></i
+            ></label>
+            <input
+              [disabled]="!isEnable"
+              type="text"
+              class="form-control"
+              [(ngModel)]="utmParameters.utm_source"
+              (input)="addUtmToLink()"
+              name="sorce"
+              id="sorce"
+              aria-describedby="sorceHelp"
+            />
+          </div>
+          <div class="form-group">
+            <label for="campaignName"
+              >Campaign Name
+              <i
+                title="یک اسم یکتا برای کمپین مورد نظر
             مثل advertise"
-              class="fa fa-question-circle"
-            ></i
-          ></label>
-          <input
-            [disabled]="!isEnable"
-            type="text"
-            class="form-control"
-            [(ngModel)]="utmParameters.utm_campaign"
-            (input)="addUtmToLink()"
-            name="campaign"
-            id="campaignName"
-            aria-describedby="campaignNameHelp"
-          />
-        </div>
-        <div class="form-group">
-          <label for="term"
-            >Term (Optional)
-            <i title="کلمه کلیدی مورد نظر" class="fa fa-question-circle"></i
-          ></label>
-          <input
-            [disabled]="!isEnable"
-            type="text"
-            class="form-control"
-            [(ngModel)]="utmParameters.utm_term"
-            (input)="addUtmToLink()"
-            name="term"
-            id="term"
-            aria-describedby="termHelp"
-          />
-        </div>
-        <div class="form-group">
-          <label for="content"
-            >Content (Optional)
-            <i
-              title="زمانی که برای یک کمپین محتوای تبلیغاتی متفاوتی
+                class="fa fa-question-circle"
+              ></i
+            ></label>
+            <input
+              [disabled]="!isEnable"
+              type="text"
+              class="form-control"
+              [(ngModel)]="utmParameters.utm_campaign"
+              (input)="addUtmToLink()"
+              name="campaign"
+              id="campaignName"
+              aria-describedby="campaignNameHelp"
+            />
+          </div>
+          <div class="form-group">
+            <label for="term"
+              >Term (Optional)
+              <i title="کلمه کلیدی مورد نظر" class="fa fa-question-circle"></i
+            ></label>
+            <input
+              [disabled]="!isEnable"
+              type="text"
+              class="form-control"
+              [(ngModel)]="utmParameters.utm_term"
+              (input)="addUtmToLink()"
+              name="term"
+              id="term"
+              aria-describedby="termHelp"
+            />
+          </div>
+          <div class="form-group">
+            <label for="content"
+              >Content (Optional)
+              <i
+                title="زمانی که برای یک کمپین محتوای تبلیغاتی متفاوتی
                 داشته باشیم"
-              class="fa fa-question-circle"
-            ></i
-          ></label>
-          <input
-            [disabled]="!isEnable"
-            type="text"
-            class="form-control"
-            [(ngModel)]="utmParameters.utm_content"
-            (input)="addUtmToLink()"
-            name="content"
-            id="content"
-            aria-describedby="contentHelp"
-          />
-        </div>
-      </form>
+                class="fa fa-question-circle"
+              ></i
+            ></label>
+            <input
+              [disabled]="!isEnable"
+              type="text"
+              class="form-control"
+              [(ngModel)]="utmParameters.utm_content"
+              (input)="addUtmToLink()"
+              name="content"
+              id="content"
+              aria-describedby="contentHelp"
+            />
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

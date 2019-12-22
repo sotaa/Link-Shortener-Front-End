@@ -16,10 +16,10 @@ export class AlertMessageLinkService {
   enterAddress: string = "ابتدا ادرس سایت را وارد کنید!";
   enterCorrectAddress: string = "لطفا ادرس صحیح را وارد کنید!";
   // Custom link messages
-  moreThanSomeCharacterForCustom: string = "لینک کوتاه دلخواه: حداقل 5 کاراکتر";
-  shortenIsDuplicate: string = "این لینک کوتاه دلخواه قبلا ثبت شده است";
+  moreThanSomeCharacterForCustom: string = "حداقل 5 کاراکتر";
+  shortenIsDuplicate: string = "قبلا ثبت شده است";
   // password link messages
-  moreThanSomeCharacterForPass: string = "پسورد: حداقل 3 کاراکتر";
+  moreThanSomeCharacterForPass: string = "حداقل 3 کاراکتر";
   passwordIsIncorrect: string = "رمز عبور صحیح نمی باشد!";
   //
   userIsUnauthorized: string = "!کاربر غیر مجاز است";

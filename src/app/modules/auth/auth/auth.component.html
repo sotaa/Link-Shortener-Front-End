@@ -7,10 +7,10 @@
 <ng-template #login> <app-login></app-login> </ng-template>
 <div class="d-flex justify-content-center">
   <div class="col-lg-6 col-md-12 mt-3 under-login-page">
-    <a class="text-light pas">
+    <a class="text-light">
       <small>کلمه عبور خود را فراموش کرده اید ؟</small>
     </a>
-    <a class="text-light under-pas" (click)="toggleRegisterMode()">
+    <a class="text-light registerPageLink" (click)="toggleRegisterMode()">
       <small class="text-primary" *ngIf="!registerMode"
         >همین الان ثبت نام کنید!</small
       >

@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="form-group">
       <div class="row pointer">
-        <div class="col-3">
+        <div class="col-2">
           <label class="custom-toggle">
             <input
               type="checkbox"
@@ -18,8 +18,8 @@
           <span>برچسب ها</span>
         </div>
       </div>
-      <div class="row" *ngIf="isEnable">
-        <div class="col">
+      <div class="row inputValue" *ngIf="isEnable">
+        <div class="col-lg-6 col-md-12">
           <ng-select
             [items]="data"
             [addTag]="addTagFn"

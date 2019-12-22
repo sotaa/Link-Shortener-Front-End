@@ -1,10 +1,19 @@
 .custome-input {
-  height: 35px;
+  height: 30px;
 }
 
 button:disabled {
   cursor: not-allowed;
 }
+.pointer {
+  padding-right: 1vw;
+}
+.inputValue {
+  padding-right: 2vw;
+}
 .text-danger {
-  font-size: 15px;
+  font-size: 13px;
+  text-align: right;
+  margin-top: 0.5vw;
+  height: 5px;
 }

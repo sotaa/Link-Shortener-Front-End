@@ -53,41 +53,31 @@
 <!-- Others Component-->
 <div class="row component" *ngIf="!isLoading">
   <div class="row">
-    <div class="col">
+    <div class="col-lg-6">
       <app-custom-link-form
         [link]="link"
         [editMode]="editMode"
         [isExpired]="isExpired"
         (unavailable)="showUpgradeMessage()"
       ></app-custom-link-form>
-    </div>
-    <div class="col">
       <app-password-form
         [link]="link"
         [editMode]="editMode"
         [isExpired]="isExpired"
         (unavailable)="showUpgradeMessage()"
       ></app-password-form>
-    </div>
-    <div class="col">
       <app-private-link-form
         [link]="link"
         [editMode]="editMode"
         [isExpired]="isExpired"
         (unavailable)="showUpgradeMessage()"
       ></app-private-link-form>
-    </div>
-    <div class="col">
       <app-category-form
         [link]="link"
         [editMode]="editMode"
         [isExpired]="isExpired"
         (unavailable)="showUpgradeMessage()"
       ></app-category-form>
-    </div>
-  </div>
-  <div class="row utm">
-    <div class="col">
       <app-utm-form
         [link]="link"
         [editMode]="editMode"
@@ -96,31 +86,31 @@
       ></app-utm-form>
     </div>
   </div>
-</div>
 
-<!-- modal for expired users -->
-<div class="modal-content bg-gradient-danger" *ngIf="showModal">
-  <div class="modal-header">
-    <h6 class="modal-title display-3" id="modal-title-notification"></h6>
-  </div>
-  <div class="modal-body text-white">
-    <div class="py-3 text-center">
-      <i class="ni ni-bell-55 ni-3x"></i>
-      <h4 class="heading mt-4">توجه !</h4>
-      <p>برای استفاده از این فیچر باید حرفه ای باشید</p>
+  <!-- modal for expired users -->
+    <div class="modal-content bg-gradient-danger" *ngIf="showModal">
+      <div class="modal-header">
+        <h6 class="modal-title display-3" id="modal-title-notification"></h6>
+      </div>
+      <div class="modal-body text-white">
+        <div class="py-3 text-center">
+          <i class="ni ni-bell-55 ni-3x"></i>
+          <h4 class="heading mt-4">توجه !</h4>
+          <p>برای استفاده از این فیچر باید حرفه ای باشید</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" (click)="goPermium()">
+          باشه، حرفه ای میشم
+        </button>
+        <button
+          type="button"
+          class="btn btn-link text-white ml-auto"
+          data-dismiss="modal"
+          (click)="closeModal()"
+        >
+          میخوام غیرحرفه ای بمانم
+        </button>
+      </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-white" (click)="goPermium()">
-      باشه، حرفه ای میشم
-    </button>
-    <button
-      type="button"
-      class="btn btn-link text-white ml-auto"
-      data-dismiss="modal"
-      (click)="closeModal()"
-    >
-      میخوام غیرحرفه ای بمانم
-    </button>
-  </div>
 </div>
