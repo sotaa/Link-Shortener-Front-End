@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'link-shortener-front-end';
+  title = '20800 کوتاه کننده لینک';
 }

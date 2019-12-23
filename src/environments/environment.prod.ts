@@ -1,3 +1,9 @@
+
+const apiHost = "links.marketals.com";
+const apiUrl = `https://${apiHost}`;
+
 export const environment = {
-  production: true
+  production: false,
+  apiHost,
+  apiUrl
 };
