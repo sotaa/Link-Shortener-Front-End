@@ -24,6 +24,7 @@
 <br />
 <br />
 <app-links-grid
+  *ngIf="!isLoading"
   [links]="links"
   [remainingDays]="remainingDays"
   [selectedTags]="selectedTags"
