@@ -68,8 +68,8 @@
       </div>
       <br />
       <div class="text-center">
-        <button class="btn btn-primary my-4" [disabled]="f.invalid">
-          ورود
+        <button class="btn btn-primary my-4" [disabled]="f.invalid || isLoading">
+          {{ isLoading ? 'لطفا صبر کنید...' : 'ورود'}}
         </button>
       </div>
     </form>

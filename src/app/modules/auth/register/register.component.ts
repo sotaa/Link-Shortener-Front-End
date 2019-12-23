@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { IRegisterModel } from "../model/register.viewmodel";
 import { AuthService } from "../services/auth.service";
 import { Router } from "@angular/router";
+import { finalize } from "rxjs/operators";
 
 @Component({
   selector: "app-register",
@@ -11,6 +12,7 @@ import { Router } from "@angular/router";
 export class RegisterComponent implements OnInit {
   credentials: IRegisterModel;
   errorMessage: any;
+  isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.credentials = { name: "", agree: true, password: "", email: "" };
@@ -19,7 +21,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   submit() {
-    this.authService.register(this.credentials).subscribe(
+    this.isLoading = true;
+    this.authService.register(this.credentials).pipe(finalize(() => this.isLoading = false)).subscribe(
       user => {
         this.authService.updateSavedUser(user, false);
         this.router.navigate(["/dashboard/link"]);

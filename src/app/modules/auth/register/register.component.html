@@ -97,7 +97,9 @@
       </div>
       <br />
       <div class="text-center">
-        <button class="btn btn-primary mt-4">ثبت نام</button>
+        <button class="btn btn-primary mt-4" [disabled]="isLoading">
+          {{ isLoading ? 'لطفا صبر کنید...' : 'ثبت نام'}}
+        </button>
       </div>
     </form>
   </div>
