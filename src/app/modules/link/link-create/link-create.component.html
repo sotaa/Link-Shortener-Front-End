@@ -1,12 +1,24 @@
 <!-- input for getting addrees of site -->
 <div class="form-group">
-  <input *ngIf="!linkAddress" class="form-control" placeholder="https://example.com" type="text"
-    [(ngModel)]="link.address" (input)="emitUtm()" name="address" />
+  <input
+    *ngIf="!linkAddress"
+    class="form-control"
+    placeholder="https://example.com"
+    type="text"
+    [(ngModel)]="link.address"
+    (input)="emitUtm()"
+    name="address"
+  />
 </div>
 <!-- button to submitting action -->
 <div class="buttons">
-  <button *ngIf="!linkAddress" (click)="submit()" class="btn btn-large bg-gradient-info btn-info" type="button"
-    [disabled]="disabled">
+  <button
+    *ngIf="!linkAddress"
+    (click)="submit()"
+    class="btn btn-large bg-gradient-info btn-info"
+    type="button"
+    [disabled]="disabled"
+  >
     {{ messages }}
   </button>
   <!-- show created Link and reset Link -->
@@ -17,7 +29,10 @@
           <a href="{{ linkAddress }}" target="_blank">{{ linkAddress }}</a>
         </div>
         <div class="col-md-1">
-          <button class="btn btn-outline-success pull-right" (click)="copyToClipBoard()">
+          <button
+            class="btn btn-outline-success pull-right"
+            (click)="copyToClipBoard()"
+          >
             کپی شود
           </button>
         </div>
@@ -26,7 +41,11 @@
   </div>
   <br />
   <!-- button for resetting created link -->
-  <button *ngIf="linkAddress" (click)="resetLink()" class="btn btn-large bg-gradient-info btn-info">
+  <button
+    *ngIf="linkAddress"
+    (click)="resetLink()"
+    class="btn btn-large bg-gradient-info btn-info"
+  >
     شروع مجدد
   </button>
 </div>
@@ -35,24 +54,49 @@
 <div class="row component" *ngIf="!isLoading">
   <div class="row">
     <div class="col-lg-6">
-      <app-custom-link-form [link]="link" [editMode]="editMode" [isExpired]="isExpired"
-        (unavailable)="showUpgradeMessage()"></app-custom-link-form>
+      <div class="col-lg-12">
+        <app-custom-link-form
+          [link]="link"
+          [editMode]="editMode"
+          [isExpired]="isExpired"
+          (unavailable)="showUpgradeMessage()"
+        ></app-custom-link-form>
+      </div>
+      <div class="col-lg-12">
+        <app-password-form
+          [link]="link"
+          [editMode]="editMode"
+          [isExpired]="isExpired"
+          (unavailable)="showUpgradeMessage()"
+        ></app-password-form>
+      </div>
+      <div class="col-lg-12">
+        <app-private-link-form
+          [link]="link"
+          [editMode]="editMode"
+          [isExpired]="isExpired"
+          (unavailable)="showUpgradeMessage()"
+        ></app-private-link-form>
+      </div>
     </div>
     <div class="col-lg-6">
-      <app-password-form [link]="link" [editMode]="editMode" [isExpired]="isExpired"
-        (unavailable)="showUpgradeMessage()"></app-password-form>
-    </div>
-    <div class="col-lg-6">
-      <app-private-link-form [link]="link" [editMode]="editMode" [isExpired]="isExpired"
-        (unavailable)="showUpgradeMessage()"></app-private-link-form>
-    </div>
-    <div class="col-lg-6">
-      <app-category-form [link]="link" [editMode]="editMode" [isExpired]="isExpired"
-        (unavailable)="showUpgradeMessage()"></app-category-form>
-    </div>
-    <div class="col-lg-6">
-      <app-utm-form [link]="link" [editMode]="editMode" [isExpired]="isExpired" (unavailable)="showUpgradeMessage()">
-      </app-utm-form>
+      <div class="col-lg-12">
+        <app-category-form
+          [link]="link"
+          [editMode]="editMode"
+          [isExpired]="isExpired"
+          (unavailable)="showUpgradeMessage()"
+        ></app-category-form>
+      </div>
+      <div class="col-lg-12">
+        <app-utm-form
+          [link]="link"
+          [editMode]="editMode"
+          [isExpired]="isExpired"
+          (unavailable)="showUpgradeMessage()"
+        >
+        </app-utm-form>
+      </div>
     </div>
   </div>
 </div>
@@ -73,7 +117,12 @@
     <button type="button" class="btn btn-white" (click)="goPermium()">
       باشه، حرفه ای میشم
     </button>
-    <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="closeModal()">
+    <button
+      type="button"
+      class="btn btn-link text-white ml-auto"
+      data-dismiss="modal"
+      (click)="closeModal()"
+    >
       میخوام غیرحرفه ای بمانم
     </button>
   </div>
