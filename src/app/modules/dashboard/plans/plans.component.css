@@ -2,3 +2,11 @@
   height: 35px;
   line-height: 22px;
 }
+.plan {
+  margin-bottom: 25px;
+}
+@media (max-width: 991px) {
+  .plan {
+    margin-bottom: 0px;
+  }
+}

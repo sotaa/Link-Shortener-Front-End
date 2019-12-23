@@ -1,5 +1,5 @@
 <div class="row row-grid">
-  <div class="col-lg-4" *ngFor="let item of plans; let i = index">
+  <div class="col-lg-4 plan" *ngFor="let item of plans; let i = index">
     <div class="card card-lift--hover shadow border-0">
       <div class="card-body py-4">
         <div
@@ -9,7 +9,9 @@
         </div>
         <h6 class="text-{{ colors[i] }} text-uppercase">{{ item.name }}</h6>
         <p class="description mt-3">{{ item.description }}</p>
-        <h5 class="text-large">{{ item.price | price }}</h5>
+        <h5 class="text-large">
+          {{ item.price | price }}<small> تومان</small>
+        </h5>
         <a
           style="color:white"
           (click)="selectPlan(item)"
