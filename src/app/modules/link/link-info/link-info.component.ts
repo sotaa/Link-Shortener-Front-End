@@ -82,7 +82,7 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
     });
   }
   private getWindowUrl() {
-    const host = environment.apiUrl;
+    const host = environment.redirectorDomain;
     this.shortenLink = host.concat("/", this.data.linkInfo.shorten);
   }
 

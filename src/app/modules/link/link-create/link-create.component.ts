@@ -149,7 +149,7 @@ export class LinkCreateComponent extends PremiumFeature
       this.linkService.generateLink(this.link).subscribe(
         link => {
           this.link = link;
-          this.linkAddress = environment.apiUrl.concat(`/${link.shorten}`);
+          this.linkAddress = environment.redirectorDomain.concat(`/${link.shorten}`);
         },
         error => {
           if (error.status === 400) {
