@@ -1,9 +1,14 @@
 <div class="row">
   <div class="col-sm-12">
-    <app-link-filter
-      [selectedTags]="selectedTags"
-      [userTags]="userTags"
-    ></app-link-filter>
+    <div
+      *ngIf="links.length === 0 && selectedTags.length === 0; else filter"
+    ></div>
+    <ng-template #filter>
+      <app-link-filter
+        [selectedTags]="selectedTags"
+        [userTags]="userTags"
+      ></app-link-filter
+    ></ng-template>
     <br />
     <br />
     <table
@@ -74,7 +79,10 @@
       </tbody>
     </table>
     <app-link-doesnt-exist
-      *ngIf="links && links.length === 0"
+      *ngIf="links && links.length === 0 && selectedTags.length !== 0"
     ></app-link-doesnt-exist>
+    <app-link-doesnt-create
+      *ngIf="links.length === 0 && selectedTags.length === 0"
+    ></app-link-doesnt-create>
   </div>
 </div>

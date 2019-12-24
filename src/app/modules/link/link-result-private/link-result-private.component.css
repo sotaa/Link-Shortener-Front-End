@@ -1,8 +1,17 @@
 .message {
-  margin: 50px auto;
-  padding: 10px;
+  margin: 30px auto;
   text-align: center;
-  width: 700px;
-  font-size: 50px;
+  font-size: 20px;
   font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  .message {
+    font-size: 15px;
+  }
+}
+@media (max-width: 400px) {
+  .message {
+    font-size: 10px;
+  }
 }
