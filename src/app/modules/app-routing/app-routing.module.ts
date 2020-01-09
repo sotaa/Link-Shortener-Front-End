@@ -13,7 +13,10 @@ const appRoutes: Routes = [
     path: "dashboard",
     loadChildren: "../dashboard/dashboard.module#DashboardModule"
   },
-  { path: "login", component: AuthComponent }
+  {
+    path: "login",
+    loadChildren: "../auth/auth.module.ts"
+  }
 ];
 
 @NgModule({
