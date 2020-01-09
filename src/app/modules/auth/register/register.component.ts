@@ -15,22 +15,30 @@ export class RegisterComponent implements OnInit {
   isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.credentials = { name: "", agree: true, password: "", email: "" };
+    this.credentials = { name: "", agree: false, password: "", email: "" };
   }
 
   ngOnInit() {}
 
   submit() {
     this.isLoading = true;
-    this.authService.register(this.credentials).pipe(finalize(() => this.isLoading = false)).subscribe(
-      user => {
-        this.authService.updateSavedUser(user, false);
-        this.router.navigate(["/dashboard/link"]);
-      },
-      err => {
-        this.handleSubmitError(err);
-      }
-    );
+    if (this.credentials.agree) {
+      this.authService
+        .register(this.credentials)
+        .pipe(finalize(() => (this.isLoading = false)))
+        .subscribe(
+          user => {
+            this.authService.updateSavedUser(user, false);
+            this.router.navigate(["/dashboard/link"]);
+          },
+          err => {
+            this.handleSubmitError(err);
+          }
+        );
+    } else {
+      this.errorMessage = "شما با قوانین سایت موافقت نکرده اید!";
+      return (this.isLoading = false);
+    }
   }
 
   handleSubmitError(err: any) {
