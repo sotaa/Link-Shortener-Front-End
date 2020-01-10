@@ -42,6 +42,18 @@ export class RegisterComponent implements OnInit {
   }
 
   handleSubmitError(err: any) {
-    this.errorMessage = err._body;
+    if (err._body.includes("User validation failed: email:")) {
+      return (this.errorMessage = err._body.split(
+        "User validation failed: email:"
+      )[1]);
+    } else if (err._body.includes("User validation failed: name:")) {
+      return (this.errorMessage = err._body.split(
+        "User validation failed: name:"
+      )[1]);
+    } else if (err._body.includes("User validation failed: password:")) {
+      return (this.errorMessage = err._body.split(
+        "User validation failed: password:"
+      )[1]);
+    } else this.errorMessage = err._body;
   }
 }
