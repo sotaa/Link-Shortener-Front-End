@@ -111,4 +111,8 @@ export class AuthService extends BaseService {
     this.plansService.removeAuthTokenFromHeader();
     this.categoryService.removeAuthTokenFromHeader();
   }
+
+  readRulesFromBackEnd() {
+    return this.get("../../../../assets/rules/rules.txt");
+  }
 }
