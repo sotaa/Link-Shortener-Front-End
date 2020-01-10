@@ -112,7 +112,7 @@ export class AuthService extends BaseService {
     this.categoryService.removeAuthTokenFromHeader();
   }
 
-  readRulesFromBackEnd() {
+  readRules() {
     return this.get("../../../../assets/rules/rules.txt");
   }
 }
