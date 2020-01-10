@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   },
   {
     path: "login",
-    loadChildren: "../auth/auth.module.ts"
+    loadChildren: "../auth/auth.module#AuthModule"
   }
 ];
 
