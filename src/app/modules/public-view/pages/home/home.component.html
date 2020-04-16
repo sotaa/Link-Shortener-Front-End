@@ -17,7 +17,7 @@
               />
               <p class="lead">بهترین کوتاه کننده لینک</p>
               <div class="row">
-                <div class="col-lg-12 col-sm-12">
+                <div *ngIf="!isLoading" class="col-lg-12 col-sm-12">
                   <app-link-create></app-link-create>
                 </div>
               </div>

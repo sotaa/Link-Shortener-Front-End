@@ -2,7 +2,7 @@
   <div class="col-lg-12">
     <div class="form-group">
       <div class="row pointer">
-        <div class="col-2">
+        <div *ngIf="!isExpired" class="col-2">
           <label class="custom-toggle">
             <input
               type="checkbox"
@@ -14,21 +14,29 @@
             <span class="custom-toggle-slider rounded-circle"></span>
           </label>
         </div>
-        <div class="col text-right" (click)="toggleCheckbox()">
+        <div
+          [ngClass]="{ expired: isExpired == true }"
+          class="col text-right"
+          (click)="toggleCheckbox()"
+        >
           <span>مخفف لینک دلخواه</span>
         </div>
       </div>
-      <div class="row inputValue" *ngIf="isEnable">
-        <div class="col-6">
-          <input
-            [disabled]="!isEnable"
-            id="customLink"
-            type="text"
-            class="form-control custome-input"
-            [(ngModel)]="selectedShorten"
-            (keyup)="checkShorten()"
-            placeholder=" . . ."
-          />
+      <div class="row form" *ngIf="isEnable">
+        <div class="col-lg-6 col-md-12">
+          <form>
+            <div class="form-group">
+              <input
+                [disabled]="!isEnable"
+                id="customLink"
+                name="customLink"
+                type="text"
+                class="form-control custom-input"
+                [(ngModel)]="selectedShorten"
+                (keyup)="checkShorten()"
+              />
+            </div>
+          </form>
         </div>
         <p class="col text-danger">{{ message }}</p>
       </div>

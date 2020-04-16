@@ -9,7 +9,7 @@ import { PremiumFeature } from "../premium-feature.class";
 @Component({
   selector: "app-password-form",
   templateUrl: "./password-form.component.html",
-  styleUrls: ["./password-form.component.css"]
+  styleUrls: ["./password-form.component.css"],
 })
 export class PasswordFormComponent extends PremiumFeature implements OnInit {
   selectedPassword: string;
@@ -51,8 +51,8 @@ export class PasswordFormComponent extends PremiumFeature implements OnInit {
   }
 
   checkPassword() {
-    if (this.selectedPassword.length < this.minimumLength) {
-      this.link.password = undefined;
+    if (this.selectedPassword.length < 1) {
+      this.link.password = "";
       return (
         (this.message = this.alertMessageLink.moreThanSomeCharacterForPass),
         this.alertMessageLink.addMoreThanSomeCharacterForPass()

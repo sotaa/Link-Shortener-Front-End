@@ -6,11 +6,12 @@ import { AuthService } from "../../auth/services/auth.service";
 import { LinkService } from "../../link/services/link.service";
 import { CategoryService } from "../../link/services/category.service";
 import * as PersianDate from "persian-date";
+import { environment } from "../../../../environments/environment";
 
 @Component({
   selector: "app-overview",
   templateUrl: "./overview.component.html",
-  styleUrls: ["./overview.component.css"]
+  styleUrls: ["./overview.component.css"],
 })
 export class OverviewComponent implements OnInit {
   links: ILink[];
@@ -35,21 +36,21 @@ export class OverviewComponent implements OnInit {
     await this.getUserLinks(this.selectedTags);
     this.isLoading = false;
     if (!this.isUserExpired) {
-      this.categoryService.getUserCategories().subscribe(tags => {
+      this.categoryService.getUserCategories().subscribe((tags) => {
         if (tags) this.userTags = tags;
       });
     }
-    this.linkService.addTag.subscribe(tag => {
+    this.linkService.addTag.subscribe((tag) => {
       this.fetchLinksByTagFiltering(tag);
     });
-    this.linkService.removeTag.subscribe(tag => {
+    this.linkService.removeTag.subscribe((tag) => {
       this.fetchLinksByRemoveTagFiltering(tag);
     });
   }
   async getUserLinks(selectedTags: string[]) {
     let links = await this.linkService.getUserLinks(selectedTags).toPromise();
     if (links) {
-      links = links.map(link => {
+      links = links.map((link) => {
         link.createDate = new PersianDate(link.createDateFa)
           .toLocale("fa")
           .format();
@@ -67,8 +68,8 @@ export class OverviewComponent implements OnInit {
     await this.linkService
       .deleteUserLink(id)
       .toPromise()
-      .then(result => {
-        this.links = this.links.filter(item => item._id !== id);
+      .then((result) => {
+        this.links = this.links.filter((item) => item._id !== id);
       });
   }
 
@@ -104,11 +105,12 @@ export class OverviewComponent implements OnInit {
   }
 
   goPermium() {
-    const userLocalStorage = this.authService.getSavedUserInfo();
-    if (!userLocalStorage) {
-      this.router.navigate(["/login"]);
-    }
-    this.router.navigate(["/dashboard/link/plans"]);
+    // const userLocalStorage = this.authService.getSavedUserInfo();
+    // if (!userLocalStorage) {
+    //   this.router.navigate(["/login"]);
+    // }
+    // this.router.navigate(["/dashboard/link/plans"]);
+    window.open(environment.redirectToPlatform, "_blank");
   }
 
   async fetchLinksByTagFiltering(tag) {
@@ -122,7 +124,7 @@ export class OverviewComponent implements OnInit {
 
   async fetchLinksByRemoveTagFiltering(tag) {
     this.isLoading = true;
-    this.selectedTags = this.selectedTags.filter(item => item !== tag);
+    this.selectedTags = this.selectedTags.filter((item) => item !== tag);
     await this.getUserLinks(this.selectedTags);
     this.isLoading = false;
   }

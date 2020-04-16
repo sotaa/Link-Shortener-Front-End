@@ -4,11 +4,12 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { IUser } from "src/app/modules/models/user.interface";
 import { AuthService } from "src/app/modules/auth/services/auth.service";
+import { environment } from "../../../../../environments/environment";
 
 @Component({
   selector: "app-premium-cta",
   templateUrl: "./premium-cta.component.html",
-  styleUrls: ["./premium-cta.component.css"]
+  styleUrls: ["./premium-cta.component.css"],
 })
 export class PremiumCtaComponent implements OnInit, OnDestroy {
   user: IUser;
@@ -19,13 +20,16 @@ export class PremiumCtaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.authService.getSavedUserInfo();
-    this.userSubscription = this.authService.updateUserInfo.subscribe(user => {
-      this.user = user;
-    });
+    this.userSubscription = this.authService.updateUserInfo.subscribe(
+      (user) => {
+        this.user = user;
+      }
+    );
   }
 
   goToPlans() {
-    this.router.navigate(["dashboard/link", "plans"]);
+    // this.router.navigate(["dashboard/link", "plans"]);
+    window.open(environment.redirectToPlatform, "_blank");
   }
 
   ngOnDestroy() {

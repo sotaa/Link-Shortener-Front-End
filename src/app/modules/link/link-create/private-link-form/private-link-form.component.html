@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-lg-12">
     <div class="form-group">
       <div class="row pointer">
-        <div class="col-2">
+        <div *ngIf="!isExpired" class="col-2">
           <label class="custom-toggle">
             <input
               type="checkbox"
@@ -14,7 +14,11 @@
             <span class="custom-toggle-slider rounded-circle"></span>
           </label>
         </div>
-        <div class="col text-right" (click)="toggleCheckbox()">
+        <div
+          [ngClass]="{ expired: isExpired == true }"
+          class="col text-right"
+          (click)="toggleCheckbox()"
+        >
           <span> نتایج خصوصی باشد</span>
         </div>
       </div>

@@ -12,7 +12,7 @@ import { PlansService } from "../../dashboard/services/plans.service";
 import { CategoryService } from "../../link/services/category.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AuthService extends BaseService {
   private userInfo: IUser;
@@ -31,7 +31,7 @@ export class AuthService extends BaseService {
   // login method, it's returning an observable of IUser if login was successful or an error with the result message.
   login(credentials: ILoginModel) {
     return this.post(AuthUrls.login, credentials).pipe(
-      map<Response, IUser>(response => {
+      map<Response, IUser>((response) => {
         const token = response.headers.get("x-new-token");
         // save new token if exists in the response.
         if (token) this.storageService.saveUserInfo({ token }, false);
@@ -49,7 +49,7 @@ export class AuthService extends BaseService {
   // register method, it's returning an observable of IUser if register was successful or an error with the result message.
   register(credentials: IRegisterModel) {
     return this.post(AuthUrls.register, credentials).pipe(
-      map<Response, IUser>(response => {
+      map<Response, IUser>((response) => {
         const token = response.headers.get("x-new-token");
         // save new token if exists in the response.
         if (token) this.storageService.saveUserInfo({ token }, false);
@@ -99,8 +99,9 @@ export class AuthService extends BaseService {
 
   // get user information from server.
   getUserInfo() {
+    this.appendAuthToken();
     return this.get(AuthUrls.info).pipe(
-      map<Response, IUser>(res => res.json())
+      map<Response, IUser>((res) => res.json())
     );
   }
 

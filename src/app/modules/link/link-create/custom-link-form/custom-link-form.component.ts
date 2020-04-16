@@ -9,7 +9,7 @@ import { PremiumFeature } from "../premium-feature.class";
 @Component({
   selector: "app-custom-link-form",
   templateUrl: "./custom-link-form.component.html",
-  styleUrls: ["./custom-link-form.component.css"]
+  styleUrls: ["./custom-link-form.component.css"],
 })
 export class CustomLinkFormComponent extends PremiumFeature
   implements OnInit, OnDestroy {
@@ -64,7 +64,7 @@ export class CustomLinkFormComponent extends PremiumFeature
     } else {
       (this.message = ""), this.alertMessageLink.deleteCustomLinkMessage();
     }
-    this.linkService.shortenIsExists(this.selectedShorten).subscribe(res => {
+    this.linkService.shortenIsExists(this.selectedShorten).subscribe((res) => {
       this.handleExistentResult(res);
     });
     this;

@@ -5,12 +5,14 @@
 const apiHost = "localhost:3000";
 const apiUrl = `http://${apiHost}`;
 const redirectorDomain = "http://localhost:3000";
+const redirectToPlatform = "http://localhost:3000";
 
 export const environment = {
   production: false,
   apiHost,
   apiUrl,
-  redirectorDomain
+  redirectorDomain,
+  redirectToPlatform,
 };
 
 /*

@@ -10,11 +10,13 @@ import { AuthService } from "../../auth/services/auth.service";
 import { Subscription } from "rxjs";
 import { IUser } from "../../models/user.interface";
 import { AlertMessageLinkService } from "../services/alert-message-link.service";
+import { PlansService } from "../../dashboard/services/plans.service";
+import { CategoryService } from "../services/category.service";
 
 @Component({
   selector: "app-link-create",
   templateUrl: "./link-create.component.html",
-  styleUrls: ["./link-create.component.css"]
+  styleUrls: ["./link-create.component.css"],
 })
 export class LinkCreateComponent extends PremiumFeature
   implements OnInit, OnDestroy {
@@ -49,6 +51,7 @@ export class LinkCreateComponent extends PremiumFeature
 
   ngOnInit() {
     this.link = new Link();
+    this.initSomeValuesAgain();
   }
 
   initSomeValuesAgain() {
@@ -62,9 +65,10 @@ export class LinkCreateComponent extends PremiumFeature
     this.alertMessageLink.clearAllMessages();
 
     const userLocalStorage = this.authService.getSavedUserInfo();
-    if (userLocalStorage) {
-      this.getUserInfo().then(user => {
+    if (userLocalStorage && userLocalStorage.token) {
+      this.getUserInfo().then((user) => {
         if (user) {
+          this.authService.updateSavedUser(user, true);
           this.userInfo = user;
         }
         if (this.userInfo.remainingDays == 0 || null || undefined) {
@@ -133,13 +137,20 @@ export class LinkCreateComponent extends PremiumFeature
       return this.alertMessageLink.alertCampaignIsrequired();
     // check action: update or create
     if (this.editMode) {
+      console.log(this.link.password);
       this.linkService.updateLink(this.paramId, this.link).subscribe(
-        res => {
+        (res) => {
           if (res._id) this.router.navigate(["../dashboard/link"]);
         },
-        error => {
-          if (error.status === 400)
+        (error) => {
+          if (
+            error.status === 400 &&
+            error._body == this.alertMessageLink.moreThanSomeCharacterForPass
+          ) {
+            return alert(error._body);
+          } else if (error.status === 400) {
             return this.alertMessageLink.alertCorrectAddressLink();
+          }
           if (error.status === 401)
             return this.alertMessageLink.alertUserIsUnauthorized();
         }
@@ -147,15 +158,21 @@ export class LinkCreateComponent extends PremiumFeature
     }
     if (!this.editMode) {
       this.linkService.generateLink(this.link).subscribe(
-        link => {
+        (link) => {
           this.link = link;
-          this.linkAddress = environment.redirectorDomain.concat(`/${link.shorten}`);
+          this.linkAddress = environment.redirectorDomain.concat(
+            `/${link.shorten}`
+          );
         },
-        error => {
-          if (error.status === 400) {
+        (error) => {
+          if (
+            error.status === 400 &&
+            error._body == this.alertMessageLink.moreThanSomeCharacterForPass
+          ) {
+            return alert(error._body);
+          } else if (error.status === 400) {
             return this.alertMessageLink.alertCorrectAddressLink();
           }
-          console.log(error);
         }
       );
     }
@@ -194,11 +211,12 @@ export class LinkCreateComponent extends PremiumFeature
   }
 
   goPermium() {
-    const userLocalStorage = this.authService.getSavedUserInfo();
-    if (!userLocalStorage) {
-      this.router.navigate(["/login"]);
-    }
-    this.router.navigate(["/dashboard/link/plans"]);
+    // const userLocalStorage = this.authService.getSavedUserInfo();
+    // if (!userLocalStorage) {
+    //   this.router.navigate(["/login"]);
+    // }
+    // this.router.navigate(["/dashboard/link/plans"]);
+    window.open(environment.redirectToPlatform, "_blank");
   }
 
   ngOnDestroy() {

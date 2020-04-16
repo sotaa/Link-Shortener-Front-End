@@ -6,19 +6,21 @@ import { Response } from "@angular/http";
 import { map } from "rxjs/operators";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class CategoryService extends BaseService {
   constructor(injector: Injector) {
     super(injector);
   }
   save(data: ICategory[]) {
+    this.appendAuthToken();
     return this.post(LinkCategoriesUrl.save, data);
   }
 
   getUserCategories() {
+    this.appendAuthToken();
     return this.get(LinkCategoriesUrl.get).pipe(
-      map<Response, ICategory[]>(res => res.json())
+      map<Response, ICategory[]>((res) => res.json())
     );
   }
 

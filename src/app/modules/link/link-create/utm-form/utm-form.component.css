@@ -22,3 +22,7 @@
 .text-danger {
   font-size: 13px;
 }
+
+.expired:hover > span {
+  color: red;
+}

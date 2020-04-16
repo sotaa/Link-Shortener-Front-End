@@ -8,7 +8,7 @@ import { LinkInfo } from "../../models/link-info.interface";
 import { BaseService } from "../../base-items/base.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class LinkService extends BaseService {
   @Output() resetCheckBox: EventEmitter<null>;
@@ -25,13 +25,14 @@ export class LinkService extends BaseService {
   }
 
   shortenIsExists(selectedShorten: string) {
-    return new Observable<boolean>(observer => {
+    this.appendAuthToken();
+    return new Observable<boolean>((observer) => {
       this.head(LinkUrls.info(selectedShorten)).subscribe(
-        res => {
+        (res) => {
           observer.next(res.ok);
           observer.complete();
         },
-        err => {
+        (err) => {
           observer.next(false);
           observer.complete();
         }
@@ -40,37 +41,43 @@ export class LinkService extends BaseService {
   }
 
   generateLink(link: ILink): Observable<ILink> {
+    this.appendAuthToken();
     return this.post(LinkUrls.create, link).pipe(
-      map<Response, ILink>(res => <ILink>res.json())
+      map<Response, ILink>((res) => <ILink>res.json())
     );
   }
 
   updateLink(id, link: ILink): Observable<ILink> {
+    this.appendAuthToken();
     return this.put(LinkUrls.update(id), link).pipe(
-      map<Response, ILink>(res => <ILink>res.json())
+      map<Response, ILink>((res) => <ILink>res.json())
     );
   }
 
   getInfo(code: string) {
+    this.appendAuthToken();
     const url = LinkUrls.info(code);
     return this.get(url).pipe(
-      map<Response, LinkInfo>(res => res.json())
+      map<Response, LinkInfo>((res) => res.json())
     );
   }
 
   getUserLinks(tags?: string[]) {
+    this.appendAuthToken();
     return this.get(LinkUrls.getUserLinks, { tags }).pipe(
-      map<Response, ILink[]>(res => res.json())
+      map<Response, ILink[]>((res) => res.json())
     );
   }
 
   getUserLink(id) {
+    this.appendAuthToken();
     return this.get(LinkUrls.getUserLink(id)).pipe(
-      map<Response, ILink>(res => <ILink>res.json())
+      map<Response, ILink>((res) => <ILink>res.json())
     );
   }
 
   deleteUserLink(id) {
+    this.appendAuthToken();
     const url = LinkUrls.deleteUserLink(id);
     return this.delete(url);
   }

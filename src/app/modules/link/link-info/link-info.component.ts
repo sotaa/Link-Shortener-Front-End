@@ -4,7 +4,7 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  OnDestroy
+  OnDestroy,
 } from "@angular/core";
 import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { Subscription } from "rxjs";
@@ -16,7 +16,7 @@ import { AlertMessageLinkService } from "../services/alert-message-link.service"
 @Component({
   selector: "app-link-info",
   templateUrl: "./link-info.component.html",
-  styleUrls: ["./link-info.component.css"]
+  styleUrls: ["./link-info.component.css"],
 })
 export class LinkInfoComponent implements OnInit, OnDestroy {
   data: LinkInfo;
@@ -49,13 +49,13 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
     this.linkIsPrivate = false;
     this.linkNotFound = false;
     let code;
-    this.routeSubscription = this.route.params.subscribe(params => {
+    this.routeSubscription = this.route.params.subscribe((params) => {
       code = params["code"];
       if (code) {
         this.linkService
           .getInfo(code)
           .toPromise()
-          .then(data => {
+          .then((data) => {
             this.userIsExpired = data.userIsExpired;
             this.data = data;
             this.notFound = !this.data;
@@ -64,16 +64,17 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
               .toLocale("fa")
               .format();
           })
-          .catch(err => {
-            if (err.status == 401) return (this.passwordRequired = true);
-            if (err.status == 400) {
-              this.alertMessageLink.alertIncorrectPasswordLink();
+          .catch((err) => {
+            if (err.status == 401) {
               return (this.passwordRequired = true);
-            }
-            if (err.status == 403) {
+            } else if (err.status == 400) {
+              return (
+                this.alertMessageLink.alertIncorrectPasswordLink(),
+                (this.passwordRequired = true)
+              );
+            } else if (err.status == 403) {
               return (this.linkIsPrivate = true);
-            }
-            if (err.status == 404) {
+            } else if (err.status == 404) {
               return (this.linkNotFound = true);
             }
           });
@@ -81,6 +82,7 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
       if (!this.data) return (this.notFound = true);
     });
   }
+
   private getWindowUrl() {
     const host = environment.redirectorDomain;
     this.shortenLink = host.concat("/", this.data.linkInfo.shorten);
@@ -88,5 +90,6 @@ export class LinkInfoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
+    this.navigationSubscription.unsubscribe();
   }
 }

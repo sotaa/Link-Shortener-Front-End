@@ -7,7 +7,7 @@ import { AlertMessageLinkService } from "../services/alert-message-link.service"
 @Component({
   selector: "app-link-password",
   templateUrl: "./link-password.component.html",
-  styleUrls: ["./link-password.component.css"]
+  styleUrls: ["./link-password.component.css"],
 })
 export class LinkPasswordComponent implements OnInit {
   routeSubscription: Subscription;
@@ -24,14 +24,15 @@ export class LinkPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.routeSubscription = this.route.params.subscribe(params => {
+    this.routeSubscription = this.route.params.subscribe((params) => {
       this.shorten = params["code"];
     });
   }
 
   submitPassword() {
-    if (!this.linkPassword || this.linkPassword.length < 3)
+    if (!this.linkPassword || this.linkPassword.length < 3) {
       return this.alertMessageLink.alertPasswordLink();
+    }
     this.linkService.appendPassword(this.linkPassword);
     this.router.navigate([`/${this.shorten}/info`]);
   }

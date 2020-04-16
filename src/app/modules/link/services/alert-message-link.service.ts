@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { AlertService } from "../../services/alert.service";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class AlertMessageLinkService {
   customLinkMessages: string;
@@ -19,7 +19,7 @@ export class AlertMessageLinkService {
   moreThanSomeCharacterForCustom: string = "حداقل 5 کاراکتر";
   shortenIsDuplicate: string = "قبلا ثبت شده است";
   // password link messages
-  moreThanSomeCharacterForPass: string = "حداقل 3 کاراکتر";
+  moreThanSomeCharacterForPass: string = "کلمه عبور باید حداقل 3 حرف باشد";
   passwordIsIncorrect: string = "رمز عبور صحیح نمی باشد!";
   //
   userIsUnauthorized: string = "!کاربر غیر مجاز است";

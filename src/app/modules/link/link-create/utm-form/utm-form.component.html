@@ -57,121 +57,129 @@
   <button type="submit" class="btn btn-primary">Get UTM</button>
 </form> -->
 <div class="row">
-  <div class="col-md-12">
-    <!-- toggle feature -->
-    <div class="row pointer">
-      <div class="col-2">
-        <label class="custom-toggle">
-          <input
-            type="checkbox"
-            id="check"
-            [disabled]="isExpired"
-            [checked]="isEnable"
-            (click)="toggleCheckbox()"
-          />
-          <span class="custom-toggle-slider rounded-circle"></span>
-        </label>
+  <div class="col-lg-12">
+    <div class="form-group">
+      <!-- toggle feature -->
+      <div class="row pointer">
+        <div *ngIf="!isExpired" class="col-2">
+          <label class="custom-toggle">
+            <input
+              type="checkbox"
+              id="check"
+              [disabled]="isExpired"
+              [checked]="isEnable"
+              (click)="toggleCheckbox()"
+            />
+            <span class="custom-toggle-slider rounded-circle"></span>
+          </label>
+        </div>
+        <div
+          [ngClass]="{ expired: isExpired == true }"
+          class="col text-right"
+          (click)="toggleCheckbox()"
+        >
+          <span>ایجاد UTM</span>
+        </div>
       </div>
-      <div class="col text-right" (click)="toggleCheckbox()">
-        <span>ایجاد UTM</span>
-      </div>
-    </div>
-    <!-- form input -->
-    <div class="row form" *ngIf="isEnable">
-      <div class="col-lg-6 col-md-12">
-        <form>
-          <div class="form-group">
-            <label for="medium">
-              Medium
-              <i
-                title=" محل قرار دادن لینک مثل
+      <!-- form input -->
+      <div class="row form" *ngIf="isEnable">
+        <div class="col-lg-6 col-md-12">
+          <form>
+            <div class="form-group">
+              <label for="medium">
+                Medium
+                <i
+                  title=" محل قرار دادن لینک مثل
             ایمیل و تلگرام"
-                class="fa fa-question-circle"
-              ></i>
-            </label>
-            <input
-              [disabled]="!isEnable"
-              type="text"
-              class="form-control"
-              [(ngModel)]="utmParameters.utm_medium"
-              (input)="addUtmToLink()"
-              name="medium"
-              aria-describedby="mediumHelp"
-            />
-          </div>
-          <div class="form-group">
-            <label for="sorce"
-              >Source
-              <i title="نام مرجع اصلی لینک" class="fa fa-question-circle"></i
-            ></label>
-            <input
-              [disabled]="!isEnable"
-              type="text"
-              class="form-control"
-              [(ngModel)]="utmParameters.utm_source"
-              (input)="addUtmToLink()"
-              name="sorce"
-              id="sorce"
-              aria-describedby="sorceHelp"
-            />
-          </div>
-          <div class="form-group">
-            <label for="campaignName"
-              >Campaign Name
-              <i
-                title="یک اسم یکتا برای کمپین مورد نظر
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  class="fa fa-question-circle"
+                ></i>
+              </label>
+              <input
+                [disabled]="!isEnable"
+                type="text"
+                class="form-control"
+                [(ngModel)]="utmParameters.utm_medium"
+                (input)="addUtmToLink()"
+                name="medium"
+                aria-describedby="mediumHelp"
+              />
+            </div>
+            <div class="form-group">
+              <label for="sorce"
+                >Source
+                <i title="نام مرجع اصلی لینک" class="fa fa-question-circle"></i
+              ></label>
+              <input
+                [disabled]="!isEnable"
+                type="text"
+                class="form-control"
+                [(ngModel)]="utmParameters.utm_source"
+                (input)="addUtmToLink()"
+                name="sorce"
+                id="sorce"
+                aria-describedby="sorceHelp"
+              />
+            </div>
+            <div class="form-group">
+              <label for="campaignName"
+                >Campaign Name
+                <i
+                  title="یک اسم یکتا برای کمپین مورد نظر
             مثل advertise"
-                class="fa fa-question-circle"
-              ></i
-            ></label>
-            <input
-              [disabled]="!isEnable"
-              type="text"
-              class="form-control"
-              [(ngModel)]="utmParameters.utm_campaign"
-              (input)="addUtmToLink()"
-              name="campaign"
-              id="campaignName"
-              aria-describedby="campaignNameHelp"
-            />
-          </div>
-          <div class="form-group">
-            <label for="term"
-              >Term (Optional)
-              <i title="کلمه کلیدی مورد نظر" class="fa fa-question-circle"></i
-            ></label>
-            <input
-              [disabled]="!isEnable"
-              type="text"
-              class="form-control"
-              [(ngModel)]="utmParameters.utm_term"
-              (input)="addUtmToLink()"
-              name="term"
-              id="term"
-              aria-describedby="termHelp"
-            />
-          </div>
-          <div class="form-group">
-            <label for="content"
-              >Content (Optional)
-              <i
-                title="زمانی که برای یک کمپین محتوای تبلیغاتی متفاوتی
+                  class="fa fa-question-circle"
+                ></i
+              ></label>
+              <input
+                [disabled]="!isEnable"
+                type="text"
+                class="form-control"
+                [(ngModel)]="utmParameters.utm_campaign"
+                (input)="addUtmToLink()"
+                name="campaign"
+                id="campaignName"
+                aria-describedby="campaignNameHelp"
+              />
+            </div>
+            <div class="form-group">
+              <label for="term"
+                >Term (Optional)
+                <i title="کلمه کلیدی مورد نظر" class="fa fa-question-circle"></i
+              ></label>
+              <input
+                [disabled]="!isEnable"
+                type="text"
+                class="form-control"
+                [(ngModel)]="utmParameters.utm_term"
+                (input)="addUtmToLink()"
+                name="term"
+                id="term"
+                aria-describedby="termHelp"
+              />
+            </div>
+            <div class="form-group">
+              <label for="content"
+                >Content (Optional)
+                <i
+                  title="زمانی که برای یک کمپین محتوای تبلیغاتی متفاوتی
                 داشته باشیم"
-                class="fa fa-question-circle"
-              ></i
-            ></label>
-            <input
-              [disabled]="!isEnable"
-              type="text"
-              class="form-control"
-              [(ngModel)]="utmParameters.utm_content"
-              (input)="addUtmToLink()"
-              name="content"
-              id="content"
-              aria-describedby="contentHelp"
-            />
-          </div>
-        </form>
+                  class="fa fa-question-circle"
+                ></i
+              ></label>
+              <input
+                [disabled]="!isEnable"
+                type="text"
+                class="form-control"
+                [(ngModel)]="utmParameters.utm_content"
+                (input)="addUtmToLink()"
+                name="content"
+                id="content"
+                aria-describedby="contentHelp"
+              />
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

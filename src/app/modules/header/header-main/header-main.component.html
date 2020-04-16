@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-default">
     <div class="container">
       <a class="navbar-brand mr-lg-5" routerLink="/">
-        <i class="fa fa-home" style="font-size:40px"></i>
+        <i class="fa fa-home" style="font-size: 40px;"></i>
       </a>
       <button
         class="navbar-toggler"
@@ -39,11 +39,11 @@
 
         <ul class="navbar-nav ml-lg-auto">
           <app-user-info *ngIf="userInfo" [user]="userInfo"></app-user-info>
-          <li class="nav-item" *ngIf="!userInfo">
+          <!-- <li class="nav-item" *ngIf="!userInfo">
             <a class="nav-link nav-link-icon" routerLink="login">
               ورود / ثبت نام
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
